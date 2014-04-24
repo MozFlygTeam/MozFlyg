@@ -8,6 +8,8 @@ public class MozFlyg {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(null, "Test");
 //		En liten kommentar
+		
+		//En liten sol!
 	}
 
 }
