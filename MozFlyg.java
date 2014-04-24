@@ -12,6 +12,8 @@ public class MozFlyg {
 		// Nej det var det inte!
 		//En liten sol!
 		
+//		En extra kommentar
+		
 //		Push push push
 		//bajskorv!
 	}
