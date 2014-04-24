@@ -9,7 +9,7 @@ public class MozFlyg {
 		JOptionPane.showMessageDialog(null, "Test");
 //		En liten kommentar
 		//kristoffers första kommentar
-		
+		// Nej det var det inte!
 		//En liten sol!
 		
 //		Push push push
