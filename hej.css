@@ -23,38 +23,6 @@ font-family: Oswald;
 src: url(../fonts/BebasNeue.otf);
 }
 
-
-/* #Site Styles
-================================================== */
-body{
-  background: url('../img/bg.jpg');
-}
-
-* {
-  padding: 0;
-  margin: 0;
-
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-p{
-  color: #888888;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-}
-
-.wrapper{
-	max-width: 1000px;
-	width: 100%;
-
-	margin: 0 auto;
-	text-align: center;
-	background: #171717;
-	
-}
-
 /*header
 ================================================== */
 
@@ -64,61 +32,6 @@ header img{
   margin-top: 10px;
 }
 
-nav{
-	background: #080808;
-
-}
-
-nav ul{
-	padding: 6px 0 6px 0;
-}
-
-nav ul li{	
-	list-decoration: none;
-	margin-left: 10px; 
-	display: inline-block;
-
-}
-
-nav ul li:first-child{
-	margin: left: 0;
-}
-
-nav a{ 
-	text-decoration: none;
-	font-family: 'Oswald';
-	font-size: 19px;
-	color: #dd0000;
-}
-nav a:hover{ color: #dd0000;}
-nav a:active{ color: #dd0000;}
-nav a:visited{ color: #dd0000;}
-
-header nav{
-  text-transform: uppercase;
-}
-
-/*main content
-================================================== */
-
-.info-box{
-	width: 75%;
-	margin: 18px auto 36px;
-	padding: 13px 90px;
-	background-color: #080808;
-}
-
-#pentagram{
-	width: 30px;
-	height: 30px;
-}
-
-.info-box h2{
-	font-size: 20px;
-	font-family: 'Oswald';
-	color: #dd0000;
-  text-transform: uppercase;
-}
 
 /*.info-box div{
   max-width: 
