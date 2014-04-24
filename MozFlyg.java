@@ -12,6 +12,7 @@ public class MozFlyg {
 		//En liten sol!
 		
 //		Push push push
+		//bajskorv!
 	}
 
 }
