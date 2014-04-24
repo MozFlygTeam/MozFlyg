@@ -10,6 +10,8 @@ public class MozFlyg {
 //		En liten kommentar
 		
 		//En liten sol!
+		
+//		Push push push
 	}
 
 }
