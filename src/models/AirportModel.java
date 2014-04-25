@@ -24,4 +24,5 @@ public class AirportModel
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
+	//En kommentar
 }
