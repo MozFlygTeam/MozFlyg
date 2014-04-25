@@ -25,4 +25,5 @@ public class AirportModel
 		this.cityName = cityName;
 	}
 	//En kommentar
+	// en kommentar av kristoffer
 }
