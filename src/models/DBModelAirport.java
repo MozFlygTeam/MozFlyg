@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AirportModel
+public class DBModelAirport
 {
 	private int id;
 	private String airport;
@@ -12,7 +12,6 @@ public class AirportModel
 	private static final String tableName = "airport";
 	private static final String airportColumn = "name";
 	private static final String cityColumn = "city";
-	
 	
 	public int getId() {
 		return id;
