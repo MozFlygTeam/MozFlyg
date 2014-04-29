@@ -102,14 +102,4 @@ public class Login extends JDialog implements ActionListener{
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				Login frame = new Login();
-				frame.setVisible(true);
-			}
-		});
-	}
-
 }
