@@ -70,8 +70,6 @@ public class Login extends JDialog implements ActionListener{
 	
 	public boolean loginVerification(){
 		
-		
-		
 		String inputUser = userFld.getText();
 		String inputPass = passFld.getText();
 		boolean loggedIn = false;
