@@ -4,6 +4,7 @@
 
 *.pydevproject
 #.project
+Thumbnails.db
 .metadata
 bin/
 tmp/
