@@ -13,7 +13,6 @@ public class AirportModel
 	private static final String airportColumn = "name";
 	private static final String cityColumn = "city";
 	
-	
 	public int getId() {
 		return id;
 	}
