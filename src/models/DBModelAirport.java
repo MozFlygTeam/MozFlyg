@@ -2,13 +2,14 @@ package models;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBModelAirport
 {
 	private int id;
-	private String airport;
-	private String city;
+	private String airportName;
+	private String cityName;
 	private static final String tableName = "airport";
 	private static final String airportColumn = "name";
 	private static final String cityColumn = "city";
@@ -17,20 +18,20 @@ public class DBModelAirport
 		return id;
 	}
 	public String getAirportName() {
-		return airport;
+		return airportName;
 	}
 	public String getCityName() {
-		return city;
+		return cityName;
 	}
 	
-	public void setId(int id) {
+	private void setId(int id) {
 		this.id = id;
 	}
 	public void setAirportName(String airportName) {
-		this.airport = airportName;
+		this.airportName = airportName;
 	}
 	public void setCityName(String cityName) {
-		this.city = cityName;
+		this.cityName = cityName;
 	}
 	
 	public DBModelAirport(){
@@ -50,16 +51,19 @@ public class DBModelAirport
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "INSERT INTO ? (?, ?) VALUES (?, ?) airport";
+			String query = "INSERT INTO ? (?, ?) VALUES (?, ?)";
 			
-			PreparedStatement statement = conn.prepareStatement(query);
+			PreparedStatement statement = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 			statement.setString(1, tableName);
 			statement.setString(2, airportColumn);
 			statement.setString(3, cityColumn);
-			statement.setString(4, airport);
-			statement.setString(5, city);
+			statement.setString(4, airportName);
+			statement.setString(5, cityName);
 
 			int result = statement.executeUpdate();
+			
+			ResultSet key = statement.getGeneratedKeys();
+			setId(key.getInt(id));
 			
 			return result;	 
 		} 
@@ -79,9 +83,9 @@ public class DBModelAirport
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, tableName);
 			statement.setString(2, airportColumn);
-			statement.setString(3, airport);
+			statement.setString(3, airportName);
 			statement.setString(4, cityColumn);
-			statement.setString(5, city);
+			statement.setString(5, cityName);
 			statement.setInt(6,id);
 
 			int result = statement.executeUpdate();
