@@ -1,15 +1,17 @@
 package models;
 
 import java.util.Vector;
-
 import javax.swing.table.AbstractTableModel;
 
-class AlbumModel extends AbstractTableModel 
+
+public class TableModelAirport extends AbstractTableModel 
 {
-    private Vector<Album> data = new Vector<Album>();
+  
+	private static final long serialVersionUID = 1L;
+	private Vector<DBModelAirport> data = new Vector<DBModelAirport>();
     
-    public void addAlbum(Album album) {
-        data.addElement(album);
+    public void addAirport(DBModelAirport DBModelAirport) {
+        data.addElement(DBModelAirport);
         fireTableDataChanged();
     }
     
@@ -19,28 +21,28 @@ class AlbumModel extends AbstractTableModel
     	fireTableRowsDeleted(row, row);
     }
     
-    public void setAlbums(Vector<Album> albums)
+    public void setAirport(Vector<DBModelAirport> airport)
     {
-    	if(albums != null)
+    	if(airport != null)
     	{
-    		data = albums;
+    		data = airport;
     	}
     	else
     	{
-    		data = new Vector<Album>();
+    		data = new Vector<DBModelAirport>();
     	}
     	
     	fireTableDataChanged();
     }
     
-    public Album getAlbum(int row)
+    public DBModelAirport getAirport(int row)
     {
     	return data.get(row);
     }
     
     @Override
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
     @Override
     public int getRowCount() {
@@ -49,33 +51,33 @@ class AlbumModel extends AbstractTableModel
     @Override
     public String getColumnName(int col) {
         switch (col) {
-        case 0: return "Album";
-        case 1: return "Artist";
-        case 2: return "Utgivningsår";
-        case 3: return "Databas ID";
+        case 0: return "id";
+        case 1: return "Flygplats";
+        case 2: return "Stad";
         }
         return "";
     }
     @Override
     public Object getValueAt(int row, int col)
     {
-    	Album rowData = (Album) data.get(row);
+    	DBModelAirport rowData = (DBModelAirport) data.get(row);
         
         switch (col) {
-        case 0: return rowData.getAlbumName();
-        case 1: return rowData.getArtistName();
-        case 2: return new Integer(rowData.getReleaseYear());
-        case 3: return new Integer(rowData.getAlbumId());
+        case 0: return new Integer(rowData.getId());
+        case 1: return rowData.getAirportName();
+        case 2: return rowData.getCityName();
+       
         }        
         return "Unknown";
     }
     @Override
     public Class<?> getColumnClass(int col) {
         switch (col) {
-        case 0: return String.class;
+        case 0: return Integer.class;
         case 1: return String.class;
-        case 2: return Integer.class;
-        case 3: return Integer.class;
+        case 2: return String.class;
+     
+       
         }
         return Object.class;
     }

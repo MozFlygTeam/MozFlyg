@@ -33,6 +33,19 @@ public class DBModelAirport
 		this.city = cityName;
 	}
 	
+	public DBModelAirport(){
+		
+		
+	}
+	
+	public DBModelAirport(int id, String airport, String city){
+		
+		this.setId(id);
+		this.setAirportName(airport);
+		this.setCityName(city);
+		
+	}
+	
 	public int insert()
 	{
 		try (Connection conn = DBConnector.getConnection())
