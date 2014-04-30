@@ -51,23 +51,25 @@ public class DBModelAirport
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "INSERT INTO ? (?, ?) VALUES (?, ?)";
+			String query = "INSERT INTO " + tableName + 
+					"(" + airportColumn + "," + cityColumn + ") " + 
+					"VALUES (?, ?)";
 			
 			PreparedStatement statement = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-			statement.setString(1, tableName);
-			statement.setString(2, airportColumn);
-			statement.setString(3, cityColumn);
-			statement.setString(4, airportName);
-			statement.setString(5, cityName);
-
-			int result = statement.executeUpdate();
 			
-			// TODO Verify that id is returned
+			statement.setString(1, airportName);
+			statement.setString(2, cityName);
+			
+			int rowCount = statement.executeUpdate();
+			
+			
+			//Use the DB-generated id
 			
 			ResultSet key = statement.getGeneratedKeys();
-			setId(key.getInt(id));
+			key.next();
+			setId(key.getInt("GENERATED_KEY"));
 			
-			return result;	 
+			return rowCount;	 
 		} 
 		catch (SQLException exception) 
 		{
