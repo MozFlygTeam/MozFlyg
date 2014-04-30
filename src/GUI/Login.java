@@ -8,25 +8,25 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
+
+import models.DBConnector;
+import models.DBModelAccount;
 
 public class Login extends JDialog implements ActionListener{
 	
 	private static final String LOGIN = "login";
 	private static final String CANCEL = "cancel";
-
-	private String user = "123";
-	private String pass = "321";
 	
 	JTextField userFld;
 	JTextField passFld;
 	
 	
 	public Login(){
-        
+        //Create field panel
         JPanel dataPnl = new JPanel(new GridLayout(3, 2, 5, 5));
         dataPnl.setBorder(new EmptyBorder(5, 5, 5, 5));
         add(dataPnl, BorderLayout.CENTER);
@@ -41,7 +41,7 @@ public class Login extends JDialog implements ActionListener{
         passFld = new JTextField(10);
         dataPnl.add(passFld);
         
-        //Create panel
+        //Create button panel
         JPanel bottomPnl = new JPanel();
         add(bottomPnl, BorderLayout.PAGE_END);
         
@@ -60,29 +60,24 @@ public class Login extends JDialog implements ActionListener{
         pack();
 	}
 	
-	public String getUser(){
-		return user;
-	}
-	
-	public String getPass(){
-		return pass;
-	}
-	
+	//Set loggedIn to true if user inputs matched in the database   
 	public boolean loginVerification(){
 		
 		String inputUser = userFld.getText();
 		String inputPass = passFld.getText();
 		boolean loggedIn = false;
+		DBModelAccount account = new DBModelAccount(inputUser, inputPass); 
 		
-		if(inputUser.equals(getUser()) && inputPass.equals(getPass())){
+		if (account.checkUser()){
 			loggedIn = true;
 		}
 		return loggedIn;
 	}
 	
+	//Check if user is logged in
 	public void checkIfLoggedIn(){
-		if(loginVerification() == true){
-			System.out.println("You are logged in!!! :D");
+		if(loginVerification()){
+			System.out.println("Welcome!");
 		}
 	}
 	
