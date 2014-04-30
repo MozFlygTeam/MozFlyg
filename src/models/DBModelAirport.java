@@ -49,6 +49,8 @@ public class DBModelAirport
 
 			int result = statement.executeUpdate();
 			
+			// TODO Verify that id is returned
+			
 			ResultSet key = statement.getGeneratedKeys();
 			setId(key.getInt(id));
 			
