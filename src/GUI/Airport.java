@@ -37,9 +37,13 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 	
 	public Airport()
 	{
+		
+    	
 		table = new TableModelAirport();
 		airportModel = new DBModelAirport();
 		recordTable = new JTable(table);
+		table.getAll();
+		
 		JPanel contentPane = new JPanel(new BorderLayout());
 		JScrollPane scrollPane = new JScrollPane(recordTable);
 		JPanel bottomPanel = new JPanel(new FlowLayout());
@@ -49,8 +53,8 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 			addButton.setActionCommand(ADD);
 			
 		removeButton = new JButton("Ta Bort");
-			removeButton.addActionListener(this);
-			removeButton.setActionCommand(DELETE);
+		removeButton.addActionListener(this);
+		removeButton.setActionCommand(DELETE);
 			
 
 		setContentPane(contentPane);
@@ -58,31 +62,20 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 		add(bottomPanel, BorderLayout.PAGE_END);
 		bottomPanel.add(addButton);
 		bottomPanel.add(removeButton);
-	
+	    
 		pack();
 		setLocationRelativeTo(null);
 	}
 	
-    public static void main(String[] args) {
-        
-    	
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-            	DBConnector.setConnectionData("mozflyg", "root", "");
-            	// skapa en connection
-            	Airport myRecords = new Airport();
-                myRecords.setVisible(true);
-            }
-        });
-    }
-    
+	// funktionen för att lägga till airport
     private void addAirport()
 	{
-    	DBModelAirport model = new DBModelAirport(1, "fan", "test");
-    	table.addAirport(model);
+    	AddAirport add = new AddAirport();
+    	add.setVisible(true);
+    	table.addAirport(add.getAirport());
 	}
     
+    // Ska skapas
     private void deleteAirport()
     {
     	
@@ -92,6 +85,7 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 	@Override
 	public void actionPerformed(ActionEvent event)
 	{
+	
 		switch (event.getActionCommand())
 		{
 			case ADD: 
@@ -111,36 +105,6 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 		removeButton.setEnabled(recordTable.getSelectedRow() >= 0);
 	}
 	
-	public Vector<DBModelAirport> readAirport()
-	{
 		
-		try (Connection conn = DBConnector.getConnection())
-		{
-			String query = "SELECT id, airport, city FROM airport ";
-			
-			Statement statement = conn.createStatement();
-			ResultSet result = statement.executeQuery(query);
-			
-			Vector<DBModelAirport> dbAirport = new Vector<DBModelAirport>();
-			
-			while (result.next())
-			{
-				int id = result.getInt(1);
-				String airport = result.getString(2);
-				String city = result.getString(3);
-			
-				
-				dbAirport.add(new DBModelAirport(id,airport,city));
-			}
-			
-			return dbAirport;
-			 
-		} catch (SQLException exception) {
-			exception.printStackTrace();
-		}
-		
-		return null;
-	}
-	
 }
 
