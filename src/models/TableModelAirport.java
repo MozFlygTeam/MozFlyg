@@ -52,10 +52,14 @@ public class TableModelAirport extends AbstractTableModel
 		  fireTableDataChanged();
     }
     
-    public void removeAlbum(int row)
+    public void removeAirport(int row)
     {
-    	data.remove(row);
-    	fireTableRowsDeleted(row, row);
+    	 
+    	 DBModelAirport model = data.get(row);
+    	 if(model.delete() == 1){
+    	 data.remove(row);
+    	 fireTableRowsDeleted(row, row);
+    	}
     }
     
     public void setAirport(Vector<DBModelAirport> airport)
