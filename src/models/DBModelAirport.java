@@ -87,15 +87,14 @@ public class DBModelAirport
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "UPDATE ? SET ?=?, ?=? WHERE id=?";
+			String query = "UPDATE " + tableName + 
+						   " SET " + airportColumn + "=?, " +cityColumn + "=? " + 
+						   "WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, tableName);
-			statement.setString(2, airportColumn);
-			statement.setString(3, airportName);
-			statement.setString(4, cityColumn);
-			statement.setString(5, cityName);
-			statement.setInt(6,id);
+			statement.setString(1, airportName);
+			statement.setString(2, cityName);
+			statement.setInt(3,id);
 
 			int result = statement.executeUpdate();
 
@@ -112,11 +111,11 @@ public class DBModelAirport
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "DELETE FROM ? WHERE id=?";
+			String query = "DELETE FROM " + tableName +
+						   " WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, tableName);
-			statement.setInt(2,id);
+			statement.setInt(1,id);
 
 			int result = statement.executeUpdate();
 
@@ -129,5 +128,5 @@ public class DBModelAirport
 		return -1;
 	}
 	//En kommentar
-	// Kommentar nummer två av kristoffer!
+	// Kommentar nummer tvï¿½ av kristoffer!
 }
