@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
@@ -40,7 +41,7 @@ public class Login extends JDialog implements ActionListener{
         
         //Create password field
         dataPnl.add(new JLabel("Lösenord"));
-        passFld = new JTextField(10);
+        passFld = new JPasswordField(10);
         dataPnl.add(passFld);
         
         //Create button panel
@@ -102,7 +103,7 @@ public class Login extends JDialog implements ActionListener{
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				//Database, user, password
-				DBConnector.setConnectionData("jdbc:mysql://localhost:8889/mozflyg", "root", "root");
+				DBConnector.setConnectionData("jdbc:mysql://localhost:3306/mozflyg", "root", "root");
 				Login frame = new Login();
 				frame.setVisible(true);
 			}
