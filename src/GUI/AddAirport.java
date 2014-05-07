@@ -35,7 +35,7 @@ public class AddAirport extends JDialog implements ActionListener {
 		 panel.add(airportLabel);
 		 panel.add(airport);
 		 
-		 JButton addBtn = new JButton("Lägg till");
+		 JButton addBtn = new JButton("LÃ¤gg till");
 		 addBtn.addActionListener(this);
 		 addBtn.setActionCommand(ADD);
 		 panel.add(addBtn);
@@ -51,7 +51,7 @@ public class AddAirport extends JDialog implements ActionListener {
 	 }
 	 
 	
-	// Hämta alla rader från db 
+	// HÃ¤mta alla rader frÃ¥n db 
 	 public DBModelAirport getAirport(){
 		 
 		 DBModelAirport model = new DBModelAirport();

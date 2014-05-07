@@ -19,7 +19,7 @@ import models.DBModelAccount;
 public class Login extends JDialog implements ActionListener{
 	
 	private static final String LOGIN = "login";
-	private static final String CANCEL = "cancel";
+	private static final String EXIT = "exit";
 	
 	JTextField userFld;
 	JTextField passFld;
@@ -52,8 +52,8 @@ public class Login extends JDialog implements ActionListener{
         bottomPnl.add(btn);
         
         //Create cancel button
-        btn = new JButton("Cancel");
-        btn.setActionCommand(CANCEL);
+        btn = new JButton("Exit");
+        btn.setActionCommand(EXIT);
         btn.addActionListener(this);
         bottomPnl.add(btn);
         
@@ -84,7 +84,7 @@ public class Login extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent event){
 		String action = event.getActionCommand();
 		
-		if (action.equals(CANCEL)){
+		if (action.equals(EXIT)){
 			System.exit(0);
 		}
 		
@@ -93,5 +93,16 @@ public class Login extends JDialog implements ActionListener{
 				checkIfLoggedIn();
 			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				//Database, user, password
+				DBConnector.setConnectionData("", "", "");
+				Login frame = new Login();
+				frame.setVisible(true);
+			}
+		});
 	}
 }

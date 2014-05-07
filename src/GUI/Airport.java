@@ -48,7 +48,7 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 		JScrollPane scrollPane = new JScrollPane(recordTable);
 		JPanel bottomPanel = new JPanel(new FlowLayout());
 			
-		JButton addButton = new JButton("Lägg till");
+		JButton addButton = new JButton("LÃ¤gg till");
 			addButton.addActionListener(this);
 			addButton.setActionCommand(ADD);
 			
@@ -67,12 +67,13 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 		setLocationRelativeTo(null);
 	}
 	
-	// funktionen för att lägga till airport
-    private void addAirport()
-	{
+	// funktionen fï¿½r att lï¿½gga till airport
+    private void addAirport() {
+    	
     	AddAirport add = new AddAirport();
-    	add.setVisible(true);
-    	table.addAirport(add.getAirport());
+    	if(add.getAirport() != null){}
+    		add.setVisible(true);
+    		table.addAirport(add.getAirport());
 	}
     
     // Ska skapas
