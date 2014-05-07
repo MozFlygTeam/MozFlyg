@@ -39,6 +39,11 @@ public class DBModelAirport
 		
 	}
 	
+	public DBModelAirport(String airport, String city){
+		this.setAirportName(airport);
+		this.setCityName(city);
+	}
+	
 	public DBModelAirport(int id, String airport, String city){
 		
 		this.setId(id);
