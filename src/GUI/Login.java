@@ -21,6 +21,8 @@ public class Login extends JDialog implements ActionListener{
 	private static final String LOGIN = "login";
 	private static final String EXIT = "exit";
 	
+	private boolean loggedIn = false;
+	
 	JTextField userFld;
 	JTextField passFld;
 	
@@ -60,24 +62,26 @@ public class Login extends JDialog implements ActionListener{
         pack();
 	}
 	
+	public void setLoginStatus(boolean status){
+		this.loggedIn = status;
+	}
+	
+	public boolean getLoginStatus(){
+		return this.loggedIn;
+	}
+
+	
 	//Set loggedIn to true if user inputs matched in the database   
-	public boolean loginVerification(){
+	public void loginVerification(){
 		
 		String inputUser = userFld.getText();
 		String inputPass = passFld.getText();
-		boolean loggedIn = false;
 		DBModelAccount account = new DBModelAccount(inputUser, inputPass); 
 		
 		if (account.checkUser()){
-			loggedIn = true;
-		}
-		return loggedIn;
-	}
-	
-	//Check if user is logged in
-	public void checkIfLoggedIn(){
-		if(loginVerification()){
-			System.out.println("Welcome!");
+			setLoginStatus(true);
+			System.out.println("Input matched with database");
+			
 		}
 	}
 	
@@ -89,9 +93,8 @@ public class Login extends JDialog implements ActionListener{
 		}
 		
 		else if(action.equals(LOGIN)){
-			if(loginVerification()){
-				checkIfLoggedIn();
-			}
+			loginVerification();
+			System.out.println("Logged in = " + loggedIn);
 		}
 	}
 	
@@ -99,7 +102,7 @@ public class Login extends JDialog implements ActionListener{
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				//Database, user, password
-				DBConnector.setConnectionData("", "", "");
+				DBConnector.setConnectionData("jdbc:mysql://localhost:8889/mozflyg", "root", "root");
 				Login frame = new Login();
 				frame.setVisible(true);
 			}
