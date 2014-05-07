@@ -1,5 +1,4 @@
-CREATE DATABASE mozflyg;
-USE mozflyg;
+DROP TABLE account, airport;
 
 CREATE TABLE airport (
 id SMALLINT(5) AUTO_INCREMENT NOT NULL,
