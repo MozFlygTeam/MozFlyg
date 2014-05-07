@@ -112,11 +112,11 @@ public class DBModelAirport
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "DELETE FROM ? WHERE id=?";
+			String query = "DELETE FROM" + tableName + 
+					"WHERE id=?";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setString(1, tableName);
-			statement.setInt(2,id);
+			statement.setInt(1,id);
 
 			int result = statement.executeUpdate();
 			
