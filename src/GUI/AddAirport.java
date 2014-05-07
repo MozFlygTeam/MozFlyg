@@ -52,11 +52,8 @@ public class AddAirport extends JDialog implements ActionListener {
 	 
 	
 	// Hämta alla rader från db 
-	 public DBModelAirport getAirport(){
-		 
-		 DBModelAirport model = new DBModelAirport();
-		 model.setAirportName(airport.getText());
-		 model.setCityName(airport.getText());
+	 public DBModelAirport getAirport(){ 
+		 DBModelAirport model = new DBModelAirport(airport.getText(),city.getText());
 		 return model;
 	 }
 

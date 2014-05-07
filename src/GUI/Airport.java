@@ -3,6 +3,7 @@ package GUI;
 import models.DBConnector;
 import models.DBModelAirport;
 import models.TableModelAirport;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -21,10 +22,11 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-public class Airport extends JFrame implements ActionListener,
-		ListSelectionListener {
+public class Airport extends JFrame implements ActionListener, TableModelListener{
 
 	public DBModelAirport airportModel;
 	public static TableModelAirport table;
@@ -36,6 +38,7 @@ public class Airport extends JFrame implements ActionListener,
 	public Airport() {
 
 		table = new TableModelAirport();
+		table.addTableModelListener(this);
 		airportModel = new DBModelAirport();
 		recordTable = new JTable(table);
 		table.getAll();
@@ -93,9 +96,9 @@ public class Airport extends JFrame implements ActionListener,
 	}
 
 	@Override
-	public void valueChanged(ListSelectionEvent arg0) {
+	public void tableChanged(TableModelEvent e) {
 		// TODO Auto-generated method stub
-		removeButton.setEnabled(recordTable.getSelectedRow() >= 0);
+		System.out.print("fan");
 	}
 
 }

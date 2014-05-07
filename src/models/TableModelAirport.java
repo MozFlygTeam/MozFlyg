@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 
-public class TableModelAirport extends AbstractTableModel 
+public class TableModelAirport extends AbstractTableModel
 {
   
 	private static final long serialVersionUID = 1L;
@@ -123,6 +125,7 @@ public class TableModelAirport extends AbstractTableModel
         return Object.class;
     }
     public boolean isCellEditable(int row, int col) {
-        return false;
+        return true;
     }
+
 }
