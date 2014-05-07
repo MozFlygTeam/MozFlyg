@@ -44,6 +44,7 @@ public class Login extends JDialog implements ActionListener{
         passFld = new JPasswordField(10);
         dataPnl.add(passFld);
         
+        
         //Create button panel
         JPanel bottomPnl = new JPanel();
         add(bottomPnl, BorderLayout.PAGE_END);
