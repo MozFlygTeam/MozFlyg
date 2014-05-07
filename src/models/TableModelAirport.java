@@ -113,19 +113,38 @@ public class TableModelAirport extends AbstractTableModel
         }        
         return "Unknown";
     }
+    
+    @Override
+    public void setValueAt(Object cellData, int row, int col)
+    {
+    	DBModelAirport selectedAirport = (DBModelAirport) data.get(row);
+    	
+        switch (col)
+        {
+	        case 1: selectedAirport.setAirportName((String) cellData);
+	        break;
+	        case 2: selectedAirport.setCityName((String) cellData);
+	        break;
+        }
+        selectedAirport.update();
+    }
     @Override
     public Class<?> getColumnClass(int col) {
-        switch (col) {
-        case 0: return Integer.class;
-        case 1: return String.class;
-        case 2: return String.class;
-     
-       
+        switch (col)
+        {
+	        case 0: return Integer.class;
+	        case 1: return String.class;
+	        case 2: return String.class;
         }
         return Object.class;
     }
     public boolean isCellEditable(int row, int col) {
-        return true;
+    	 switch (col) 
+    	 {
+	         case 0: return false;
+	         default: return true;
+    	 }
+
     }
 
 }
