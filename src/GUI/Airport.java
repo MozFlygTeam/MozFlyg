@@ -26,7 +26,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-public class Airport extends JFrame implements ActionListener, TableModelListener{
+public class Airport extends JFrame implements ActionListener, ListSelectionListener{
 
 	public DBModelAirport airportModel;
 	public static TableModelAirport table;
@@ -38,9 +38,9 @@ public class Airport extends JFrame implements ActionListener, TableModelListene
 	public Airport() {
 
 		table = new TableModelAirport();
-		table.addTableModelListener(this);
 		airportModel = new DBModelAirport();
 		recordTable = new JTable(table);
+		recordTable.getSelectionModel().addListSelectionListener(this);
 		table.getAll();
 
 		JPanel contentPane = new JPanel(new BorderLayout());
@@ -54,6 +54,7 @@ public class Airport extends JFrame implements ActionListener, TableModelListene
 		removeButton = new JButton("Ta Bort");
 		removeButton.addActionListener(this);
 		removeButton.setActionCommand(DELETE);
+		removeButton.setEnabled(false);
 
 		setContentPane(contentPane);
 		add(scrollPane, BorderLayout.CENTER);
@@ -94,11 +95,9 @@ public class Airport extends JFrame implements ActionListener, TableModelListene
 
 		}
 	}
-
-	@Override
-	public void tableChanged(TableModelEvent e) {
-		// TODO Auto-generated method stub
-		System.out.print("fan");
+	
+	public void valueChanged(ListSelectionEvent event)
+	{
+		removeButton.setEnabled(recordTable.getSelectedRowCount() > 0);
 	}
-
 }
