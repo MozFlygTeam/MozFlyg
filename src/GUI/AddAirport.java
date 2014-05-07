@@ -35,7 +35,7 @@ public class AddAirport extends JDialog implements ActionListener {
 		 panel.add(airportLabel);
 		 panel.add(airport);
 		 
-		 JButton addBtn = new JButton("Lägg till");
+		 JButton addBtn = new JButton("Skapa");
 		 addBtn.addActionListener(this);
 		 addBtn.setActionCommand(ADD);
 		 panel.add(addBtn);
