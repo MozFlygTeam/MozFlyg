@@ -11,12 +11,13 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 
-public class TableModelAirport extends AbstractTableModel
+public class TableModelFlight extends AbstractTableModel
 {
   
 	private static final long serialVersionUID = 1L;
 	private Vector<DBModelFlight> data = new Vector<DBModelFlight>();
     
+	//
  
 	
 	

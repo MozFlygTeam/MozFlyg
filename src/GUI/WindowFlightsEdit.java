@@ -63,8 +63,8 @@ package GUI;
 
 			pack();
 			setLocationRelativeTo(null);
-		}
-
+		} 
+			//
 		// funktionen f�r att l�gga till airport
 		private void addFlight() {
 
