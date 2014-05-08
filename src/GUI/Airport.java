@@ -41,7 +41,7 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 		airportModel = new DBModelAirport();
 		recordTable = new JTable(table);
 		recordTable.getSelectionModel().addListSelectionListener(this);
-		table.getAll();
+	
 
 		JPanel contentPane = new JPanel(new BorderLayout());
 		JScrollPane scrollPane = new JScrollPane(recordTable);

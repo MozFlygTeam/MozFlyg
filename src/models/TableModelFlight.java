@@ -15,46 +15,46 @@ public class TableModelAirport extends AbstractTableModel
 {
   
 	private static final long serialVersionUID = 1L;
-	private Vector<DBModelAirport> data = new Vector<DBModelAirport>();
+	private Vector<DBModelFlight> data = new Vector<DBModelFlight>();
     
  
 	
 	
-	public void addAirport(DBModelAirport airport) {
+	public void addAirport(DBModelFlight flight) {
 
-			data.add(airport);
+			data.add(flight);
 		  fireTableDataChanged();
     }
     
     public void removeAirport(int row)
     {
     	 
-    	 DBModelAirport model = data.get(row);
+    	 DBModelFlight model = data.get(row);
     	 if(model.delete() == 1){
     	 data.remove(row);
     	 fireTableRowsDeleted(row, row);
     	}
     }
     
-    public void setAirports(Vector<DBModelAirport> airport)
+    public void setAirports(Vector<DBModelFlight> flight)
     {
-    	if(airport != null)
+    	if(flight != null)
     	{
-    		data = airport;
+    		data = flight;
     	}
     	else
     	{
-    		data = new Vector<DBModelAirport>();
+    		data = new Vector<DBModelFlight>();
     	}
     	
     	fireTableDataChanged();
     }
     
-    public TableModelAirport(){
-		setAirports(DBModelAirport.getAll());
+    public DBModelFlight(){
+		setAirports(DBModelFlight.getAll());
 	}
     
-    public DBModelAirport getAirport(int row)
+    public DBModelFlight getAirport(int row)
     {
     	return data.get(row);
     }
@@ -79,7 +79,7 @@ public class TableModelAirport extends AbstractTableModel
     @Override
     public Object getValueAt(int row, int col)
     {
-    	DBModelAirport rowData = (DBModelAirport) data.get(row);
+    	DBModelFlight rowData = (DBModelFlight) data.get(row);
         
         switch (col) {
         case 0: return new Integer(rowData.getId());
@@ -93,7 +93,7 @@ public class TableModelAirport extends AbstractTableModel
     @Override
     public void setValueAt(Object cellData, int row, int col)
     {
-    	DBModelAirport selectedAirport = (DBModelAirport) data.get(row);
+    	DBModelFlight selectedAirport = (DBModelFlight) data.get(row);
     	
         switch (col)
         {
@@ -102,7 +102,7 @@ public class TableModelAirport extends AbstractTableModel
 	        case 2: selectedAirport.setCityName((String) cellData);
 	        break;
         }
-        selectedAirport.update();
+        selectedFlight.update();
     }
     @Override
     public Class<?> getColumnClass(int col) {

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
 
 public class DBModelAirport
 {
@@ -50,6 +52,37 @@ public class DBModelAirport
 		this.setAirportName(airport);
 		this.setCityName(city);
 
+	}
+	
+public static Vector<DBModelAirport> getAll() {
+		
+	Vector<DBModelAirport> DBvector = new Vector<DBModelAirport>();
+
+		try (Connection conn = DBConnector.getConnection())
+		{
+			
+			String query = "SELECT * FROM airport ";
+			
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			
+			while (result.next())
+			{
+				int id = result.getInt(1);
+				String airport = result.getString(2);
+				String city = result.getString(3);
+			
+				
+				DBvector.add(new DBModelAirport(id,airport,city));
+			}
+			
+			
+			 
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		
+		 return DBvector;
 	}
 
 	public int insert()
