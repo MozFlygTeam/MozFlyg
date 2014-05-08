@@ -11,54 +11,57 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 
-public class TableModelFlight extends AbstractTableModel
+public class TableModelAccount extends AbstractTableModel
 {
   
 	private static final long serialVersionUID = 1L;
-	private Vector<DBModelFlight> data = new Vector<DBModelFlight>();
+	private Vector<DBModelAccount> data = new Vector<DBModelAccount>();
+    
+ 
+	
+	
+	public void addAccount(DBModelAccount account) {
 
-	public void addAirport(DBModelFlight flight) {
-
-			data.add(flight);
+			data.add(account);
 		  fireTableDataChanged();
     }
     
-    public void removeAirport(int row)
+    public void removeAccount(int row)
     {
     	 
-    	 DBModelFlight model = data.get(row);
+    	 DBModelAccount model = data.get(row);
     	 if(model.delete() == 1){
     	 data.remove(row);
     	 fireTableRowsDeleted(row, row);
     	}
     }
     
-    public void setAirports(Vector<DBModelFlight> flight)
+    public void setAccounts(Vector<DBModelAccount> account)
     {
-    	if(flight != null)
+    	if(account != null)
     	{
-    		data = flight;
+    		data = account;
     	}
     	else
     	{
-    		data = new Vector<DBModelFlight>();
+    		data = new Vector<DBModelAccount>();
     	}
     	
     	fireTableDataChanged();
     }
     
-    public DBModelFlight(){
-    	setAirports(DBModelFlight.getAll());
+    public TableModelAccount(){
+		setAccounts(DBModelAccount.getAll());
 	}
     
-    public DBModelFlight getAirport(int row)
+    public DBModelAccount getAccount(int row)
     {
     	return data.get(row);
     }
     
     @Override
     public int getColumnCount() {
-        return 5;
+        return 3;
     }
     @Override
     public int getRowCount() {
@@ -68,24 +71,20 @@ public class TableModelFlight extends AbstractTableModel
     public String getColumnName(int col) {
         switch (col) {
         case 0: return "id";
-        case 1: return "Avreseort";
-        case 2: return "Destination";
-        case 3: return "Avg�ngstid";
-        case 4: return "Pris";
+        case 1: return "Användarnamn";
+        case 2: return "Lösenord";
         }
         return "";
     }
     @Override
     public Object getValueAt(int row, int col)
     {
-    	DBModelFlight rowData = (DBModelFlight) data.get(row);
+    	DBModelAccount rowData = (DBModelAccount) data.get(row);
         
         switch (col) {
         case 0: return new Integer(rowData.getId());
-        case 1: return rowData.getDepartingFrom();
-        case 2: return rowData.getArrivingTo();
-        case 3: return rowData.getTimeDeparting();
-        case 4: return rowData.getPrice();
+        case 1: return rowData.getUsername();
+        case 2: return rowData.getPassword();
        
         }        
         return "Unknown";
@@ -94,16 +93,16 @@ public class TableModelFlight extends AbstractTableModel
     @Override
     public void setValueAt(Object cellData, int row, int col)
     {
-    	DBModelFlight selectedflight = (DBModelFlight) data.get(row);
+    	DBModelAccount selectedAccount = (DBModelAccount) data.get(row);
     	
         switch (col)
         {
-	        case 1: selectedflight.setArrivingTo((String) cellData);
+	        case 1: selectedAccount.setUsername((String) cellData);
 	        break;
-	        case 2: selectedflight.setCityName((String) cellData);
+	        case 2: selectedAccount.setPassword((String) cellData);
 	        break;
         }
-        selectedFlight.update();
+        selectedAccount.update();
     }
     @Override
     public Class<?> getColumnClass(int col) {
