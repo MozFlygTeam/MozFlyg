@@ -12,9 +12,9 @@ public class DBModelAirport
 	private int id;
 	private String airportName;
 	private String cityName;
-	private static final String tableName = "airport";
-	private static final String airportColumn = "name";
-	private static final String cityColumn = "city";
+	private static final String TABLE_NAME = "airport";
+	private static final String COLUMN_AIRPORT = "name";
+	private static final String COLUMN_CITY = "city";
 
 	public int getId() {
 		return id;
@@ -61,7 +61,7 @@ public static Vector<DBModelAirport> getAll() {
 		try (Connection conn = DBConnector.getConnection())
 		{
 			
-			String query = "SELECT * FROM airport ";
+			String query = "SELECT * FROM " + TABLE_NAME;
 			
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(query);
@@ -85,12 +85,43 @@ public static Vector<DBModelAirport> getAll() {
 		 return DBvector;
 	}
 
+public static DBModelAirport getAirport(int airportId)
+{
+	DBModelAirport airport = null;
+
+		try (Connection conn = DBConnector.getConnection())
+		{
+			String query = "SELECT * FROM " + TABLE_NAME + " WHERE id=?";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1,airportId);
+			
+			ResultSet result = statement.executeQuery(query);
+			
+			while (result.next())
+			{
+				int id = result.getInt(1);
+				String airportName = result.getString(2);
+				String cityName = result.getString(3);
+				
+				airport = new DBModelAirport(id,airportName,cityName);
+			}
+			
+			
+			 
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		
+	return airport;
+}
+
 	public int insert()
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "INSERT INTO " + tableName + 
-					"(" + airportColumn + "," + cityColumn + ") " + 
+			String query = "INSERT INTO " + TABLE_NAME + 
+					"(" + COLUMN_AIRPORT + "," + COLUMN_CITY + ") " + 
 					"VALUES (?, ?)";
 
 			PreparedStatement statement = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -120,8 +151,8 @@ public static Vector<DBModelAirport> getAll() {
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "UPDATE " + tableName + 
-						   " SET " + airportColumn + "=?, " +cityColumn + "=? " + 
+			String query = "UPDATE " + TABLE_NAME + 
+						   " SET " + COLUMN_AIRPORT + "=?, " +COLUMN_CITY + "=? " + 
 						   "WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
@@ -144,7 +175,7 @@ public static Vector<DBModelAirport> getAll() {
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "DELETE FROM " + tableName +
+			String query = "DELETE FROM " + TABLE_NAME +
 						   " WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
