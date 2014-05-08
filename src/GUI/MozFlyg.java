@@ -126,8 +126,8 @@ public class MozFlyg extends JFrame implements ActionListener {
 				airport.setVisible(true);
 			break;
 		case ACCOUNT:
-//			WindowAccountEdit account = new WindowAccountEdit();
-//			account.setVisible(true);
+			WindowAccountEdit account = new WindowAccountEdit();
+			account.setVisible(true);
 		break;
 		default:
 			break;
