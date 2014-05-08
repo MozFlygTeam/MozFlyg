@@ -96,7 +96,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 
-				//DBConnector.setConnectionData("jdbc:mysql://localhost:port/DB", "user", "pass");
+				DBConnector.setConnectionData("jdbc:mysql://localhost:3306/MozFlyg", "root", "");
 
 				MozFlyg ex = new MozFlyg();
 				ex.setVisible(true);	

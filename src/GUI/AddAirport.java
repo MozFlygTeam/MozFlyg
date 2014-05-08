@@ -17,7 +17,7 @@ public class AddAirport extends JDialog implements ActionListener {
 
 	private static final String  ADD = "add";
 	private static final String  CANCEL = "cancel";
-	
+	DBModelAirport model;
 	 JTextField city;
 	 JTextField airport;
 	 
@@ -53,8 +53,7 @@ public class AddAirport extends JDialog implements ActionListener {
 	
 	// Hämta alla rader från db 
 	 public DBModelAirport getAirport(){ 
-		 DBModelAirport model = new DBModelAirport(airport.getText(),city.getText());
-		 return model;
+		return model;
 	 }
 
 	@Override
@@ -64,10 +63,11 @@ public class AddAirport extends JDialog implements ActionListener {
 		 
 		 switch (cmd) {
 		case CANCEL:
+			model = null;
 				dispose();
 			break;
 		case ADD:
-			getAirport();
+			model = new DBModelAirport(airport.getText(),city.getText());
 			dispose();
 			break;
 
