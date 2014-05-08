@@ -28,7 +28,7 @@ package GUI;
 	public class WindowFlightsEdit extends JFrame implements ActionListener, ListSelectionListener{
 
 		public DBModelFlight flightModel;
-		public static TableModelFlights table;
+		public static TableModelFlight table;
 		private JButton removeButton;
 		private JTable recordTable;
 		private static final String ADD = "add";
@@ -36,8 +36,8 @@ package GUI;
 		
 		public WindowFlightsEdit() {
 
-			table = new TableModelFlights();
-			flightModel = new DBModelFlights();
+			table = new TableModelFlight();
+			flightModel = new DBModelFlight();
 			recordTable = new JTable(table);
 			recordTable.getSelectionModel().addListSelectionListener(this);
 		

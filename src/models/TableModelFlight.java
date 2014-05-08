@@ -16,11 +16,7 @@ public class TableModelFlight extends AbstractTableModel
   
 	private static final long serialVersionUID = 1L;
 	private Vector<DBModelFlight> data = new Vector<DBModelFlight>();
-    
-	//
- 
-	
-	
+
 	public void addAirport(DBModelFlight flight) {
 
 			data.add(flight);
@@ -52,7 +48,7 @@ public class TableModelFlight extends AbstractTableModel
     }
     
     public DBModelFlight(){
-		setAirports(DBModelFlight.getAll());
+    	setAirports(DBModelFlight.getAll());
 	}
     
     public DBModelFlight getAirport(int row)
@@ -62,7 +58,7 @@ public class TableModelFlight extends AbstractTableModel
     
     @Override
     public int getColumnCount() {
-        return 3;
+        return 5;
     }
     @Override
     public int getRowCount() {
@@ -72,8 +68,10 @@ public class TableModelFlight extends AbstractTableModel
     public String getColumnName(int col) {
         switch (col) {
         case 0: return "id";
-        case 1: return "Flygplats";
-        case 2: return "Stad";
+        case 1: return "Avreseort";
+        case 2: return "Destination";
+        case 3: return "Avgångstid";
+        case 4: return "Pris";
         }
         return "";
     }
@@ -84,8 +82,10 @@ public class TableModelFlight extends AbstractTableModel
         
         switch (col) {
         case 0: return new Integer(rowData.getId());
-        case 1: return rowData.getAirportName();
-        case 2: return rowData.getCityName();
+        case 1: return rowData.getDepartingFrom();
+        case 2: return rowData.getArrivingTo();
+        case 3: return rowData.getTimeDeparting();
+        case 4: return rowData.getPrice();
        
         }        
         return "Unknown";
@@ -94,13 +94,13 @@ public class TableModelFlight extends AbstractTableModel
     @Override
     public void setValueAt(Object cellData, int row, int col)
     {
-    	DBModelFlight selectedAirport = (DBModelFlight) data.get(row);
+    	DBModelFlight selectedflight = (DBModelFlight) data.get(row);
     	
         switch (col)
         {
-	        case 1: selectedAirport.setAirportName((String) cellData);
+	        case 1: selectedflight.setArrivingTo((String) cellData);
 	        break;
-	        case 2: selectedAirport.setCityName((String) cellData);
+	        case 2: selectedflight.setCityName((String) cellData);
 	        break;
         }
         selectedFlight.update();
