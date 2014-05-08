@@ -21,6 +21,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 	private static final String EXIT = "exit";
 	private static final String LOGOUT = "logout";
 	private static final String AIRPORT = "airport";
+	private static final String ACCOUNT = "account";
 
 	public MozFlyg() {
 		initUI();
@@ -49,15 +50,17 @@ public class MozFlyg extends JFrame implements ActionListener {
 
 		JMenu admin = new JMenu("Admin");
 		menubar.add(admin);
-
-		JMenuItem itemAirport = new JMenuItem("Airport");
+		
+		//Edit airport button
+		JMenuItem itemAirport = new JMenuItem("Edit Airports");
 		itemAirport.addActionListener(this);
 		itemAirport.setActionCommand(AIRPORT);
 		admin.add(itemAirport);
 
-		JMenuItem item2 = new JMenuItem("item2");
+		//Edit account button
+		JMenuItem item2 = new JMenuItem("Edit Accounts");
 		item2.addActionListener(this);
-		item2.setActionCommand(EXIT);
+		item2.setActionCommand(ACCOUNT);
 		admin.add(item2);
 
 		JMenuItem item3 = new JMenuItem("item3");
@@ -96,7 +99,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 
-				DBConnector.setConnectionData("jdbc:mysql://localhost:3306/MozFlyg", "root", "");
+				//DBConnector.setConnectionData("jdbc:mysql://localhost:port/DB", "user", "pass");
 
 				MozFlyg ex = new MozFlyg();
 				ex.setVisible(true);	
@@ -122,6 +125,10 @@ public class MozFlyg extends JFrame implements ActionListener {
 				Airport airport = new Airport();
 				airport.setVisible(true);
 			break;
+		case ACCOUNT:
+			WindowAccountEdit account = new WindowAccountEdit();
+			account.setVisible(true);
+		break;
 		default:
 			break;
 		}
