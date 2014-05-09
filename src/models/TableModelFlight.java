@@ -75,6 +75,7 @@ public class TableModelFlight extends AbstractTableModel
         }
         return "";
     }
+    
     @Override
     public Object getValueAt(int row, int col)
     {
@@ -115,8 +116,8 @@ public class TableModelFlight extends AbstractTableModel
         switch (col)
         {
 	        case 0: return Integer.class;
-	        case 1: return String.class;
-	        case 2: return String.class;
+	        case 1: return DBModelAirport.class;
+	        case 2: return DBModelAirport.class;
         }
         return Object.class;
     }

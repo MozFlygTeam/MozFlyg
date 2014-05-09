@@ -96,7 +96,7 @@ public static DBModelAirport getAirport(int airportId)
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setInt(1,airportId);
 			
-			ResultSet result = statement.executeQuery(query);
+			ResultSet result = statement.executeQuery();
 			
 			while (result.next())
 			{

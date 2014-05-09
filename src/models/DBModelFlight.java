@@ -35,12 +35,12 @@ public class DBModelFlight
 	
 	public DBModelFlight(DBModelAirport departingFrom, DBModelAirport arrivingTo, 
 			Date timeDeparting, double price) 
-	{
-	this.departingFrom = departingFrom;
-	this.arrivingTo = arrivingTo;
-	this.timeDeparting = timeDeparting;
-	this.price = price;
-	}
+		{
+		this.departingFrom = departingFrom;
+		this.arrivingTo = arrivingTo;
+		this.timeDeparting = timeDeparting;
+		this.price = price;
+		}
 
 	public DBModelFlight() {
 		// TODO Auto-generated constructor stub
