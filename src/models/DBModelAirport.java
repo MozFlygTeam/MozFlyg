@@ -41,11 +41,13 @@ public class DBModelAirport
 
 	}
 
+	//Konstruktor för att skapa ny flygplats
 	public DBModelAirport(String airport, String city){
 		this.setAirportName(airport);
 		this.setCityName(city);
 	}
-
+	
+	//Konstruktor för att hämta från databasen och göra ett objekt
 	public DBModelAirport(int id, String airport, String city){
 
 		this.setId(id);
@@ -191,6 +193,4 @@ public static DBModelAirport getAirport(int airportId)
 		}
 		return -1;
 	}
-	//En kommentar
-	// Kommentar nummer tv� av kristoffer!
 }

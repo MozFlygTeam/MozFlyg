@@ -21,20 +21,19 @@ public class TableModelAccount extends AbstractTableModel
 	
 	
 	public void addAccount(DBModelAccount account) {
-
-			data.add(account);
-		  fireTableDataChanged();
-    }
+		data.add(account);
+		fireTableDataChanged();    
+	}
     
-    public void removeAccount(int row)
-    {
-    	 
-    	 DBModelAccount model = data.get(row);
-    	 if(model.delete() == 1){
-    	 data.remove(row);
-    	 fireTableRowsDeleted(row, row);
-    	}
-    }
+//    public void removeAccount(int row)
+//   {
+//    	 
+//    	 DBModelAccount model = data.get(row);
+//    	 if(model.delete() == 1){
+//    	 data.remove(row);
+//    	 fireTableRowsDeleted(row, row);
+//    	}
+//    }
     
     public void setAccounts(Vector<DBModelAccount> account)
     {
@@ -51,7 +50,7 @@ public class TableModelAccount extends AbstractTableModel
     }
     
     public TableModelAccount(){
-		setAccounts(DBModelAccount.getAll());
+		setAccounts(DBModelAccount.getAllAccounts());
 	}
     
     public DBModelAccount getAccount(int row)
@@ -102,7 +101,7 @@ public class TableModelAccount extends AbstractTableModel
 	        case 2: selectedAccount.setPassword((String) cellData);
 	        break;
         }
-        selectedAccount.update();
+        //selectedAccount.update();
     }
     @Override
     public Class<?> getColumnClass(int col) {

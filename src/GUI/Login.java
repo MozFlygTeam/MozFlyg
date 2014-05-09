@@ -35,12 +35,12 @@ public class Login extends JDialog implements ActionListener{
         add(dataPnl, BorderLayout.CENTER);
         
         //Create username field
-        dataPnl.add(new JLabel("Användarnamn"));
+        dataPnl.add(new JLabel("Anv��ndarnamn"));
         userFld = new JTextField(10);
         dataPnl.add(userFld);
         
         //Create password field
-        dataPnl.add(new JLabel("Lösenord"));
+        dataPnl.add(new JLabel("L��senord"));
         passFld = new JPasswordField(10);
         dataPnl.add(passFld);
         
@@ -104,7 +104,7 @@ public class Login extends JDialog implements ActionListener{
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				//Database, user, password
-				DBConnector.setConnectionData("jdbc:mysql://localhost:3306/mozflyg", "root", "root");
+				DBConnector.setConnectionData("jdbc:mysql://localhost:8889/mozflyg", "root", "root");
 				Login frame = new Login();
 				frame.setVisible(true);
 			}
