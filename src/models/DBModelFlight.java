@@ -15,6 +15,7 @@ public class DBModelFlight
 	private DBModelAirport arrivingTo;
 	private Date timeDeparting;
 	private double price;
+
 	
 	private static String TABLE_NAME = "flight";
 	private static String COLUMN_DEPARTING_FROM = "departing_from";
@@ -31,6 +32,19 @@ public class DBModelFlight
 		this.timeDeparting = timeDeparting;
 		this.price = price;
 	}
+	
+	public DBModelFlight(DBModelAirport departingFrom, DBModelAirport arrivingTo, 
+			Date timeDeparting, double price) 
+		{
+		this.departingFrom = departingFrom;
+		this.arrivingTo = arrivingTo;
+		this.timeDeparting = timeDeparting;
+		this.price = price;
+		}
+
+	public DBModelFlight() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public static Vector<DBModelFlight> getFlights()
 	{
@@ -38,8 +52,8 @@ public class DBModelFlight
 
 			try (Connection conn = DBConnector.getConnection())
 			{
-				String query = "SELECT" + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_PRICE + 
-						"FROM " + TABLE_NAME;
+				String query = "SELECT " + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_PRICE + 
+						" FROM " + TABLE_NAME;
 				
 				Statement statement = conn.createStatement();
 				ResultSet result = statement.executeQuery(query);
@@ -171,5 +185,12 @@ public class DBModelFlight
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	
+
 	
 }

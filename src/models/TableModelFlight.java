@@ -47,8 +47,8 @@ public class TableModelFlight extends AbstractTableModel
     	fireTableDataChanged();
     }
     
-    public DBModelFlight(){
-    	setAirports(DBModelFlight.getAll());
+    public TableModelFlight() {
+    	setAirports(DBModelFlight.getFlights());
 	}
     
     public DBModelFlight getAirport(int row)
@@ -75,13 +75,14 @@ public class TableModelFlight extends AbstractTableModel
         }
         return "";
     }
+    
     @Override
     public Object getValueAt(int row, int col)
     {
     	DBModelFlight rowData = (DBModelFlight) data.get(row);
         
         switch (col) {
-        case 0: return new Integer(rowData.getId());
+        case 0: return rowData.getId();
         case 1: return rowData.getDepartingFrom();
         case 2: return rowData.getArrivingTo();
         case 3: return rowData.getTimeDeparting();
@@ -91,37 +92,40 @@ public class TableModelFlight extends AbstractTableModel
         return "Unknown";
     }
     
-    @Override
+   /*
+    *  @Override(non-Javadoc)
+    * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object, int, int)
+    /*
     public void setValueAt(Object cellData, int row, int col)
     {
     	DBModelFlight selectedflight = (DBModelFlight) data.get(row);
     	
         switch (col)
         {
-	        case 1: selectedflight.setArrivingTo((String) cellData);
+	        case 1: selectedflight.setDepartingFrom((DBModelAirport) cellData);
 	        break;
-	        case 2: selectedflight.setCityName((String) cellData);
+	        case 2: selectedflight.setArrivingTo((DBModelAirport) cellData);
 	        break;
+	        case 2: 
         }
-        selectedFlight.update();
+        selectedflight.update();
     }
+    */
     @Override
     public Class<?> getColumnClass(int col) {
         switch (col)
         {
 	        case 0: return Integer.class;
-	        case 1: return String.class;
-	        case 2: return String.class;
+	        case 1: return DBModelAirport.class;
+	        case 2: return DBModelAirport.class;
         }
         return Object.class;
     }
+    
     public boolean isCellEditable(int row, int col) {
-    	 switch (col) 
-    	 {
-	         case 0: return false;
-	         default: return true;
-    	 }
-
+    	 
+	       return false;
+	     
     }
 
 }

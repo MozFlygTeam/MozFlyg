@@ -22,6 +22,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 	private static final String LOGOUT = "logout";
 	private static final String AIRPORT = "airport";
 	private static final String ACCOUNT = "account";
+	private static final String FLIGHT = "flight";
 
 	public MozFlyg() {
 		initUI();
@@ -63,9 +64,9 @@ public class MozFlyg extends JFrame implements ActionListener {
 		item2.setActionCommand(ACCOUNT);
 		admin.add(item2);
 
-		JMenuItem item3 = new JMenuItem("item3");
+		JMenuItem item3 = new JMenuItem("Edit flight");
 		item3.addActionListener(this);
-		item3.setActionCommand(EXIT);
+		item3.setActionCommand(FLIGHT);
 		admin.add(item3);
 
 		JButton button1 = new JButton("Button 1");
@@ -126,6 +127,12 @@ public class MozFlyg extends JFrame implements ActionListener {
 				airport.setVisible(true);
 			break;
 		case ACCOUNT:
+//			WindowAccountEdit account = new WindowAccountEdit();
+//			account.setVisible(true);
+		break;
+		case FLIGHT:
+			WindowFlightsEdit flight = new WindowFlightsEdit();
+			flight.setVisible(true);
 //			WindowAccountEdit account = new WindowAccountEdit();
 //			account.setVisible(true);
 		break;
