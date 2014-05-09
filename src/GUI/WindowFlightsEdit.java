@@ -66,21 +66,21 @@ package GUI;
 		} 
 			//
 		// funktionen f�r att l�gga till airport
-		private void addFlight() {
+		//private void addFlight() {
 
-			Addflight add = new Addflight();
-			add.setVisible(true);
+		//	Addflight add = new Addflight();
+		//	add.setVisible(true);
 			
-			DBModelFlight model =  add.getFlight();
-			System.out.print(model);
-			if(model != null){
+		//	DBModelFlight model =  add.getFlight();
+		//	System.out.print(model);
+		//	if(model != null){
+			//
+			//	if (model.insert() == 1) {
+		//			table.addAirport(model);
+			//	}
+		//	}
 			
-				if (model.insert() == 1) {
-					table.addAirport(model);
-				}
-			}
-			
-		}
+		//}
 
 		// Ska skapas
 
@@ -89,11 +89,13 @@ package GUI;
 
 			switch (event.getActionCommand()) {
 			case ADD:
-				addFlight();
+				WindowAddFlight add = new WindowAddFlight();
+				add.setVisible(true);
+				
 				break;
 			case DELETE:
 				int i = recordTable.getSelectedRow();
-				table.removeFlight(i);
+				//table.removeFlight(i);
 				break;
 
 			}
