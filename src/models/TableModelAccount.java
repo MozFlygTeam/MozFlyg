@@ -101,7 +101,7 @@ public class TableModelAccount extends AbstractTableModel
 	        case 2: selectedAccount.setPassword((String) cellData);
 	        break;
         }
-        //selectedAccount.update();
+        selectedAccount.update();
     }
     @Override
     public Class<?> getColumnClass(int col) {

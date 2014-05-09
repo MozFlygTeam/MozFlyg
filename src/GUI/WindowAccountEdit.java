@@ -73,16 +73,6 @@ public class WindowAccountEdit extends JFrame implements ActionListener, ListSel
 		}
     }
     
-    //Method to delete a user
-    private void removeAccount(){
-      
-    }
-    
-    //Method to update a user
-    private void updateAccount(){
-      
-    }
-    
     @Override
     public void actionPerformed(ActionEvent event) {
 

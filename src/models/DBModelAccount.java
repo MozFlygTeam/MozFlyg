@@ -150,12 +150,29 @@ public class DBModelAccount
 		return -1;
 	}
 	
+	public int update() {
+		try (Connection conn = DBConnector.getConnection()) {
+			String query = "UPDATE " + TABLE_NAME + 
+						   " SET " + USERNAME_COLUMN + "=?, " + PASSWORD_COLUMN + "=? " + 
+						   "WHERE id=?";
+
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, username);
+			statement.setString(2, password);
+			statement.setInt(3,id);
+
+			int result = statement.executeUpdate();
+
+			return result;	 
+		} 
+		catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return -1;
+	}
 	
-	
-	public int delete()
-	{
-		try (Connection conn = DBConnector.getConnection())
-		{
+	public int delete() {
+		try (Connection conn = DBConnector.getConnection()) {
 			String query = "DELETE FROM " + TABLE_NAME +
 						   " WHERE id=?";
 
@@ -166,8 +183,7 @@ public class DBModelAccount
 
 			return result;	 
 		} 
-		catch (SQLException exception) 
-		{
+		catch (SQLException exception) {
 			exception.printStackTrace();
 		}
 		return -1;
