@@ -65,8 +65,8 @@ public class WindowAccountEdit extends JFrame implements ActionListener, ListSel
       
     	DBModelAccount model =  create.getNewAccount();
 		System.out.print(model);
-		if(accountModel != null){
-		
+		if(model != null){
+			
 			if (model.insert() == 1) {
 				table.addAccount(model);
 			}
@@ -93,7 +93,7 @@ public class WindowAccountEdit extends JFrame implements ActionListener, ListSel
         break;
       case DELETE:
         int i = userTable.getSelectedRow();
-        
+        table.removeAccount(i);
         break;
 
       }

@@ -150,5 +150,27 @@ public class DBModelAccount
 		return -1;
 	}
 	
+	
+	
+	public int delete()
+	{
+		try (Connection conn = DBConnector.getConnection())
+		{
+			String query = "DELETE FROM " + TABLE_NAME +
+						   " WHERE id=?";
+
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1,id);
+
+			int result = statement.executeUpdate();
+
+			return result;	 
+		} 
+		catch (SQLException exception) 
+		{
+			exception.printStackTrace();
+		}
+		return -1;
+	}
 
 }

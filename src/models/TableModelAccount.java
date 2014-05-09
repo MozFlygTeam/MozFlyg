@@ -25,15 +25,15 @@ public class TableModelAccount extends AbstractTableModel
 		fireTableDataChanged();    
 	}
     
-//    public void removeAccount(int row)
-//   {
-//    	 
-//    	 DBModelAccount model = data.get(row);
-//    	 if(model.delete() == 1){
-//    	 data.remove(row);
-//    	 fireTableRowsDeleted(row, row);
-//    	}
-//    }
+    public void removeAccount(int row)
+   {
+    	 
+    	 DBModelAccount model = data.get(row);
+    	 if(model.delete() == 1){
+    	 data.remove(row);
+    	 fireTableRowsDeleted(row, row);
+    	}
+    }
     
     public void setAccounts(Vector<DBModelAccount> account)
     {
