@@ -13,7 +13,7 @@ import models.DBModelAirport;
 
 
 	
-public class AddAirport extends JDialog implements ActionListener {
+public class WindowAddAirport extends JDialog implements ActionListener {
 
 	private static final String  ADD = "add";
 	private static final String  CANCEL = "cancel";
@@ -21,7 +21,7 @@ public class AddAirport extends JDialog implements ActionListener {
 	 JTextField city;
 	 JTextField airport;
 	 
-	 public AddAirport(){
+	 public WindowAddAirport(){
 		 
 		 JPanel panel = new JPanel();
 		 

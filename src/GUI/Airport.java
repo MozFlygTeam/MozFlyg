@@ -69,7 +69,7 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 	// funktionen f�r att l�gga till airport
 	private void addAirport() {
 
-		AddAirport add = new AddAirport();
+		WindowAddAirport add = new WindowAddAirport();
 		add.setVisible(true);
 		
 		DBModelAirport model =  add.getAirport();
