@@ -73,7 +73,6 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 		add.setVisible(true);
 		
 		DBModelAirport model =  add.getAirport();
-		System.out.print(model);
 		if(model != null){
 		
 			if (model.insert() == 1) {
