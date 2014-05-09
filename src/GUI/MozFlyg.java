@@ -123,8 +123,8 @@ public class MozFlyg extends JFrame implements ActionListener {
 			System.exit(0);
 			break;
 		case AIRPORT:
-				Airport airport = new Airport();
-				airport.setVisible(true);
+			WindowAirport airport = new WindowAirport();
+			airport.setVisible(true);
 			break;
 		case ACCOUNT:
 			WindowAccountEdit account = new WindowAccountEdit();
@@ -133,8 +133,6 @@ public class MozFlyg extends JFrame implements ActionListener {
 		case FLIGHT:
 			WindowFlightsEdit flight = new WindowFlightsEdit();
 			flight.setVisible(true);
-//			WindowAccountEdit account = new WindowAccountEdit();
-//			account.setVisible(true);
 		break;
 		default:
 			break;

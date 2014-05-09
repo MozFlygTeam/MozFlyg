@@ -26,7 +26,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-public class Airport extends JFrame implements ActionListener, ListSelectionListener{
+public class WindowAirport extends JFrame implements ActionListener, ListSelectionListener{
 
 	public DBModelAirport airportModel;
 	public static TableModelAirport table;
@@ -35,7 +35,7 @@ public class Airport extends JFrame implements ActionListener, ListSelectionList
 	private static final String ADD = "add";
 	private static final String DELETE = "delete";
 	
-	public Airport() {
+	public WindowAirport() {
 
 		table = new TableModelAirport();
 		airportModel = new DBModelAirport();
