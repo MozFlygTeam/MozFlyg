@@ -17,7 +17,7 @@ import javax.swing.border.EmptyBorder;
 import models.DBConnector;
 import models.DBModelAccount;
 
-public class Login extends JDialog implements ActionListener{
+public class WindowLogin extends JDialog implements ActionListener{
 	
 	private static final String LOGIN = "login";
 	private static final String EXIT = "exit";
@@ -28,7 +28,7 @@ public class Login extends JDialog implements ActionListener{
 	JTextField passFld;
 	
 	
-	public Login(){
+	public WindowLogin(){
         //Create field panel
         JPanel dataPnl = new JPanel(new GridLayout(3, 2, 5, 5));
         dataPnl.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -98,16 +98,5 @@ public class Login extends JDialog implements ActionListener{
 			loginVerification();
 			System.out.println("Logged in = " + loggedIn);
 		}
-	}
-	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				//Database, user, password
-				DBConnector.setConnectionData("jdbc:mysql://localhost:8889/mozflyg", "root", "root");
-				Login frame = new Login();
-				frame.setVisible(true);
-			}
-		});
 	}
 }
