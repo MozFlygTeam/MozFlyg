@@ -1,37 +1,52 @@
 package GUI;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerNumberModel;
 
-import models.DBModelAirport;
+import models.DBModelAirport; 
 import models.DBModelFlight;
-
-
 	
 public class WindowAddFlight extends JDialog implements ActionListener {
 
 	private static final String  ADD = "add";
 	private static final String  CANCEL = "cancel";
+	JComboBox<DBModelAirport> droppDownFrom;
+	JComboBox<DBModelAirport> droppDownTo;
 	DBModelAirport model;
-
+	JSpinner spinnerDate;
+	JSpinner spinnerPrice;
+	
 	 public WindowAddFlight(){
 		 
 		 JPanel panel = new JPanel();
 		 
-		 JComboBox<DBModelAirport> droppDownFrom = new JComboBox(DBModelAirport.getAll()); 
+		 droppDownFrom = new JComboBox(DBModelAirport.getAll()); 
 		 panel.add(droppDownFrom);
 		 
-		 JComboBox<DBModelAirport> droppDownTo = new JComboBox(DBModelAirport.getAll()); 
+		 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
 		 panel.add(droppDownTo);
-		
 		 
+		 spinnerDate = new JSpinner(new SpinnerDateModel());
+		 panel.add(spinnerDate);
+		 
+		 
+		 spinnerPrice = new JSpinner(new SpinnerNumberModel(1000, 1,99999, 10));
+		 panel.add(spinnerPrice);
+		 
+		
+		 JLabel price = new JLabel("Kr");
+		 panel.add(price);	
 		 
 		 JButton addBtn = new JButton("Skapa");
 		 addBtn.addActionListener(this);
@@ -65,7 +80,16 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 				dispose();
 			break;
 		case ADD:
-			//model = new DBModelAirport(airport.getText(),city.getText());
+			
+			DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
+			DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
+			
+			java.sql.Date sqlDate = new java.sql.Date(111111111);
+			
+			DBModelFlight model = new DBModelFlight(arFr, arTo, sqlDate  , 200.22);
+			model.insert();
+			
+			
 			dispose();
 			break;
 
