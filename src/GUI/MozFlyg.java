@@ -64,7 +64,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 		item2.setActionCommand(ACCOUNT);
 		admin.add(item2);
 
-		JMenuItem item3 = new JMenuItem("Edit flight");
+		JMenuItem item3 = new JMenuItem("Edit Flights");
 		item3.addActionListener(this);
 		item3.setActionCommand(FLIGHT);
 		admin.add(item3);
