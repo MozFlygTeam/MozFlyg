@@ -64,6 +64,7 @@ public class DBModelAccount
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	
 	//Check if the user inputs match with the data in database
 	public boolean checkUser(){
 		try(Connection conn = DBConnector.getConnection()){
@@ -96,7 +97,7 @@ public class DBModelAccount
 			try (Connection conn = DBConnector.getConnection())
 			{
 				
-				String query = "SELECT * FROM " + TABLE_NAME;
+				String query = "SELECT id," + USERNAME_COLUMN + "," + PASSWORD_COLUMN + "," + IS_ADMIN_COLUMN +" FROM " + TABLE_NAME;
 				
 				Statement statement = conn.createStatement();
 				ResultSet result = statement.executeQuery(query);
@@ -104,13 +105,12 @@ public class DBModelAccount
 				while (result.next())
 				{
 					int id = result.getInt(1);
-					String username = result.getString(2);
-					String password = result.getString(3);
-					boolean isAdmin = result.getBoolean(4);
+					String username = result.getString(USERNAME_COLUMN);
+					String password = result.getString(PASSWORD_COLUMN);
+					boolean isAdmin = result.getBoolean(IS_ADMIN_COLUMN);
 					
 					DBvector.add(new DBModelAccount(id, username, password, isAdmin));
 				}
-				
 				
 				 
 			} catch (SQLException exception) {
@@ -118,7 +118,6 @@ public class DBModelAccount
 			}
 			
 			 return DBvector;
-		
 	}
 
 	public int insert() {
