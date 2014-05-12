@@ -17,22 +17,27 @@ public class TableModelAccount extends AbstractTableModel
 	private static final long serialVersionUID = 1L;
 	private Vector<DBModelAccount> data = new Vector<DBModelAccount>();
     
- 
+	private static final int ID_COLUMN = 0;
+	private static final int USERNAME_COLUMN = 1;
+	private static final int PASSWORD_COLUMN = 2;
+//	private static final String IS_ADMIN_COLUMN = "3";
 	
 	
-	public void addAccount(DBModelAccount account) {
+	public void addAccount(DBModelAccount account)
+	{
 		data.add(account);
 		fireTableDataChanged();    
 	}
     
-    public void removeAccount(int row)
-   {
-    	 
+	public void removeAccount(int row)
+	{
     	 DBModelAccount model = data.get(row);
-    	 if(model.delete() == 1){
-    	 data.remove(row);
-    	 fireTableRowsDeleted(row, row);
-    	}
+    	 
+    	 if(model.delete() == 1)
+    	 {
+	    	 data.remove(row);
+	    	 fireTableRowsDeleted(row, row);
+    	 }
     }
     
     public void setAccounts(Vector<DBModelAccount> account)
@@ -49,7 +54,8 @@ public class TableModelAccount extends AbstractTableModel
     	fireTableDataChanged();
     }
     
-    public TableModelAccount(){
+    public TableModelAccount()
+    {
 		setAccounts(DBModelAccount.getAllAccounts());
 	}
     
@@ -59,34 +65,41 @@ public class TableModelAccount extends AbstractTableModel
     }
     
     @Override
-    public int getColumnCount() {
+    public int getColumnCount()
+    {
         return 3;
     }
+    
     @Override
-    public int getRowCount() {
+    public int getRowCount()
+    {
         return data.size();
     }
+    
     @Override
-    public String getColumnName(int col) {
-        switch (col) {
-        case 0: return "id";
-        case 1: return "Användarnamn";
-        case 2: return "Lösenord";
+    public String getColumnName(int col)
+    {
+        switch (col)
+        {
+	        case ID_COLUMN: return "id";
+	        case USERNAME_COLUMN: return "Användarnamn";
+	        case PASSWORD_COLUMN: return "Lösenord";
+	        default: return "";
         }
-        return "";
     }
+    
     @Override
     public Object getValueAt(int row, int col)
     {
     	DBModelAccount rowData = (DBModelAccount) data.get(row);
         
-        switch (col) {
-        case 0: return new Integer(rowData.getId());
-        case 1: return rowData.getUsername();
-        case 2: return rowData.getPassword();
-       
+        switch (col)
+        {
+	        case ID_COLUMN: return new Integer(rowData.getId());
+	        case USERNAME_COLUMN: return rowData.getUsername();
+	        case PASSWORD_COLUMN: return rowData.getPassword();
+	        default: return "Unknown";
         }        
-        return "Unknown";
     }
     
     @Override
@@ -96,30 +109,34 @@ public class TableModelAccount extends AbstractTableModel
     	
         switch (col)
         {
-	        case 1: selectedAccount.setUsername((String) cellData);
+	        case USERNAME_COLUMN: selectedAccount.setUsername((String) cellData);
 	        break;
-	        case 2: selectedAccount.setPassword((String) cellData);
+	        case PASSWORD_COLUMN: selectedAccount.setPassword((String) cellData);
 	        break;
         }
         selectedAccount.update();
     }
+    
     @Override
-    public Class<?> getColumnClass(int col) {
+    public Class<?> getColumnClass(int col)
+    {
         switch (col)
         {
-	        case 0: return Integer.class;
-	        case 1: return String.class;
-	        case 2: return String.class;
+	        case ID_COLUMN: return Integer.class;
+	        case USERNAME_COLUMN: return String.class;
+	        case PASSWORD_COLUMN: return String.class;
+	        default: return Object.class;
         }
-        return Object.class;
     }
-    public boolean isCellEditable(int row, int col) {
-    	 switch (col) 
-    	 {
-	         case 0: return false;
-	         default: return true;
-    	 }
-
+    
+    @Override
+    public boolean isCellEditable(int row, int col)
+    {
+    	switch (col) 
+    	{
+    		case ID_COLUMN: return false;
+	        default: return true;
+    	}
     }
 
 }
