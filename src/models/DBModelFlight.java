@@ -52,8 +52,11 @@ public class DBModelFlight
 
 			try (Connection conn = DBConnector.getConnection())
 			{
-				String query = "SELECT " + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_PRICE + 
-						" FROM " + TABLE_NAME;
+				/*
+				String query = "SELECT " + " id " + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_PRICE + 
+						" FROM " + TABLE_NAME; */
+				
+				String query = "SELECT * FROM " + TABLE_NAME;
 				
 				Statement statement = conn.createStatement();
 				ResultSet result = statement.executeQuery(query);
@@ -119,7 +122,7 @@ public class DBModelFlight
 		try (Connection conn = DBConnector.getConnection())
 		{
 			String query = "UPDATE " + TABLE_NAME + 
-						   " SET " + COLUMN_DEPARTING_FROM + "=?, " + COLUMN_ARRIVING_TO + "=? " + COLUMN_TIME_DEPARTING + "=?, " + COLUMN_PRICE + "=? " +
+						   " SET " + COLUMN_DEPARTING_FROM + "=?, " + COLUMN_ARRIVING_TO + " =?, " + COLUMN_TIME_DEPARTING + " =?, " + COLUMN_PRICE + " =? " +
 						   "WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);

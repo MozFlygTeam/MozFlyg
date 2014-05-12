@@ -30,9 +30,11 @@ package GUI;
 		public DBModelFlight flightModel;
 		public static TableModelFlight table;
 		private JButton removeButton;
+		private JButton editButton;
 		private JTable recordTable;
 		private static final String ADD = "add";
 		private static final String DELETE = "delete";
+		private static final String EDIT = "editera";
 		
 		public WindowFlightsEdit() {
 
@@ -54,33 +56,49 @@ package GUI;
 			removeButton.addActionListener(this);
 			removeButton.setActionCommand(DELETE);
 			removeButton.setEnabled(false);
-
+			
+			
+			editButton = new JButton("Editera");
+			editButton.addActionListener(this);
+			editButton.setActionCommand(EDIT);
+	
+			
+			
+			
+			
 			setContentPane(contentPane);
 			add(scrollPane, BorderLayout.CENTER);
 			add(bottomPanel, BorderLayout.PAGE_END);
 			bottomPanel.add(addButton);
 			bottomPanel.add(removeButton);
-
+			bottomPanel.add(editButton);
+			
+			
 			pack();
 			setLocationRelativeTo(null);
 		} 
-			//
-		// funktionen f�r att l�gga till airport
-		//private void addFlight() {
-
-		//	Addflight add = new Addflight();
-		//	add.setVisible(true);
+		
+	
+		private void addFlight() {
 			
-		//	DBModelFlight model =  add.getFlight();
-		//	System.out.print(model);
-		//	if(model != null){
-			//
-			//	if (model.insert() == 1) {
-		//			table.addAirport(model);
-			//	}
-		//	}
+			WindowAddFlight add = new WindowAddFlight();
+			add.setVisible(true);
 			
-		//}
+			DBModelFlight model =  add.getFlight();
+			System.out.print(model);
+			if(model != null){
+			
+				if (model.insert() == 1) {
+				table.addFlight(model);
+				}
+			}
+			
+		}
+		
+		private void editFlight(){
+			
+			
+		}
 
 		// Ska skapas
 
@@ -89,15 +107,27 @@ package GUI;
 
 			switch (event.getActionCommand()) {
 			case ADD:
-				WindowAddFlight add = new WindowAddFlight();
-				add.setVisible(true);
-				
+				addFlight();
 				break;
 			case DELETE:
 				int i = recordTable.getSelectedRow();
-				//table.removeFlight(i);
+				table.removeFlight(i);
 				break;
-
+			case EDIT:
+				int j = recordTable.getSelectedRow();
+				DBModelFlight fl = table.getFlight(j);
+				WindowEditFlight edit = new WindowEditFlight(fl);
+				edit.setVisible(true);
+				
+				if(edit.getFlight() !=null){
+					DBModelFlight model = edit.getFlight();
+					model.update();
+					table.updateFlight(j,model);
+					
+				}
+				
+				break;
+					
 			}
 		}
 		

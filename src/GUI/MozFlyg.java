@@ -69,12 +69,12 @@ public class MozFlyg extends JFrame implements ActionListener {
 		item3.setActionCommand(FLIGHT);
 		admin.add(item3);
 
-		JButton button1 = new JButton("Button 1");
+		JButton button1 = new JButton("Boka resa");
 		button1.addActionListener(this);
 		button1.setActionCommand(EXIT);
 		panel.add(button1);
 
-		JButton button2 = new JButton("Button 2");
+		JButton button2 = new JButton("Bokade resor");
 		button2.addActionListener(this);
 		button2.setActionCommand(EXIT);
 		panel.add(button2);

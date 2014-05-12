@@ -6,9 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellEditor;
 
 
 public class TableModelFlight extends AbstractTableModel
@@ -17,13 +20,12 @@ public class TableModelFlight extends AbstractTableModel
 	private static final long serialVersionUID = 1L;
 	private Vector<DBModelFlight> data = new Vector<DBModelFlight>();
 
-	public void addAirport(DBModelFlight flight) {
-
+	public void addFlight(DBModelFlight flight) {
 			data.add(flight);
-		  fireTableDataChanged();
+			fireTableDataChanged();
     }
     
-    public void removeAirport(int row)
+    public void removeFlight(int row)
     {
     	 
     	 DBModelFlight model = data.get(row);
@@ -33,7 +35,14 @@ public class TableModelFlight extends AbstractTableModel
     	}
     }
     
-    public void setAirports(Vector<DBModelFlight> flight)
+    public void updateFlight(int row, DBModelFlight model)
+    {
+    	 data.setElementAt(model, row);
+    	 fireTableRowsUpdated(row, row);
+    	
+    }
+    
+    public void setFlight(Vector<DBModelFlight> flight)
     {
     	if(flight != null)
     	{
@@ -48,10 +57,11 @@ public class TableModelFlight extends AbstractTableModel
     }
     
     public TableModelFlight() {
-    	setAirports(DBModelFlight.getFlights());
+    	TableCellEditor editor = new DefaultCellEditor(new JTextField());
+    	setFlight(DBModelFlight.getFlights());
 	}
     
-    public DBModelFlight getAirport(int row)
+    public DBModelFlight getFlight(int row)
     {
     	return data.get(row);
     }
@@ -60,6 +70,8 @@ public class TableModelFlight extends AbstractTableModel
     public int getColumnCount() {
         return 5;
     }
+    
+    
     @Override
     public int getRowCount() {
         return data.size();
@@ -95,6 +107,8 @@ public class TableModelFlight extends AbstractTableModel
    /*
     *  @Override(non-Javadoc)
     * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object, int, int)
+    */
+    
     /*
     public void setValueAt(Object cellData, int row, int col)
     {
@@ -106,11 +120,13 @@ public class TableModelFlight extends AbstractTableModel
 	        break;
 	        case 2: selectedflight.setArrivingTo((DBModelAirport) cellData);
 	        break;
-	        case 2: 
+	        
         }
         selectedflight.update();
     }
-    */
+   
+   */
+    
     @Override
     public Class<?> getColumnClass(int col) {
         switch (col)

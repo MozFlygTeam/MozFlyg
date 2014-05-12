@@ -23,7 +23,7 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 	private static final String  CANCEL = "cancel";
 	JComboBox<DBModelAirport> droppDownFrom;
 	JComboBox<DBModelAirport> droppDownTo;
-	DBModelAirport model;
+	DBModelFlight model;
 	JSpinner spinnerDate;
 	JSpinner spinnerPrice;
 	
@@ -65,8 +65,9 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 	 
 	
 	// Hämta alla rader från db 
-	 public DBModelAirport getAirport(){ 
-		return model;
+	 
+	 public DBModelFlight getFlight(){
+		 return model;
 	 }
 
 	@Override
@@ -83,13 +84,13 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 			
 			DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
 			DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
+			SpinnerDateModel sp = (SpinnerDateModel)spinnerDate.getModel();
+			java.util.Date now = new java.util.Date();
+			now = sp.getDate();
+			java.sql.Date sqlDate = new java.sql.Date(now.getTime());
 			
-			java.sql.Date sqlDate = new java.sql.Date(111111111);
-			
-			DBModelFlight model = new DBModelFlight(arFr, arTo, sqlDate  , 200.22);
-			model.insert();
-			
-			
+			model = new DBModelFlight(arFr, arTo, sqlDate,(double)spinnerPrice.getModel().getValue());	
+	
 			dispose();
 			break;
 
