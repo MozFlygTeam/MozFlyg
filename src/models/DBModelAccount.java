@@ -26,10 +26,11 @@ public class DBModelAccount
 	}
 	
 	//Konstruktor för att hämta data från Databas
-	public DBModelAccount(int id, String username, String password){
+	public DBModelAccount(int id, String username, String password, boolean isAdmin){
 		setId(id);
 		setUsername(username);
 		setPassword(password);
+		setAdmin(isAdmin);
 	}
 	
 	public int getId() {
@@ -105,9 +106,9 @@ public class DBModelAccount
 					int id = result.getInt(1);
 					String username = result.getString(2);
 					String password = result.getString(3);
-				
+					boolean isAdmin = result.getBoolean(4);
 					
-					DBvector.add(new DBModelAccount(id, username, password));
+					DBvector.add(new DBModelAccount(id, username, password, isAdmin));
 				}
 				
 				
