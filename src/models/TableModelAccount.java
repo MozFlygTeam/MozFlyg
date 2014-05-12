@@ -64,18 +64,21 @@ public class TableModelAccount extends AbstractTableModel
     	return data.get(row);
     }
     
+    //Tabellen behöver veta hur många kolumner den ska visa
     @Override
     public int getColumnCount()
     {
         return 4;
     }
     
+    //Tabellen behöver veta hur många rader den ska visa
     @Override
     public int getRowCount()
     {
         return data.size();
     }
     
+    //Tabellen behöver veta vilka kolumnnamn den ska visa
     @Override
     public String getColumnName(int col)
     {
@@ -89,6 +92,7 @@ public class TableModelAccount extends AbstractTableModel
         }
     }
     
+    //Tabellen behöver veta vilket värde som ska visas i en cell
     @Override
     public Object getValueAt(int row, int col)
     {
@@ -104,13 +108,17 @@ public class TableModelAccount extends AbstractTableModel
         }        
     }
     
+    //Tabellen behöver veta vad som ska göras när en cell har redigerats
     @Override
     public void setValueAt(Object cellData, int row, int col)
     {
+    	
     	DBModelAccount selectedAccount = (DBModelAccount) data.get(row);
     	
         switch (col)
         {
+        	//Redigerat cellinnehåll tas emot som ett generellt objekt i metodens parameter ovan. 
+            //Vi måste tala om vad det är för objekt vi fått, t.ex. en textsträng, innan det kan sparas i kontot
 	        case USERNAME_COLUMN: selectedAccount.setUsername((String) cellData);
 	        break;
 	        case PASSWORD_COLUMN: selectedAccount.setPassword((String) cellData);
@@ -121,6 +129,7 @@ public class TableModelAccount extends AbstractTableModel
         selectedAccount.update();
     }
     
+    //Tabellen behöver veta vilka datatyper som används för att visa värdena på ett anpassat sätt. T.ex. bockningsruta för boolean.
     @Override
     public Class<?> getColumnClass(int col)
     {
@@ -134,9 +143,11 @@ public class TableModelAccount extends AbstractTableModel
         }
     }
     
+    //Tabellen behöver veta om det ska vara möjligt att överhuvudtaget redigera en cell
     @Override
     public boolean isCellEditable(int row, int col)
     {
+    	//Beroende på vilken kolumn cellen tillör så görs cellen redigerbar (eller inte)
     	switch (col) 
     	{
     		case ID_COLUMN: return false;
