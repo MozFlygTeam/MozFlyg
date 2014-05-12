@@ -20,7 +20,7 @@ public class TableModelAccount extends AbstractTableModel
 	private static final int ID_COLUMN = 0;
 	private static final int USERNAME_COLUMN = 1;
 	private static final int PASSWORD_COLUMN = 2;
-//	private static final String IS_ADMIN_COLUMN = "3";
+	private static final int IS_ADMIN_COLUMN = 3;
 	
 	
 	public void addAccount(DBModelAccount account)
@@ -67,7 +67,7 @@ public class TableModelAccount extends AbstractTableModel
     @Override
     public int getColumnCount()
     {
-        return 3;
+        return 4;
     }
     
     @Override
@@ -84,6 +84,7 @@ public class TableModelAccount extends AbstractTableModel
 	        case ID_COLUMN: return "id";
 	        case USERNAME_COLUMN: return "Användarnamn";
 	        case PASSWORD_COLUMN: return "Lösenord";
+	        case IS_ADMIN_COLUMN: return "Admin";
 	        default: return "";
         }
     }
@@ -98,6 +99,7 @@ public class TableModelAccount extends AbstractTableModel
 	        case ID_COLUMN: return new Integer(rowData.getId());
 	        case USERNAME_COLUMN: return rowData.getUsername();
 	        case PASSWORD_COLUMN: return rowData.getPassword();
+	        case IS_ADMIN_COLUMN: return rowData.isAdmin();
 	        default: return "Unknown";
         }        
     }
@@ -113,6 +115,8 @@ public class TableModelAccount extends AbstractTableModel
 	        break;
 	        case PASSWORD_COLUMN: selectedAccount.setPassword((String) cellData);
 	        break;
+	        case IS_ADMIN_COLUMN: selectedAccount.setAdmin((boolean) cellData);
+	        break;
         }
         selectedAccount.update();
     }
@@ -125,6 +129,7 @@ public class TableModelAccount extends AbstractTableModel
 	        case ID_COLUMN: return Integer.class;
 	        case USERNAME_COLUMN: return String.class;
 	        case PASSWORD_COLUMN: return String.class;
+	        case IS_ADMIN_COLUMN: return Boolean.class;
 	        default: return Object.class;
         }
     }

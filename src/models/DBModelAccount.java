@@ -150,16 +150,19 @@ public class DBModelAccount
 		return -1;
 	}
 	
-	public int update() {
+	public int update()
+	{
 		try (Connection conn = DBConnector.getConnection()) {
 			String query = "UPDATE " + TABLE_NAME + 
-						   " SET " + USERNAME_COLUMN + "=?, " + PASSWORD_COLUMN + "=? " + 
-						   "WHERE id=?";
+						   " SET " + USERNAME_COLUMN + "=?," + PASSWORD_COLUMN + "=?," + IS_ADMIN_COLUMN + "=?" +
+						   " WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, username);
 			statement.setString(2, password);
-			statement.setInt(3,id);
+			statement.setBoolean(3, isAdmin);
+			statement.setInt(4, id);
+			
 
 			int result = statement.executeUpdate();
 
