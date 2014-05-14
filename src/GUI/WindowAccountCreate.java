@@ -70,7 +70,7 @@ public class WindowAccountCreate extends JDialog implements ActionListener {
     	}
     	else{
     		accountModel = new DBModelAccount(usernameFld.getText().toLowerCase().trim(),
-    										  passwordFld.getText().toLowerCase().trim()); 
+    										  passwordFld.getText().trim()); 
     		accountModel.insert();
     		dispose();
     	}
