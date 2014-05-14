@@ -31,7 +31,7 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 		 panel.add(cityLabel);
 		 panel.add(city);
 		 
-		 JLabel airportLabel = new JLabel("Flygplatts");
+		 JLabel airportLabel = new JLabel("Flygplats");
 		 airport = new JTextField(10);
 		 panel.add(airportLabel);
 		 panel.add(airport);
@@ -52,7 +52,7 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 	 }
 	 
 	
-	// H��mta alla rader fr��n db 
+	// H������mta alla rader fr������n db 
 	 public DBModelAirport getAirport(){ 
 		return model;
 	 }
@@ -68,9 +68,9 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 				dispose();
 			break;
 		case ADD:
-			//Kollar så att användaren inte skickar in tomma strängar
+			//Kollar s�� att anv��ndaren inte skickar in tomma str��ngar
 			if(airport.getText().length() >= 0 || city.getText().length() >= 0){
-				JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+				JOptionPane.showMessageDialog(null, "Alla f��lt m��ste vara ifyllda!");
 			}
 			else{
 				model = new DBModelAirport(airport.getText(),city.getText());
