@@ -38,7 +38,7 @@ public class WindowEditFlight extends JDialog implements ActionListener {
 		 JPanel panel = new JPanel();
 		 
 		 droppDownFrom = new JComboBox(DBModelAirport.getAll());
-		 droppDownFrom.setSelectedItem((model.getDepartingFrom()));
+		 droppDownFrom.ge((model.getDepartingFrom()));
 		 panel.add(droppDownFrom);
 		 
 		 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
@@ -95,6 +95,7 @@ public class WindowEditFlight extends JDialog implements ActionListener {
 			DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
 			DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
 			SpinnerDateModel sp = (SpinnerDateModel)spinnerDate.getModel();
+			SpinnerNumberModel sn = (SpinnerNumberModel) spinnerPrice.getModel();
 			java.util.Date now = new java.util.Date();
 			now = sp.getDate();
 			java.sql.Date sqlDate = new java.sql.Date(now.getTime());
@@ -102,7 +103,7 @@ public class WindowEditFlight extends JDialog implements ActionListener {
 			model.setDepartingFrom(arFr);
 			model.setArrivingTo(arTo);
 			model.setTimeDeparting(sqlDate);
-			model.setPrice((double)spinnerPrice.getModel().getValue());	
+			model.setPrice(sn.getNumber().doubleValue());	
 			
 		
 			

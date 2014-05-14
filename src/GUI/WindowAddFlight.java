@@ -85,11 +85,12 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 			DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
 			DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
 			SpinnerDateModel sp = (SpinnerDateModel)spinnerDate.getModel();
+			SpinnerNumberModel sn = (SpinnerNumberModel) spinnerPrice.getModel();
 			java.util.Date now = new java.util.Date();
 			now = sp.getDate();
 			java.sql.Date sqlDate = new java.sql.Date(now.getTime());
 			
-			model = new DBModelFlight(arFr, arTo, sqlDate,(double)spinnerPrice.getModel().getValue());	
+			model = new DBModelFlight(arFr, arTo, sqlDate, sn.getNumber().doubleValue());	
 	
 			dispose();
 			break;

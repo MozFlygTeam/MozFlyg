@@ -61,7 +61,7 @@ package GUI;
 			editButton = new JButton("Editera");
 			editButton.addActionListener(this);
 			editButton.setActionCommand(EDIT);
-	
+			editButton.setEnabled(false);
 			
 			
 			
@@ -134,6 +134,7 @@ package GUI;
 		public void valueChanged(ListSelectionEvent event)
 		{
 			removeButton.setEnabled(recordTable.getSelectedRowCount() > 0);
+			editButton.setEnabled(recordTable.getSelectedRowCount() > 0);
 		}
 	}
 	
