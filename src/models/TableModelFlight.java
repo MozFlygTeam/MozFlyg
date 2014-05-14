@@ -1,15 +1,9 @@
 package models;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JTextField;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellEditor;
 
@@ -57,7 +51,7 @@ public class TableModelFlight extends AbstractTableModel
     }
     
     public TableModelFlight() {
-    	TableCellEditor editor = new DefaultCellEditor(new JTextField());
+//    	TableCellEditor editor = new DefaultCellEditor(new JTextField());
     	setFlight(DBModelFlight.getFlights());
 	}
     
