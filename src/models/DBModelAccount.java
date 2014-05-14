@@ -97,9 +97,10 @@ public class DBModelAccount
 				loggedInUser.setAdmin(result.getBoolean(IS_ADMIN_COLUMN));
 				
 				loggedInUser = new DBModelAccount(id, username, password, isAdmin);
+				
+				return true;
 			}
 			
-			return true;
 		} 
 		catch (SQLException exception) 
 		{

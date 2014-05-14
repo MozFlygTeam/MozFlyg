@@ -1,11 +1,7 @@
 package models;
 
 import java.util.Vector;
-
-import javax.swing.DefaultCellEditor;
-import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableCellEditor;
 
 
 public class TableModelFlight extends AbstractTableModel
