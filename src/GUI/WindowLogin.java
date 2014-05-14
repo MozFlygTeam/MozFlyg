@@ -64,7 +64,7 @@ public class WindowLogin extends JDialog implements ActionListener{
         exitBtn.addActionListener(this);
         buttonPnl.add(exitBtn);
         
-        buttonPnl.getRootPane().setDefaultButton(submitBtn);
+        getRootPane().setDefaultButton(submitBtn);
         
         pack();
 	}
