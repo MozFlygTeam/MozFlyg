@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 public class DBModelAirport
 {
 	private int id;
@@ -48,12 +50,11 @@ public class DBModelAirport
 	}
 	
 	//Konstruktor för att hämta från databasen och göra ett objekt
-	public DBModelAirport(int id, String airport, String city){
-
+	public DBModelAirport(int id, String airport, String city)
+	{
 		this.setId(id);
 		this.setAirportName(airport);
 		this.setCityName(city);
-
 	}
 	
 public static Vector<DBModelAirport> getAll() {
@@ -195,6 +196,7 @@ public static DBModelAirport getAirport(int airportId)
 		} 
 		catch (SQLException exception) 
 		{
+			JOptionPane.showMessageDialog(null, exception.getSQLState() + " " + exception.getMessage(),"Databasfel",JOptionPane.ERROR_MESSAGE);
 			exception.printStackTrace();
 		}
 		return -1;
