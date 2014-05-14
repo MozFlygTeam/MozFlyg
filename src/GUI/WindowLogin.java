@@ -83,7 +83,7 @@ public class WindowLogin extends JDialog implements ActionListener{
 		String inputPass = passFld.getText();
 		DBModelAccount account = new DBModelAccount(inputUser, inputPass); 
 		
-		if (account.checkUser()){
+		if (account.loginUser()){
 			setLoginStatus(true);
 			System.out.println("Input matched with database");
 			dispose();
