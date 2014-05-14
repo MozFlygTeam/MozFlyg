@@ -69,11 +69,12 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 			break;
 		case ADD:
 			//Kollar så att användaren inte skickar in tomma strängar
-			if(airport.getText().length() <= 0 || city.getText().length() <= 0){
+			if(airport.getText().trim().length() <= 0 || 
+			   city.getText().trim().length() <= 0){
 				JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
 			}
 			else{
-				model = new DBModelAirport(airport.getText(),city.getText());
+				model = new DBModelAirport(airport.getText().trim(), city.getText().trim());
 				dispose();
 			}
 			
