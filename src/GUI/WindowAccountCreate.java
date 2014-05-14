@@ -24,12 +24,12 @@ public class WindowAccountCreate extends JDialog implements ActionListener {
     
     JPanel panel = new JPanel();
     
-    JLabel usernameLbl = new JLabel("Användarnamn");
+    JLabel usernameLbl = new JLabel("Anv��ndarnamn");
     usernameFld = new JTextField(10);
     panel.add(usernameLbl);
     panel.add(usernameFld);
     
-    JLabel passwordLbl = new JLabel("Lösenord");
+    JLabel passwordLbl = new JLabel("L��senord");
     passwordFld = new JTextField(10);
     panel.add(passwordLbl);
     panel.add(passwordFld);
@@ -64,11 +64,13 @@ public class WindowAccountCreate extends JDialog implements ActionListener {
         break;
       case CREATE:
         
-    	if(usernameFld.getText().length() <= 0 || passwordFld.getText().length() <= 0){
-    		JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+    	if(usernameFld.getText().trim().length() <= 0 || 
+    	   passwordFld.getText().trim().length() <= 0) {
+    		JOptionPane.showMessageDialog(null, "Alla f��lt m��ste vara ifyllda!");
     	}
     	else{
-    		accountModel = new DBModelAccount(usernameFld.getText(), passwordFld.getText()); 
+    		accountModel = new DBModelAccount(usernameFld.getText().toLowerCase().trim(),
+    										  passwordFld.getText().trim()); 
     		accountModel.insert();
     		dispose();
     	}
