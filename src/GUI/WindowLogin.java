@@ -29,18 +29,21 @@ public class WindowLogin extends JDialog implements ActionListener{
 	
 	
 	public WindowLogin(){
-        //Create field panel
+    
+		setModal(true);
+		
+		//Create field panel
         JPanel dataPnl = new JPanel(new GridLayout(3, 2, 5, 5));
         dataPnl.setBorder(new EmptyBorder(5, 5, 5, 5));
         add(dataPnl, BorderLayout.CENTER);
         
         //Create username field
-        dataPnl.add(new JLabel("Anv��ndarnamn"));
+        dataPnl.add(new JLabel("Anv������ndarnamn"));
         userFld = new JTextField(10);
         dataPnl.add(userFld);
         
         //Create password field
-        dataPnl.add(new JLabel("L��senord"));
+        dataPnl.add(new JLabel("L������senord"));
         passFld = new JPasswordField(10);
         dataPnl.add(passFld);
         
@@ -83,7 +86,7 @@ public class WindowLogin extends JDialog implements ActionListener{
 		if (account.checkUser()){
 			setLoginStatus(true);
 			System.out.println("Input matched with database");
-			
+			dispose();
 		}
 	}
 	

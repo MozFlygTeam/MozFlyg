@@ -25,7 +25,11 @@ public class MozFlyg extends JFrame implements ActionListener {
 	private static final String FLIGHT = "flight";
 
 	public MozFlyg() {
+		WindowLogin login = new WindowLogin();
+		login.setVisible(true);
+		
 		initUI();
+		
 	}
 
 	public final void initUI() {
