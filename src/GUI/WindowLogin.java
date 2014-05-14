@@ -49,20 +49,22 @@ public class WindowLogin extends JDialog implements ActionListener{
         
         
         //Create button panel
-        JPanel bottomPnl = new JPanel();
-        add(bottomPnl, BorderLayout.PAGE_END);
+        JPanel buttonPnl = new JPanel();
+        add(buttonPnl, BorderLayout.PAGE_END);
         
         //Create login button
-        JButton btn = new JButton("Logga in");
-        btn.setActionCommand(LOGIN);
-        btn.addActionListener(this);
-        bottomPnl.add(btn);
+        JButton submitBtn = new JButton("Logga in");
+        submitBtn.setActionCommand(LOGIN);
+        submitBtn.addActionListener(this);
+        buttonPnl.add(submitBtn);
         
         //Create cancel button
-        btn = new JButton("Exit");
-        btn.setActionCommand(EXIT);
-        btn.addActionListener(this);
-        bottomPnl.add(btn);
+        JButton exitBtn = new JButton("Exit");
+        exitBtn.setActionCommand(EXIT);
+        exitBtn.addActionListener(this);
+        buttonPnl.add(exitBtn);
+        
+        buttonPnl.getRootPane().setDefaultButton(submitBtn);
         
         pack();
 	}
