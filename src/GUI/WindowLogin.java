@@ -11,10 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import models.DBConnector;
 import models.DBModelAccount;
 
 public class WindowLogin extends JDialog implements ActionListener{

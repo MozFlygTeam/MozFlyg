@@ -14,9 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import models.DBModelAccount;
-import models.DBModelAirport;
 import models.TableModelAccount;
-import models.TableModelAirport;
 
 public class WindowAccountEdit extends JFrame implements ActionListener, ListSelectionListener{
   

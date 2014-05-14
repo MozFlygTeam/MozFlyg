@@ -13,8 +13,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import models.DBConnector;
-
 public class MozFlyg extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
