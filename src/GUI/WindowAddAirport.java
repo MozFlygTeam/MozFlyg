@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -51,7 +52,7 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 	 }
 	 
 	
-	// Hämta alla rader från db 
+	// H��mta alla rader fr��n db 
 	 public DBModelAirport getAirport(){ 
 		return model;
 	 }
@@ -67,8 +68,14 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 				dispose();
 			break;
 		case ADD:
-			model = new DBModelAirport(airport.getText(),city.getText());
-			dispose();
+			if(airport.getText().length() >= 0 || city.getText().length() >= 0){
+				JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+			}
+			else{
+				model = new DBModelAirport(airport.getText(),city.getText());
+				dispose();
+			}
+			
 			break;
 
 		default:
