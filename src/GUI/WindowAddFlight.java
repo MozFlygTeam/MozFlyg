@@ -64,7 +64,7 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 	 }
 	 
 	
-	// Hämta alla rader från db 
+	// H��mta alla rader fr��n db 
 	 
 	 public DBModelFlight getFlight(){
 		 return model;

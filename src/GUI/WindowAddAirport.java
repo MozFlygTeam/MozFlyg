@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -30,7 +31,7 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 		 panel.add(cityLabel);
 		 panel.add(city);
 		 
-		 JLabel airportLabel = new JLabel("Flygplatts");
+		 JLabel airportLabel = new JLabel("Flygplats");
 		 airport = new JTextField(10);
 		 panel.add(airportLabel);
 		 panel.add(airport);
@@ -67,8 +68,15 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 				dispose();
 			break;
 		case ADD:
-			model = new DBModelAirport(airport.getText(),city.getText());
-			dispose();
+			//Kollar så att användaren inte skickar in tomma strängar
+			if(airport.getText().length() <= 0 || city.getText().length() <= 0){
+				JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+			}
+			else{
+				model = new DBModelAirport(airport.getText(),city.getText());
+				dispose();
+			}
+			
 			break;
 
 		default:

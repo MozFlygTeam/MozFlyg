@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -63,9 +64,17 @@ public class WindowAccountCreate extends JDialog implements ActionListener {
     	  dispose();
         break;
       case CREATE:
-        accountModel = new DBModelAccount(usernameFld.getText(), passwordFld.getText()); 
-        accountModel.insert();
-        dispose();
+        
+    	if(usernameFld.getText().length() <= 0 || passwordFld.getText().length() <= 0){
+    		JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
+    	}
+    	else{
+    		accountModel = new DBModelAccount(usernameFld.getText(), passwordFld.getText()); 
+    		accountModel.insert();
+    		dispose();
+    	}
+    	
+    	break;
     }
   }
 }
