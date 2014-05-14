@@ -1,4 +1,4 @@
-DROP TABLE account, airport;
+DROP TABLE account, airport, flight;
 
 CREATE TABLE airport
 (
@@ -38,3 +38,9 @@ INSERT INTO account (username, password) VALUES ("Magnus","123");
 INSERT INTO account (username, password) VALUES ("Kim","123");
 INSERT INTO account (username, password) VALUES ("Malin","123");
 INSERT INTO account (username, password) VALUES ("Alexander","123");
+
+INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("1","5", "2014-05-14 10:00:00", "3300");
+INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("2","3", "2014-05-14 12:30:00", "1053");
+INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("4","1", "2014-05-14 13:15:00", "5403");
+INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("1","4", "2014-06-14 09:45:00", "1870");
+INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("4","2", "2014-06-14 15:30:00", "2040");
