@@ -14,10 +14,17 @@ public class DBModelAccount
 	private String password;
 	private boolean isAdmin;
 	
+	public static DBModelAccount loggedInUser;
+	
 	private static final String TABLE_NAME = "account";
 	private static final String USERNAME_COLUMN = "username";
 	private static final String PASSWORD_COLUMN = "password";
 	private static final String IS_ADMIN_COLUMN = "isAdmin";
+	
+	public DBModelAccount()
+	{
+		
+	}
 	
 	//Konstruktor för att skapa ny användare
 	public DBModelAccount(String username, String password){
@@ -66,11 +73,12 @@ public class DBModelAccount
 	}
 	
 	//Check if the user inputs match with the data in database
-	public boolean checkUser(){
+	public boolean loginUser()
+	{
 		try(Connection conn = DBConnector.getConnection()){
-			String query = "SELECT * FROM " + TABLE_NAME + 
+			String query = "SELECT id " + USERNAME_COLUMN + ", " + PASSWORD_COLUMN + ", " + IS_ADMIN_COLUMN +" FROM " + TABLE_NAME + 
 						   " WHERE " + USERNAME_COLUMN + 
-						   " = ? AND " + PASSWORD_COLUMN + "= ?";
+						   " = ? AND " + PASSWORD_COLUMN + "= ? LIMIT 1";
 			
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setString(1, getUsername());
@@ -79,7 +87,19 @@ public class DBModelAccount
 			
 			ResultSet result = statement.executeQuery();
 			
-			return result.next();
+			while (result.next())
+			{
+				loggedInUser = new DBModelAccount();
+				
+				loggedInUser.setId(result.getInt(1));
+				loggedInUser.setUsername(query); result.getString(USERNAME_COLUMN);
+				loggedInUser.setPassword(result.getString(PASSWORD_COLUMN));
+				loggedInUser.setAdmin(result.getBoolean(IS_ADMIN_COLUMN));
+				
+				loggedInUser = new DBModelAccount(id, username, password, isAdmin);
+			}
+			
+			return true;
 		} 
 		catch (SQLException exception) 
 		{
@@ -104,6 +124,8 @@ public class DBModelAccount
 				
 				while (result.next())
 				{
+					
+					
 					int id = result.getInt(1);
 					String username = result.getString(USERNAME_COLUMN);
 					String password = result.getString(PASSWORD_COLUMN);
