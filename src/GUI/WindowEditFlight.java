@@ -14,7 +14,6 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
 
-import com.oracle.jrockit.jfr.FlightRecorder;
 
 import models.DBModelAirport; 
 import models.DBModelFlight;
@@ -37,12 +36,14 @@ public class WindowEditFlight extends JDialog implements ActionListener {
 		 
 		 JPanel panel = new JPanel();
 		 
+		 
 		 droppDownFrom = new JComboBox(DBModelAirport.getAll());
-		 droppDownFrom.ge((model.getDepartingFrom()));
+		 droppDownFrom.getModel().setSelectedItem(model.getDepartingFrom());
+	
 		 panel.add(droppDownFrom);
 		 
 		 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
-		 droppDownTo.setSelectedItem(model.getArrivingTo());
+		 droppDownTo.getModel().setSelectedItem(model.getArrivingTo());
 		 panel.add(droppDownTo);
 		 
 		 spinnerDate = new JSpinner(new SpinnerDateModel());
@@ -79,6 +80,8 @@ public class WindowEditFlight extends JDialog implements ActionListener {
 	 public DBModelFlight getFlight(){
 		 return model;
 	 }
+	 
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
