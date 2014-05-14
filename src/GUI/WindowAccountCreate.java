@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import models.DBModelAccount;
-import models.DBModelAirport;
 
 public class WindowAccountCreate extends JDialog implements ActionListener {
   
