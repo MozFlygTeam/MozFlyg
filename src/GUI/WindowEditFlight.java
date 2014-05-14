@@ -39,7 +39,7 @@ public class WindowEditFlight extends JDialog implements ActionListener {
 		 
 		 droppDownFrom = new JComboBox(DBModelAirport.getAll());
 		 droppDownFrom.getModel().setSelectedItem(model.getDepartingFrom());
-	
+	 
 		 panel.add(droppDownFrom);
 		 
 		 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
