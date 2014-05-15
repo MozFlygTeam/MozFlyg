@@ -52,15 +52,15 @@ public class DBModelFlight
 
 			try (Connection conn = DBConnector.getConnection())
 			{
-				String query = "SELECT " + " id " + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_PRICE + 
+				String query = "SELECT" + " id, " + COLUMN_DEPARTING_FROM + ", " + COLUMN_ARRIVING_TO + ", " + COLUMN_TIME_DEPARTING + ", " + COLUMN_PRICE + 
 						" FROM " + TABLE_NAME +
-						" WHERE " + COLUMN_DEPARTING_FROM + " = ? AND " + COLUMN_ARRIVING_TO + " = ?";
+						" WHERE " + COLUMN_DEPARTING_FROM + "=? AND " + COLUMN_ARRIVING_TO + "=?";
 				
 				PreparedStatement statement = conn.prepareStatement(query);
 				statement.setInt(1, fromAirportId);
 				statement.setInt(2, toAirportId);
-				
-				ResultSet result = statement.executeQuery(query);
+				System.out.print(statement.toString());
+				ResultSet result = statement.executeQuery();
 				
 				while (result.next())
 				{

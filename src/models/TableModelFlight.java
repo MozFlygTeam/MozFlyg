@@ -48,7 +48,7 @@ public class TableModelFlight extends AbstractTableModel
     
     public TableModelFlight() {
 //    	TableCellEditor editor = new DefaultCellEditor(new JTextField());
-    	setFlight(DBModelFlight.getFlights());
+    	setFlight(DBModelFlight.getFlights(1,1));
 	}
     
     public DBModelFlight getFlight(int row)

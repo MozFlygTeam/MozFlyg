@@ -60,7 +60,7 @@ import javax.swing.event.ListSelectionListener;
 			 
 			 searchButton = new JButton("Search");
 			 searchButton.addActionListener(this);
-			
+			 searchPane.add(searchButton);
 
 			JPanel contentPane = new JPanel(new BorderLayout());
 			JScrollPane scrollPane = new JScrollPane(recordTable);
@@ -112,13 +112,6 @@ import javax.swing.event.ListSelectionListener;
 			
 		}
 		
-		private void editFlight(){
-			
-			
-		}
-
-		// Ska skapas
-
 		@Override
 		public void actionPerformed(ActionEvent event) {
 
@@ -145,7 +138,7 @@ import javax.swing.event.ListSelectionListener;
 				
 				break;
 			case SEARCH:
-				DBModelFlight.getFlights();
+				DBModelFlight.getFlights(1,5);
 				break;
 			}
 			
