@@ -13,6 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import models.DBModelAccount;
+
 public class MozFlyg extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -91,6 +93,10 @@ public class MozFlyg extends JFrame implements ActionListener {
 		button4.setActionCommand(EXIT);
 		panel.add(button4);
 
+		if(!(DBModelAccount.loggedInUser.isAdmin())){
+			admin.setEnabled(false);
+		}
+		
 		setJMenuBar(menubar);
 		setTitle("MozFlyg");
 		setSize(350, 300);
