@@ -13,7 +13,7 @@ CREATE TABLE account
 id SMALLINT(5) AUTO_INCREMENT NOT NULL,
 username CHAR(128) NOT NULL,
 password CHAR(128) NOT NULL,
-isAdmin BOOLEAN DEFAULT 1,
+isAdmin BOOLEAN DEFAULT 0,
 PRIMARY KEY (id)
 );
 
@@ -35,11 +35,11 @@ INSERT INTO airport (name, city) VALUES ("Landvetter","Göteborg");
 INSERT INTO airport (name, city) VALUES ("Småland Airport","Växjö");
 INSERT INTO airport (name, city) VALUES ("Jönköping Airport","Jönköping");
 
-INSERT INTO account (username, password) VALUES ("Kristoffer","123");
-INSERT INTO account (username, password) VALUES ("Magnus","123");
-INSERT INTO account (username, password) VALUES ("Kim","123");
-INSERT INTO account (username, password) VALUES ("Malin","123");
-INSERT INTO account (username, password) VALUES ("Alexander","123");
+INSERT INTO account (username, password, isAdmin) VALUES ("Kristoffer","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Magnus","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Kim","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Malin","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Alexander","123", "1");
 
 INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("1","5", "2014-05-14 10:00:00", "3300");
 INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("2","3", "2014-05-14 12:30:00", "1053");
