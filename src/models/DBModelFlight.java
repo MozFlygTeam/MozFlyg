@@ -46,19 +46,20 @@ public class DBModelFlight
 		// TODO Auto-generated constructor stub
 	}
 
-	public static Vector<DBModelFlight> getFlights()
+	public static Vector<DBModelFlight> getFlights(int fromAirportId, int toAirportId)
 	{
 		Vector<DBModelFlight> flightList = new Vector<DBModelFlight>();
 
 			try (Connection conn = DBConnector.getConnection())
 			{
-				/*
 				String query = "SELECT " + " id " + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_PRICE + 
-						" FROM " + TABLE_NAME; */
+						" FROM " + TABLE_NAME +
+						" WHERE " + COLUMN_DEPARTING_FROM + " = ? AND " + COLUMN_ARRIVING_TO + " = ?";
 				
-				String query = "SELECT * FROM " + TABLE_NAME;
+				PreparedStatement statement = conn.prepareStatement(query);
+				statement.setInt(1, fromAirportId);
+				statement.setInt(2, toAirportId);
 				
-				Statement statement = conn.createStatement();
 				ResultSet result = statement.executeQuery(query);
 				
 				while (result.next())
