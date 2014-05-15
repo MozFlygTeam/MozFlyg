@@ -3,7 +3,6 @@ package GUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -37,12 +36,12 @@ public class WindowEditFlight extends JDialog implements ActionListener {
 		 JPanel panel = new JPanel();
 		 
 		 
-		 droppDownFrom = new JComboBox(DBModelAirport.getAll());
+		 droppDownFrom = new JComboBox<DBModelAirport>(DBModelAirport.getAll());
 		 droppDownFrom.getModel().setSelectedItem(model.getDepartingFrom());
 	 
 		 panel.add(droppDownFrom);
 		 
-		 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
+		 droppDownTo = new JComboBox<DBModelAirport>(DBModelAirport.getAll()); 
 		 droppDownTo.getModel().setSelectedItem(model.getArrivingTo());
 		 panel.add(droppDownTo);
 		 
