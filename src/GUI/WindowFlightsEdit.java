@@ -1,19 +1,25 @@
 package GUI;
 
 
-	import models.DBModelFlight;
-	import models.TableModelFlight;
-	import java.awt.BorderLayout;
-	import java.awt.FlowLayout;
-	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
-	import javax.swing.JButton;
-	import javax.swing.JFrame;
-	import javax.swing.JPanel;
-	import javax.swing.JScrollPane;
-	import javax.swing.JTable;
-	import javax.swing.event.ListSelectionEvent;
-	import javax.swing.event.ListSelectionListener;
+	import models.DBModelAirport;
+import models.DBModelFlight;
+import models.TableModelFlight;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.SpinnerDateModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 	public class WindowFlightsEdit extends JFrame implements ActionListener, ListSelectionListener{
 
@@ -22,6 +28,14 @@ package GUI;
 		private JButton removeButton;
 		private JButton editButton;
 		private JTable recordTable;
+		
+		JComboBox<DBModelAirport> droppDownFrom;
+		JComboBox<DBModelAirport> droppDownTo;
+		JSpinner spinnerDate;
+		JButton searchButton;
+		
+		
+		private static final String SEARCH = "search";	
 		private static final String ADD = "add";
 		private static final String DELETE = "delete";
 		private static final String EDIT = "editera";
@@ -33,6 +47,20 @@ package GUI;
 			recordTable = new JTable(table);
 			recordTable.getSelectionModel().addListSelectionListener(this);
 		
+			JPanel searchPane = new JPanel();
+			 droppDownFrom = new JComboBox(DBModelAirport.getAll());
+			 
+			 searchPane.add(droppDownFrom);
+			 
+			 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
+			 searchPane.add(droppDownTo);
+			 
+			 spinnerDate = new JSpinner(new SpinnerDateModel());
+			 searchPane.add(spinnerDate);
+			 
+			 searchButton = new JButton("Search");
+			 searchButton.addActionListener(this);
+			
 
 			JPanel contentPane = new JPanel(new BorderLayout());
 			JScrollPane scrollPane = new JScrollPane(recordTable);
@@ -53,10 +81,9 @@ package GUI;
 			editButton.setActionCommand(EDIT);
 			editButton.setEnabled(false);
 			
-			
-			
-			
+	
 			setContentPane(contentPane);
+			add(searchPane, BorderLayout.NORTH);
 			add(scrollPane, BorderLayout.CENTER);
 			add(bottomPanel, BorderLayout.PAGE_END);
 			bottomPanel.add(addButton);
@@ -117,9 +144,12 @@ package GUI;
 				}
 				
 				break;
-					
+			case SEARCH:
+				DBModelFlight.getFlights();
+				break;
 			}
-		}
+			
+			}
 		
 		public void valueChanged(ListSelectionEvent event)
 		{
