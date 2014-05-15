@@ -1,4 +1,4 @@
-DROP TABLE account, airport, flight;
+DROP TABLE IF EXISTS account, airport, flight;
 
 CREATE TABLE airport
 (
@@ -24,7 +24,9 @@ departing_from SMALLINT(5) NOT NULL,
 arriving_to SMALLINT(5) NOT NULL,
 time_departing DATETIME NOT NULL,
 price DOUBLE(10,2) NOT NULL,
-PRIMARY KEY (id)
+PRIMARY KEY (id),
+FOREIGN KEY (departing_from) REFERENCES airport(id),
+FOREIGN KEY (arriving_to) REFERENCES airport(id)
 );
 
 INSERT INTO airport (name, city) VALUES ("Bromma","Stockholm"); 
@@ -33,11 +35,11 @@ INSERT INTO airport (name, city) VALUES ("Landvetter","Göteborg");
 INSERT INTO airport (name, city) VALUES ("Småland Airport","Växjö");
 INSERT INTO airport (name, city) VALUES ("Jönköping Airport","Jönköping");
 
-INSERT INTO account (username, password) VALUES ("Kristoffer","123");
-INSERT INTO account (username, password) VALUES ("Magnus","123");
-INSERT INTO account (username, password) VALUES ("Kim","123");
-INSERT INTO account (username, password) VALUES ("Malin","123");
-INSERT INTO account (username, password) VALUES ("Alexander","123");
+INSERT INTO account (username, password, isAdmin) VALUES ("Kristoffer","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Magnus","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Kim","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Malin","123", "1");
+INSERT INTO account (username, password, isAdmin) VALUES ("Alexander","123", "1");
 
 INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("1","5", "2014-05-14 10:00:00", "3300");
 INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("2","3", "2014-05-14 12:30:00", "1053");
