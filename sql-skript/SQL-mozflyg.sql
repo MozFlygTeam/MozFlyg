@@ -22,6 +22,7 @@ CREATE TABLE flight(
 	departing_from SMALLINT(5) NOT NULL,
 	arriving_to SMALLINT(5) NOT NULL,
 	time_departing DATETIME NOT NULL,
+    time_arriving DATETIME NOT NULL,
 	price DOUBLE(10,2) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (departing_from) REFERENCES airport(id),
@@ -35,11 +36,17 @@ CREATE TABLE booked_flight(
 	FOREIGN KEY(flight_id) REFERENCES flight(id)	
 );
 
-INSERT INTO airport (name, city) VALUES ("Bromma","Stockholm"); 
+INSERT INTO airport (name, city) VALUES ("Narita International","Tokyo"); 
 INSERT INTO airport (name, city) VALUES ("Arlanda","Stockholm");
 INSERT INTO airport (name, city) VALUES ("Landvetter","Göteborg");
 INSERT INTO airport (name, city) VALUES ("Småland Airport","Växjö");
-INSERT INTO airport (name, city) VALUES ("Jönköping Airport","Jönköping");
+INSERT INTO airport (name, city) VALUES ("Kalmar Airport","Kalmar");
+INSERT INTO airport (name, city) VALUES ("Bergamo Airport","Milano");
+INSERT INTO airport (name, city) VALUES ("Sturup","Malmö");
+INSERT INTO airport (name, city) VALUES ("Anfa","Cassablanca");
+
+
+
 
 INSERT INTO account (username, password, isAdmin) VALUES ("Kristoffer","123", "1");
 INSERT INTO account (username, password, isAdmin) VALUES ("Magnus","123", "1");

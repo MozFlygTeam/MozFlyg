@@ -30,10 +30,10 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 		 
 		 JPanel panel = new JPanel();
 		 
-		 droppDownFrom = new JComboBox(DBModelAirport.getAll()); 
+		 droppDownFrom = new JComboBox<DBModelAirport>(DBModelAirport.getAll()); 
 		 panel.add(droppDownFrom);
 		 
-		 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
+		 droppDownTo = new JComboBox<DBModelAirport>(DBModelAirport.getAll()); 
 		 panel.add(droppDownTo);
 		 
 		 spinnerDate = new JSpinner(new SpinnerDateModel());
