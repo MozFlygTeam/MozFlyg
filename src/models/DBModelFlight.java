@@ -54,11 +54,13 @@ public class DBModelFlight
 			{
 				String query = "SELECT" + " id, " + COLUMN_DEPARTING_FROM + ", " + COLUMN_ARRIVING_TO + ", " + COLUMN_TIME_DEPARTING + ", " + COLUMN_PRICE + 
 						" FROM " + TABLE_NAME +
-						" WHERE " + COLUMN_DEPARTING_FROM + "=? AND " + COLUMN_ARRIVING_TO + "=?";
+						" WHERE " + COLUMN_DEPARTING_FROM + "=? AND " + COLUMN_ARRIVING_TO + "=? 'AND " + COLUMN_TIME_DEPARTING + " = ?";
 				
 				PreparedStatement statement = conn.prepareStatement(query);
 				statement.setInt(1, fromAirportId);
 				statement.setInt(2, toAirportId);
+				statement.setString(2, "2014-05-14");
+				
 				System.out.print(statement.toString());
 				ResultSet result = statement.executeQuery();
 				
