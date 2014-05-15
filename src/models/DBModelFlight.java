@@ -13,6 +13,7 @@ public class DBModelFlight
 	private DBModelAirport departingFrom;
 	private DBModelAirport arrivingTo;
 	private Date timeDeparting;
+	private Date timeArriving;
 	private double price;
 
 	
@@ -20,24 +21,27 @@ public class DBModelFlight
 	private static String COLUMN_DEPARTING_FROM = "departing_from";
 	private static String COLUMN_ARRIVING_TO = "arriving_to";
 	private static String COLUMN_TIME_DEPARTING = "time_departing";
+	private static String COLUMN_TIME_ARRIVING = "time_arriving";
 	private static String COLUMN_PRICE = "price";
 	
 	public DBModelFlight(int id, DBModelAirport departingFrom, DBModelAirport arrivingTo, 
-				Date timeDeparting, double price) 
+				Date timeDeparting,Date timeArriving, double price) 
 	{
 		this.id = id;
 		this.departingFrom = departingFrom;
 		this.arrivingTo = arrivingTo;
 		this.timeDeparting = timeDeparting;
+		this.timeArriving = timeArriving;
 		this.price = price;
 	}
 	
 	public DBModelFlight(DBModelAirport departingFrom, DBModelAirport arrivingTo, 
-			Date timeDeparting, double price) 
+			Date timeDeparting,Date timeArriving, double price) 
 		{
 		this.departingFrom = departingFrom;
 		this.arrivingTo = arrivingTo;
 		this.timeDeparting = timeDeparting;
+		this.timeArriving = timeArriving;
 		this.price = price;
 		}
 
@@ -51,7 +55,7 @@ public class DBModelFlight
 			{
 				String query = "SELECT" + " id, " + COLUMN_DEPARTING_FROM + ", " + COLUMN_ARRIVING_TO + ", " + COLUMN_TIME_DEPARTING + ", " + COLUMN_PRICE + 
 						" FROM " + TABLE_NAME +
-						" WHERE " + COLUMN_DEPARTING_FROM + "=? AND " + COLUMN_ARRIVING_TO + "=? AND " + COLUMN_TIME_DEPARTING + " =?";
+						" WHERE " + COLUMN_DEPARTING_FROM + "=? AND " + COLUMN_ARRIVING_TO + "=? AND " + COLUMN_TIME_DEPARTING + " =? AND" + COLUMN_TIME_ARRIVING;
 				
 				PreparedStatement statement = conn.prepareStatement(query);
 				statement.setInt(1, fromAirportId);
@@ -65,13 +69,14 @@ public class DBModelFlight
 					int id = result.getInt(1);
 					int departingId = result.getInt(COLUMN_DEPARTING_FROM);
 					int arrivingId = result.getInt(COLUMN_ARRIVING_TO);
-					Date time = result.getDate(COLUMN_TIME_DEPARTING);
+					Date departingTime = result.getDate(COLUMN_TIME_DEPARTING);
+					Date arrivalTime = result.getDate(COLUMN_TIME_ARRIVING);
 					double price = result.getDouble(COLUMN_PRICE);
 					
 					DBModelAirport airportFrom = DBModelAirport.getAirport(departingId);
 					DBModelAirport airportTo = DBModelAirport.getAirport(arrivingId);
 					
-					flightList.add(new DBModelFlight(id, airportFrom, airportTo, time, price));
+					flightList.add(new DBModelFlight(id, airportFrom, airportTo, departingTime,arrivalTime, price));
 				}
 				 
 			} 
@@ -96,7 +101,8 @@ public class DBModelFlight
 			statement.setInt(1, departingFrom.getId());
 			statement.setInt(2, arrivingTo.getId());
 			statement.setDate(3, timeDeparting);
-			statement.setDouble(4, price);
+			statement.setDate(3, timeArriving);
+			statement.setDouble(5, price);
 
 			int rowCount = statement.executeUpdate();
 
@@ -121,16 +127,18 @@ public class DBModelFlight
 		try (Connection conn = DBConnector.getConnection())
 		{
 			String query = "UPDATE " + TABLE_NAME + 
-						   " SET " + COLUMN_DEPARTING_FROM + "=?, " + COLUMN_ARRIVING_TO + " =?, " + COLUMN_TIME_DEPARTING + " =?, " + COLUMN_PRICE + " =? " +
+						   " SET " + COLUMN_DEPARTING_FROM + "=?, " + COLUMN_ARRIVING_TO + " =?, " + COLUMN_TIME_DEPARTING + " =?, "+ COLUMN_TIME_DEPARTING +" =? "+ COLUMN_PRICE + " =? " +
 						   "WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setInt(1, departingFrom.getId());
 			statement.setInt(2, arrivingTo.getId());
 			statement.setDate(3, timeDeparting);
-			statement.setDouble(4, price);
-			statement.setInt(5,id);
-
+			statement.setDate(4, timeDeparting);
+			statement.setDouble(5, price);
+			statement.setInt(6,id);
+			
+			
 			int result = statement.executeUpdate();
 
 			return result;	 
@@ -172,6 +180,9 @@ public class DBModelFlight
 	public Date getTimeDeparting() {
 		return timeDeparting;
 	}
+	public Date getTimeArriving() {
+		return timeArriving;
+	}
 	public double getPrice() {
 		return price;
 	}
@@ -183,6 +194,9 @@ public class DBModelFlight
 	}
 	public void setTimeDeparting(Date timeDeparting) {
 		this.timeDeparting = timeDeparting;
+	}
+	public void setTimeArriving(Date timeArriving) {
+		this.timeArriving = timeArriving;
 	}
 	public void setPrice(double price) {
 		this.price = price;
