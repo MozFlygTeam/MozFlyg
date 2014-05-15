@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 public class DBModelFlight
@@ -42,9 +41,7 @@ public class DBModelFlight
 		this.price = price;
 		}
 
-	public DBModelFlight() {
-		// TODO Auto-generated constructor stub
-	}
+	public DBModelFlight() {}
 
 	public static Vector<DBModelFlight> getFlights(int fromAirportId, int toAirportId, Date date)
 	{
