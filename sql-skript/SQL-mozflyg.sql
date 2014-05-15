@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS account, airport, flight CASCADE;
+DROP TABLE IF EXISTS account, airport, flight;
 
 CREATE TABLE airport
 (
