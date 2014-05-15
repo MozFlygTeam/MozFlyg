@@ -18,7 +18,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -49,11 +48,11 @@ import javax.swing.event.ListSelectionListener;
 			recordTable.getSelectionModel().addListSelectionListener(this);
 		
 			JPanel searchPane = new JPanel();
-			 droppDownFrom = new JComboBox(DBModelAirport.getAll());
+			 droppDownFrom = new JComboBox<DBModelAirport>(DBModelAirport.getAll());
 			 
 			 searchPane.add(droppDownFrom);
 			 
-			 droppDownTo = new JComboBox(DBModelAirport.getAll()); 
+			 droppDownTo = new JComboBox<DBModelAirport>(DBModelAirport.getAll()); 
 			 searchPane.add(droppDownTo);
 			 
 			 spinnerDate = new JSpinner(new SpinnerDateModel());
