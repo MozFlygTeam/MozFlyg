@@ -59,7 +59,7 @@ public class DBModelFlight
 				PreparedStatement statement = conn.prepareStatement(query);
 				statement.setInt(1, fromAirportId);
 				statement.setInt(2, toAirportId);
-				statement.setString(2, "2014-05-14");
+				statement.setString(3, "2014-05-14");
 				
 				System.out.print(statement.toString());
 				ResultSet result = statement.executeQuery();
