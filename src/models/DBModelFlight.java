@@ -69,14 +69,14 @@ public class DBModelFlight
 					int id = result.getInt(1);
 					int departingId = result.getInt(COLUMN_DEPARTING_FROM);
 					int arrivingId = result.getInt(COLUMN_ARRIVING_TO);
-					Date time = result.getDate(COLUMN_TIME_DEPARTING);
-					Date time = result.getDate(COLUMN_TIME_ARRIVING);
+					Date departingTime = result.getDate(COLUMN_TIME_DEPARTING);
+					Date arrivalTime = result.getDate(COLUMN_TIME_ARRIVING);
 					double price = result.getDouble(COLUMN_PRICE);
 					
 					DBModelAirport airportFrom = DBModelAirport.getAirport(departingId);
 					DBModelAirport airportTo = DBModelAirport.getAirport(arrivingId);
 					
-					flightList.add(new DBModelFlight(id, airportFrom, airportTo, time, price));
+					flightList.add(new DBModelFlight(id, airportFrom, airportTo, departingTime,arrivalTime, price));
 				}
 				 
 			} 
