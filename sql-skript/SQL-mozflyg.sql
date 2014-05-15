@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS account, airport, flight;
+DROP DATABASE mozflyg;
+CREATE DATABASE mozflyg;
+USE mozflyg;
 
 CREATE TABLE airport(
 	id SMALLINT(5) AUTO_INCREMENT NOT NULL,
@@ -26,11 +28,9 @@ CREATE TABLE flight(
 	FOREIGN KEY (arriving_to) REFERENCES airport(id)
 );
 
-CREATE TABLE booked_flights(
-	id SMALLINT(5) AUTO_INCREMENT NOT NULL,
+CREATE TABLE booked_flight(
 	account_id SMALLINT(5) NOT NULL,
 	flight_id SMALLINT(5) NOT NULL,
-	PRIMARY KEY(id),
 	FOREIGN KEY(account_id) REFERENCES account(id),
 	FOREIGN KEY(flight_id) REFERENCES flight(id)	
 );
