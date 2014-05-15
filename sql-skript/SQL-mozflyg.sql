@@ -1,4 +1,4 @@
-DROP TABLE account, airport, flight;
+DROP TABLE IF EXISTS account, airport, flight CASCADE;
 
 CREATE TABLE airport
 (
@@ -24,7 +24,9 @@ departing_from SMALLINT(5) NOT NULL,
 arriving_to SMALLINT(5) NOT NULL,
 time_departing DATETIME NOT NULL,
 price DOUBLE(10,2) NOT NULL,
-PRIMARY KEY (id)
+PRIMARY KEY (id),
+FOREIGN KEY (departing_from) REFERENCES airport(id),
+FOREIGN KEY (arriving_to) REFERENCES airport(id)
 );
 
 INSERT INTO airport (name, city) VALUES ("Bromma","Stockholm"); 
