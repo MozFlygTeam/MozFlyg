@@ -36,12 +36,12 @@ CREATE TABLE booked_flight(
 	FOREIGN KEY(flight_id) REFERENCES flight(id)	
 );
 
-CREATE TABLE airplaneType(
+CREATE TABLE airplane_type(
 	id SMALLINT(5) NOT NULL,
 	name CHAR(128) NOT NULL,
-	passengerCapacity SMALLINT(5) NOT NULL,
+	passenger_capacity SMALLINT(5) NOT NULL,
 	velocity SMALLINT(5) NOT NULL,
-	fuelConsumption FLOAT(5,3) NOT NULL;
+	fuel_consumption FLOAT(5,3) NOT NULL;
 );
 
 INSERT INTO airplaneType VALUES (1, "Boeing 700", 149, 900, 4.084);
