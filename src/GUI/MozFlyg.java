@@ -38,6 +38,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 		panel.setLayout(new GridLayout(0, 1));
 		add(panel);
 		JMenuBar menubar = new JMenuBar();
+		
 		// File menu
 		JMenu file = new JMenu("File");
 		menubar.add(file);
@@ -52,8 +53,9 @@ public class MozFlyg extends JFrame implements ActionListener {
 		file.add(exitItem);
 
 		// ADMIN MENYN
-
+		System.out.print(DBModelAccount.loggedInUser.isAdmin());
 		JMenu admin = new JMenu("Admin");
+		admin.setEnabled(false);
 		menubar.add(admin);
 		
 		//Edit airport button
@@ -92,9 +94,11 @@ public class MozFlyg extends JFrame implements ActionListener {
 		button4.addActionListener(this);
 		button4.setActionCommand(EXIT);
 		panel.add(button4);
-
-		if(!(DBModelAccount.loggedInUser.isAdmin())){
-			admin.setEnabled(false);
+		
+		System.out.print(DBModelAccount.loggedInUser.isAdmin() + "MOZFLYG");
+			
+		if(DBModelAccount.loggedInUser.isAdmin()){	
+			admin.setEnabled(true);
 		}
 		
 		setJMenuBar(menubar);
@@ -109,7 +113,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 			public void run() {
 
 				//DBConnector.setConnectionData("jdbc:mysql://localhost:port/DB", "user", "pass");
-
+			
 				MozFlyg ex = new MozFlyg();
 				ex.setVisible(true);	
 			}

@@ -90,13 +90,10 @@ public class DBModelAccount
 			while (result.next())
 			{
 				loggedInUser = new DBModelAccount();
-				
 				loggedInUser.setId(result.getInt(1));
 				loggedInUser.setUsername(query); result.getString(USERNAME_COLUMN);
 				loggedInUser.setPassword(result.getString(PASSWORD_COLUMN));
 				loggedInUser.setAdmin(result.getBoolean(IS_ADMIN_COLUMN));
-				
-				loggedInUser = new DBModelAccount(id, username, password, isAdmin);
 				
 				return true;
 			}
