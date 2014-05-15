@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -60,6 +61,7 @@ import javax.swing.event.ListSelectionListener;
 			 
 			 searchButton = new JButton("Search");
 			 searchButton.addActionListener(this);
+			 searchButton.setActionCommand(SEARCH);
 			 searchPane.add(searchButton);
 
 			JPanel contentPane = new JPanel(new BorderLayout());
@@ -102,7 +104,6 @@ import javax.swing.event.ListSelectionListener;
 			add.setVisible(true);
 			
 			DBModelFlight model =  add.getFlight();
-			System.out.print(model);
 			if(model != null){
 			
 				if (model.insert() == 1) {
@@ -138,7 +139,14 @@ import javax.swing.event.ListSelectionListener;
 				
 				break;
 			case SEARCH:
-				DBModelFlight.getFlights(1,5);
+				DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
+				DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
+				SpinnerDateModel sp = (SpinnerDateModel)spinnerDate.getModel();
+				
+				java.sql.Date sqlDate = new java.sql.Date(sp.getDate().getTime());
+				System.out.print("SEARCH METODEN !!");
+				table.setFlight(DBModelFlight.getFlights(arFr.getId(),arTo.getId(), sqlDate));
+				
 				break;
 			}
 			

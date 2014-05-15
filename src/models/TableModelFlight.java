@@ -1,6 +1,8 @@
 package models;
 
+import java.sql.Date;
 import java.util.Vector;
+
 import javax.swing.table.AbstractTableModel;
 
 
@@ -48,7 +50,7 @@ public class TableModelFlight extends AbstractTableModel
     
     public TableModelFlight() {
 //    	TableCellEditor editor = new DefaultCellEditor(new JTextField());
-    	setFlight(DBModelFlight.getFlights(1,1));
+    	setFlight(DBModelFlight.getFlights(1,1, new Date(2016,02,1)));
 	}
     
     public DBModelFlight getFlight(int row)
