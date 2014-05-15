@@ -101,7 +101,8 @@ public class DBModelFlight
 			statement.setInt(1, departingFrom.getId());
 			statement.setInt(2, arrivingTo.getId());
 			statement.setDate(3, timeDeparting);
-			statement.setDouble(4, price);
+			statement.setDate(3, timeArriving);
+			statement.setDouble(5, price);
 
 			int rowCount = statement.executeUpdate();
 
@@ -126,7 +127,7 @@ public class DBModelFlight
 		try (Connection conn = DBConnector.getConnection())
 		{
 			String query = "UPDATE " + TABLE_NAME + 
-						   " SET " + COLUMN_DEPARTING_FROM + "=?, " + COLUMN_ARRIVING_TO + " =?, " + COLUMN_TIME_DEPARTING + " =?, " + COLUMN_PRICE + " =? " +
+						   " SET " + COLUMN_DEPARTING_FROM + "=?, " + COLUMN_ARRIVING_TO + " =?, " + COLUMN_TIME_DEPARTING + " =?, "+ COLUMN_TIME_DEPARTING +" =? "+ COLUMN_PRICE + " =? " +
 						   "WHERE id=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
