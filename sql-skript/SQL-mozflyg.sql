@@ -36,6 +36,18 @@ CREATE TABLE booked_flight(
 	FOREIGN KEY(flight_id) REFERENCES flight(id)	
 );
 
+CREATE TABLE airplaneType(
+	id SMALLINT(5) NOT NULL,
+	name CHAR(128) NOT NULL,
+	passengerCapacity SMALLINT(5) NOT NULL,
+	velocity SMALLINT(5) NOT NULL,
+	fuelConsumption FLOAT(5,3) NOT NULL;
+);
+
+INSERT INTO airplaneType VALUES (1, "Boeing 700", 149, 900, 4.084);
+INSERT INTO airplaneType VALUES (2, "Boeing 800", 189, 880, 4.513); 
+INSERT INTO airplaneType VALUES (3, "Airbus A380", 853, 900, 20.38); 
+
 INSERT INTO airport (name, city) VALUES ("Narita International","Tokyo"); 
 INSERT INTO airport (name, city) VALUES ("Arlanda","Stockholm");
 INSERT INTO airport (name, city) VALUES ("Landvetter","Göteborg");
@@ -44,9 +56,6 @@ INSERT INTO airport (name, city) VALUES ("Kalmar Airport","Kalmar");
 INSERT INTO airport (name, city) VALUES ("Bergamo Airport","Milano");
 INSERT INTO airport (name, city) VALUES ("Sturup","Malmö");
 INSERT INTO airport (name, city) VALUES ("Anfa","Cassablanca");
-
-
-
 
 INSERT INTO account (username, password, isAdmin) VALUES ("Kristoffer","123", "1");
 INSERT INTO account (username, password, isAdmin) VALUES ("Magnus","123", "1");
