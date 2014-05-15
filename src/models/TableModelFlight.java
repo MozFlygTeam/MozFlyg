@@ -72,7 +72,7 @@ public class TableModelFlight extends AbstractTableModel
         case 0: return "id";
         case 1: return "Avreseort";
         case 2: return "Destination";
-        case 3: return "Avgångstid";
+        case 3: return "AvgÃ¥ngstid";
         case 4: return "Pris";
         }
         return "";
