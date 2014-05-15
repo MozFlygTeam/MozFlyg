@@ -1,39 +1,45 @@
 DROP TABLE IF EXISTS account, airport, flight;
 
-CREATE TABLE airport
-(
-id SMALLINT(5) AUTO_INCREMENT NOT NULL,
-name CHAR(128) NOT NULL,
-city CHAR(128) NOT NULL,
-PRIMARY KEY (id)
+CREATE TABLE airport(
+	id SMALLINT(5) AUTO_INCREMENT NOT NULL,
+	name CHAR(128) NOT NULL,
+	city CHAR(128) NOT NULL,
+	PRIMARY KEY (id)
 );
 
-CREATE TABLE account
-(
-id SMALLINT(5) AUTO_INCREMENT NOT NULL,
-username CHAR(128) NOT NULL,
-password CHAR(128) NOT NULL,
-isAdmin BOOLEAN DEFAULT 0,
-PRIMARY KEY (id)
+CREATE TABLE account(
+	id SMALLINT(5) AUTO_INCREMENT NOT NULL,
+	username CHAR(128) NOT NULL,
+	password CHAR(128) NOT NULL,
+	isAdmin BOOLEAN DEFAULT 0,
+	PRIMARY KEY (id)
 );
 
-CREATE TABLE flight
-(
-id SMALLINT(5) AUTO_INCREMENT NOT NULL,
-departing_from SMALLINT(5) NOT NULL,
-arriving_to SMALLINT(5) NOT NULL,
-time_departing DATETIME NOT NULL,
-price DOUBLE(10,2) NOT NULL,
-PRIMARY KEY (id),
-FOREIGN KEY (departing_from) REFERENCES airport(id),
-FOREIGN KEY (arriving_to) REFERENCES airport(id)
+CREATE TABLE flight(
+	id SMALLINT(5) AUTO_INCREMENT NOT NULL,
+	departing_from SMALLINT(5) NOT NULL,
+	arriving_to SMALLINT(5) NOT NULL,
+	time_departing DATETIME NOT NULL,
+	price DOUBLE(10,2) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (departing_from) REFERENCES airport(id),
+	FOREIGN KEY (arriving_to) REFERENCES airport(id)
+);
+
+CREATE TABLE booked_flights(
+	id SMALLINT(5) AUTO_INCREMENT NOT NULL,
+	account_id SMALLINT(5) NOT NULL,
+	flight_id SMALLINT(5) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY(account_id) REFERENCES account(id),
+	FOREIGN KEY(flight_id) REFERENCES flight(id)	
 );
 
 INSERT INTO airport (name, city) VALUES ("Bromma","Stockholm"); 
 INSERT INTO airport (name, city) VALUES ("Arlanda","Stockholm");
-INSERT INTO airport (name, city) VALUES ("Landvetter","Göteborg");
-INSERT INTO airport (name, city) VALUES ("Småland Airport","Växjö");
-INSERT INTO airport (name, city) VALUES ("Jönköping Airport","Jönköping");
+INSERT INTO airport (name, city) VALUES ("Landvetter","GÃ¶teborg");
+INSERT INTO airport (name, city) VALUES ("SmÃ¥land Airport","VÃ¤xjÃ¶");
+INSERT INTO airport (name, city) VALUES ("JÃ¶nkÃ¶ping Airport","JÃ¶nkÃ¶ping");
 
 INSERT INTO account (username, password, isAdmin) VALUES ("Kristoffer","123", "1");
 INSERT INTO account (username, password, isAdmin) VALUES ("Magnus","123", "1");
