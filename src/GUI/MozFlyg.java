@@ -24,6 +24,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 	private static final String ACCOUNT = "account";
 	private static final String FLIGHT = "flight";
 	private static final String BOOKING = "booking";
+	private static final String BOOKED_FLIGHTS = "bookedFlights";
 	private static final String RUTTER = "rutter";
 
 	public MozFlyg() {
@@ -94,7 +95,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 		//Knapp för bokade resor
 		JButton button2 = new JButton("Bokade resor");
 		button2.addActionListener(this);
-		button2.setActionCommand(EXIT);
+		button2.setActionCommand(BOOKED_FLIGHTS);
 		panel.add(button2);
 
 		JButton button3 = new JButton("Button 3");
@@ -161,6 +162,10 @@ public class MozFlyg extends JFrame implements ActionListener {
 		case BOOKING:
 			WindowFlightsEdit bookingWindow = new WindowFlightsEdit();
 			bookingWindow.setVisible(true);
+			break;
+		case BOOKED_FLIGHTS:
+			WindowBookedFlights bookedFlights = new WindowBookedFlights();
+			bookedFlights.setVisible(true);
 			break;
 		case RUTTER:
 			WindowRutter windowRutter = new WindowRutter();
