@@ -152,7 +152,6 @@ public static DBModelAirport getAirport(int airportId)
 	
 	@Override
 	public String toString(){
-		
 		return this.getAirportName() + " " + this.getCityName();
 	} 
 	
