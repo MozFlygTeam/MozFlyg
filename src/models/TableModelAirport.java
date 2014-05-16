@@ -9,19 +9,14 @@ public class TableModelAirport extends AbstractTableModel
   
 	private static final long serialVersionUID = 1L;
 	private Vector<DBModelAirport> data = new Vector<DBModelAirport>();
-    
- 
-	
-	
-	public void addAirport(DBModelAirport airport) {
-
+    	
+	public void addAirport(DBModelAirport airport){
 			data.add(airport);
 		  fireTableDataChanged();
     }
     
     public void removeAirport(int row)
     {
-    	 
     	 DBModelAirport model = data.get(row);
     	 if(model.delete() == 1){
     	 data.remove(row);

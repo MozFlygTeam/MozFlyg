@@ -70,4 +70,27 @@ public class DBModelBookedFlight{
 			 return DBvector;
 	}
 	
+	
+	public int delete()
+	{
+		try (Connection conn = DBConnector.getConnection())
+		{
+			String query = "DELETE FROM " + TABLE_NAME +
+						   " WHERE id=?";
+
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1,id);
+
+			int result = statement.executeUpdate();
+
+			return result;	 
+		} 
+		catch (SQLException exception) 
+		{
+			JOptionPane.showMessageDialog(null, exception.getSQLState() + " " + exception.getMessage(),"Databasfel",JOptionPane.ERROR_MESSAGE);
+			exception.printStackTrace();
+		}
+		return -1;
+	}
+	
 }

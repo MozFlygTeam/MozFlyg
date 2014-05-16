@@ -1,7 +1,7 @@
 package GUI;
 
 
-	import models.DBModelAirport;
+import models.DBModelAirport;
 import models.DBModelFlight;
 import models.TableModelFlight;
 
