@@ -27,7 +27,7 @@ public class TableModelBookedFlight extends AbstractTableModel
     	 
     	 if(model.delete() == 1)
     	 {
-	    	 data.remove(row);
+    		 data.remove(row);
 	    	 fireTableRowsDeleted(row, row);
     	 }
     }
