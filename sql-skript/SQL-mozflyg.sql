@@ -35,26 +35,19 @@ CREATE TABLE booked_flight(
 	FOREIGN KEY(flight_id) REFERENCES flight(id)	
 );
 
-CREATE TABLE airplaneType(
+CREATE TABLE airplane_type
+(
 	id SMALLINT(5) NOT NULL,
 	name CHAR(128) NOT NULL,
 	passengerCapacity SMALLINT(5) NOT NULL,
 	velocity SMALLINT(5) NOT NULL,
-	fuelConsumption FLOAT(5,3) NOT NULL
+	fuelConsumption FLOAT(5,3) NOT NULL,
+	PRIMARY KEY (id)
 );
 
-CREATE TABLE rutter(
-	id SMALLINT(5) NOT NULL,
-	name CHAR(128) NOT NULL,
-	PRIMARY KEY (id, name),
-
-
-
-);
-
-INSERT INTO airplaneType VALUES (1, "Boeing 700", 149, 900, 4.084);
-INSERT INTO airplaneType VALUES (2, "Boeing 800", 189, 880, 4.513); 
-INSERT INTO airplaneType VALUES (3, "Airbus A380", 853, 900, 20.38); 
+INSERT INTO airplane_type VALUES (1, "Boeing 700", 149, 900, 4.084);
+INSERT INTO airplane_type VALUES (2, "Boeing 800", 189, 880, 4.513); 
+INSERT INTO airplane_type VALUES (3, "Airbus A380", 853, 900, 20.38); 
 
 INSERT INTO airport (name, city) VALUES ("Narita International","Tokyo"); 
 INSERT INTO airport (name, city) VALUES ("Arlanda","Stockholm");
