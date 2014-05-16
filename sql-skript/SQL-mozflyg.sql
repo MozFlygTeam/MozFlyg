@@ -22,7 +22,6 @@ CREATE TABLE flight(
 	departing_from SMALLINT(5) NOT NULL,
 	arriving_to SMALLINT(5) NOT NULL,
 	time_departing DATETIME NOT NULL,
-    time_arriving DATETIME NOT NULL,
 	price DOUBLE(10,2) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (departing_from) REFERENCES airport(id),
@@ -42,6 +41,15 @@ CREATE TABLE airplaneType(
 	passengerCapacity SMALLINT(5) NOT NULL,
 	velocity SMALLINT(5) NOT NULL,
 	fuelConsumption FLOAT(5,3) NOT NULL
+);
+
+CREATE TABLE rutter(
+	id SMALLINT(5) NOT NULL,
+	name CHAR(128) NOT NULL,
+	PRIMARY KEY (id, name),
+
+
+
 );
 
 INSERT INTO airplaneType VALUES (1, "Boeing 700", 149, 900, 4.084);
