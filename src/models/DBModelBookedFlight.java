@@ -34,7 +34,7 @@ public class DBModelBookedFlight{
 
 	}
 
-	//Konstruktor för att skapa ny flygplats
+	//Konstruktor f��r att skapa ny flygplats
 	public DBModelBookedFlight(int accountId, int flightId){
 		this.setAccountId(accountId);
 		this.setFlightId(flightId);

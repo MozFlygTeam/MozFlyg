@@ -134,7 +134,7 @@ public class DBModelFlight
 			statement.setInt(1, departingFrom.getId());
 			statement.setInt(2, arrivingTo.getId());
 			statement.setDate(3, timeDeparting);
-			statement.setDate(4, timeDeparting);
+			statement.setDate(4, timeArriving);
 			statement.setDouble(5, price);
 			statement.setInt(6,id);
 			
