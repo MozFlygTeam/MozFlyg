@@ -23,7 +23,8 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 	JComboBox<DBModelAirport> droppDownFrom;
 	JComboBox<DBModelAirport> droppDownTo;
 	DBModelFlight model;
-	JSpinner spinnerDate;
+	JSpinner spinnerDepartingDate;
+	JSpinner spinnerArrivalDate;
 	JSpinner spinnerPrice;
 	
 	 public WindowAddFlight(){
@@ -36,8 +37,11 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 		 droppDownTo = new JComboBox<DBModelAirport>(DBModelAirport.getAll()); 
 		 panel.add(droppDownTo);
 		 
-		 spinnerDate = new JSpinner(new SpinnerDateModel());
-		 panel.add(spinnerDate);
+		 spinnerDepartingDate = new JSpinner(new SpinnerDateModel());
+		 panel.add(spinnerDepartingDate);
+		 
+		 spinnerArrivalDate = new JSpinner(new SpinnerDateModel());
+		 panel.add(spinnerDepartingDate);
 		 
 		 
 		 spinnerPrice = new JSpinner(new SpinnerNumberModel(1000, 1,99999, 10));
@@ -63,7 +67,7 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 	 }
 	 
 	
-	// H��mta alla rader fr��n db 
+	// H������mta alla rader fr������n db 
 	 
 	 public DBModelFlight getFlight(){
 		 return model;
@@ -83,13 +87,19 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 			
 			DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
 			DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
-			SpinnerDateModel sp = (SpinnerDateModel)spinnerDate.getModel();
+			SpinnerDateModel spd = (SpinnerDateModel)spinnerDepartingDate.getModel();
+			SpinnerDateModel spa = (SpinnerDateModel)spinnerArrivalDate.getModel();
 			SpinnerNumberModel sn = (SpinnerNumberModel) spinnerPrice.getModel();
 			java.util.Date now = new java.util.Date();
-			now = sp.getDate();
-			java.sql.Date sqlDate = new java.sql.Date(now.getTime());
 			
-			model = new DBModelFlight(arFr, arTo, sqlDate, sn.getNumber().doubleValue());	
+			now = spd.getDate();
+			java.sql.Date sqlDateDepart = new java.sql.Date(now.getTime());
+			
+			now = spa.getDate();
+			java.sql.Date sqlDateArrive = new java.sql.Date(now.getTime());
+			
+			
+			model = new DBModelFlight(arFr, arTo, sqlDateDepart, sqlDateArrive, sn.getNumber().doubleValue());	
 	
 			dispose();
 			break;
