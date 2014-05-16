@@ -15,8 +15,8 @@ public class DBModelRutt {
 	
 	private static String TABLE_NAME = "rutter";
 	
-	private static String COLUMN_DEPARTING_FROM = "id";
-	private static String COLUMN_ARRIVING_TO = "id_depart";
+	private static String COLUMN_DEPARTING_FROM = "departing_from";
+	private static String COLUMN_ARRIVING_TO = "arriving_to";
 	
 	
 	public DBModelRutt(DBModelAirport airport_depart, DBModelAirport airport_arrive){
@@ -31,8 +31,7 @@ public class DBModelRutt {
 		
 			try (Connection conn = DBConnector.getConnection())
 			{
-					String query = "SELECT rutter.id, airport.id FROM rutter LEFT JOIN airport ON rutter.id_depart = airport.id";
-				
+					String query = "SELECT departing_from, arriving_to FROM rutter";
 				
 					Statement statement = conn.createStatement();
 					ResultSet result = statement.executeQuery(query);	
@@ -42,14 +41,8 @@ public class DBModelRutt {
 					int departingId = result.getInt(1);
 					int arrivingId = result.getInt(2);
 					
-					System.out.print(departingId);
-					System.out.print(arrivingId);
-					
 					DBModelAirport airportFrom = DBModelAirport.getAirport(departingId);
-					System.out.print(airportFrom.getCityName());
-					
 					DBModelAirport airportTo = DBModelAirport.getAirport(arrivingId);
-					System.out.print(airportTo.getCityName());
 					
 					ruttList.add(new DBModelRutt(airportFrom, airportTo));
 				}
@@ -67,7 +60,7 @@ public class DBModelRutt {
 	{
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "INSERT INTO rutter(id,id_depart) VALUES (?,?)";
+			String query = "INSERT INTO rutter(departing_from,arriving_to) VALUES (?,?)";
 
 			PreparedStatement statement = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -90,7 +83,7 @@ public class DBModelRutt {
 		try (Connection conn = DBConnector.getConnection())
 		{
 			String query = "DELETE FROM " + TABLE_NAME +
-						   " WHERE id=? AND id_depart=?";
+						   " WHERE departing_from=? AND arriving_to=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setInt(1,airport_depart.getId());

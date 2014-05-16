@@ -12,8 +12,9 @@ import javax.swing.table.AbstractTableModel;
 		public void addRutt(DBModelRutt rutt){
 				data.add(rutt);
 			  fireTableDataChanged();
+			  
 	    }
-	    
+	   
 	    public void removeRutt(int row)
 	    {
 	    	 DBModelRutt model = data.get(row);
