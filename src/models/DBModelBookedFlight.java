@@ -55,7 +55,7 @@ public class DBModelBookedFlight{
 				while (result.next())
 				{
 				
-					int accountId = result.getInt(COLUMN_FLIGHT_ID);
+					int accountId = result.getInt(COLUMN_ACCOUNT_ID);
 					int flightId = result.getInt(COLUMN_FLIGHT_ID);
 					
 					
@@ -73,14 +73,18 @@ public class DBModelBookedFlight{
 	
 	public int delete()
 	{
+		System.out.println("Delete called!");
 		try (Connection conn = DBConnector.getConnection())
 		{
 			String query = "DELETE FROM " + TABLE_NAME +
-						   " WHERE id=?";
+						   " WHERE " + COLUMN_ACCOUNT_ID + "=? AND " +
+						   COLUMN_FLIGHT_ID + "=?";
 
 			PreparedStatement statement = conn.prepareStatement(query);
-			statement.setInt(1,id);
+			statement.setInt(1,accountId);
+			statement.setInt(2,flightId);
 
+			System.out.println(statement.toString());
 			int result = statement.executeUpdate();
 
 			return result;	 
