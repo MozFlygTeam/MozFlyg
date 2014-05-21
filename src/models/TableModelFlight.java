@@ -84,6 +84,22 @@ public class TableModelFlight extends AbstractTableModel
     }
     
     @Override
+    public void setValueAt(Object cellData, int row, int col)
+    {
+    	DBModelFlight selectedFlight = (DBModelFlight) data.get(row);
+    	
+    	
+        switch (col)
+        {
+	        case DEPARTING_FROM_COLUMN: selectedFlight.setDepartingFrom((DBModelAirport) cellData);
+	        break;
+	        case ARRIVING_TO_COLUMN: selectedFlight.setArrivingTo((DBModelAirport) cellData);
+	        break;
+        }
+        selectedFlight.update();
+    }
+    
+    @Override
     public Object getValueAt(int row, int col)
     {
     	DBModelFlight rowData = (DBModelFlight) data.get(row);
@@ -111,7 +127,7 @@ public class TableModelFlight extends AbstractTableModel
     
     public boolean isCellEditable(int row, int col) {
     	 
-	       return false;
+	       return true;
 	     
     }
 

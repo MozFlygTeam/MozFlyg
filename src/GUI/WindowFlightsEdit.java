@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,14 +21,15 @@ import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableColumn;
 
 	public class WindowFlightsEdit extends JFrame implements ActionListener, ListSelectionListener{
 
 		public DBModelFlight flightModel;
-		public static TableModelFlight table;
+		public static TableModelFlight tableModelFlight;
 		private JButton removeButton;
 		private JButton editButton;
-		private JTable recordTable;
+		private JTable flightTable;
 		
 		JComboBox<DBModelAirport> droppDownFrom;
 		JComboBox<DBModelAirport> droppDownTo;
@@ -42,10 +44,16 @@ import javax.swing.event.ListSelectionListener;
 		
 		public WindowFlightsEdit() {
 
-			table = new TableModelFlight();
+			tableModelFlight = new TableModelFlight();
 			flightModel = new DBModelFlight();
-			recordTable = new JTable(table);
-			recordTable.getSelectionModel().addListSelectionListener(this);
+			flightTable = new JTable(tableModelFlight);
+			
+			
+			TableColumn departingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.DEPARTING_FROM_COLUMN);
+			departingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
+			
+			
+			flightTable.getSelectionModel().addListSelectionListener(this);
 		
 			JPanel searchPane = new JPanel();
 			 droppDownFrom = new JComboBox<DBModelAirport>(DBModelAirport.getAll());
@@ -64,7 +72,7 @@ import javax.swing.event.ListSelectionListener;
 			 searchPane.add(searchButton);
 
 			JPanel contentPane = new JPanel(new BorderLayout());
-			JScrollPane scrollPane = new JScrollPane(recordTable);
+			JScrollPane scrollPane = new JScrollPane(flightTable);
 			JPanel bottomPanel = new JPanel(new FlowLayout());
 
 			JButton addButton = new JButton("Lägg till");
@@ -106,7 +114,7 @@ import javax.swing.event.ListSelectionListener;
 			if(model != null){
 			
 				if (model.insert() == 1) {
-				table.addFlight(model);
+				tableModelFlight.addFlight(model);
 				}
 			}
 			
@@ -120,19 +128,19 @@ import javax.swing.event.ListSelectionListener;
 				addFlight();
 				break;
 			case DELETE:
-				int i = recordTable.getSelectedRow();
-				table.removeFlight(i);
+				int i = flightTable.getSelectedRow();
+				tableModelFlight.removeFlight(i);
 				break;
 			case EDIT:
-				int j = recordTable.getSelectedRow();
-				DBModelFlight fl = table.getFlight(j);
+				int j = flightTable.getSelectedRow();
+				DBModelFlight fl = tableModelFlight.getFlight(j);
 				WindowEditFlight edit = new WindowEditFlight(fl);
 				edit.setVisible(true);
 				
 				if(edit.getFlight() !=null){
 					DBModelFlight model = edit.getFlight();
 					model.update();
-					table.updateFlight(j,model);
+					tableModelFlight.updateFlight(j,model);
 					
 				}
 				
@@ -144,7 +152,7 @@ import javax.swing.event.ListSelectionListener;
 				
 				java.sql.Date sqlDate = new java.sql.Date(sp.getDate().getTime());
 				System.out.print("SEARCH METODEN !!");
-				table.setFlight(DBModelFlight.getFlights(arFr.getId(),arTo.getId(), sqlDate));
+				tableModelFlight.setFlight(DBModelFlight.getFlights(arFr.getId(),arTo.getId(), sqlDate));
 				
 				break;
 			}
@@ -153,8 +161,8 @@ import javax.swing.event.ListSelectionListener;
 		
 		public void valueChanged(ListSelectionEvent event)
 		{
-			removeButton.setEnabled(recordTable.getSelectedRowCount() > 0);
-			editButton.setEnabled(recordTable.getSelectedRowCount() > 0);
+			removeButton.setEnabled(flightTable.getSelectedRowCount() > 0);
+			editButton.setEnabled(flightTable.getSelectedRowCount() > 0);
 		}
 	}
 	

@@ -58,15 +58,15 @@ public class WindowAccountEdit extends JFrame implements ActionListener, ListSel
     //Method to add a new user
     private void addAccountWindow() {
       
-    	WindowAccountCreate create = new WindowAccountCreate();
-    	create.setVisible(true);
+    	WindowAccountCreate windowCreate = new WindowAccountCreate();
+    	windowCreate.setVisible(true);
       
-    	DBModelAccount model =  create.getNewAccount();
-		System.out.print(model);
-		if(model != null){
+    	DBModelAccount account =  windowCreate.getNewAccount();
+		System.out.print(account);
+		if(account != null){
 			
-			if (model.insert() == 1) {
-				table.addAccount(model);
+			if (account.insert() == 1) {
+				table.addAccount(account);
 			}
 		}
     }
