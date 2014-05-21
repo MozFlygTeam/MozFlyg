@@ -56,8 +56,6 @@ public class DBModelBookedFlight{
 					PreparedStatement statement = conn.prepareStatement(query);
 					statement.setInt(1, DBModelAccount.loggedInUser.getId());
 					
-					System.out.println("Statement: " + statement.toString());
-					
 					ResultSet result = statement.executeQuery();
 					
 					while (result.next())
