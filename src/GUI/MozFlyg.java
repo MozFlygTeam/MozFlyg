@@ -156,11 +156,11 @@ public class MozFlyg extends JFrame implements ActionListener {
 			account.setVisible(true);
 		break;
 		case FLIGHT:
-			WindowFlightsEdit flight = new WindowFlightsEdit();
+			WindowEditFlight flight = new WindowEditFlight();
 			flight.setVisible(true);
 		break;
 		case BOOKING:
-			WindowFlightsEdit bookingWindow = new WindowFlightsEdit();
+			WindowEditFlight bookingWindow = new WindowEditFlight();
 			bookingWindow.setVisible(true);
 			break;
 		case BOOKED_FLIGHTS:

@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumn;
 
-	public class WindowFlightsEdit extends JFrame implements ActionListener, ListSelectionListener{
+	public class WindowEditFlight extends JFrame implements ActionListener, ListSelectionListener{
 
 		public DBModelFlight flightModel;
 		public static TableModelFlight tableModelFlight;
@@ -42,7 +42,7 @@ import javax.swing.table.TableColumn;
 		private static final String DELETE = "delete";
 		private static final String EDIT = "editera";
 		
-		public WindowFlightsEdit() {
+		public WindowEditFlight() {
 
 			tableModelFlight = new TableModelFlight();
 			flightModel = new DBModelFlight();

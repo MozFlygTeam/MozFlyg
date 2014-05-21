@@ -2,7 +2,6 @@ package GUI;
 
 import models.DBModelAirport;
 import models.DBModelRutt;
-import models.TableModelAirport;
 import models.TableModelRutter;
 
 import java.awt.BorderLayout;

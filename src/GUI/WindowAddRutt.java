@@ -7,14 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import javax.swing.SpinnerNumberModel;
 
 import models.DBModelAirport; 
-import models.DBModelFlight;
 import models.DBModelRutt;
 	
 public class WindowAddRutt extends JDialog implements ActionListener {
