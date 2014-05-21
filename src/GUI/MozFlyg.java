@@ -107,8 +107,6 @@ public class MozFlyg extends JFrame implements ActionListener {
 		button4.addActionListener(this);
 		button4.setActionCommand(EXIT);
 		panel.add(button4);
-		
-		System.out.print(DBModelAccount.loggedInUser.isAdmin() + "MOZFLYG");
 			
 		if(DBModelAccount.loggedInUser.isAdmin()){	
 			admin.setEnabled(true);
