@@ -35,6 +35,20 @@ CREATE TABLE booked_flight(
 	FOREIGN KEY(flight_id) REFERENCES flight(id)	
 );
 
+CREATE TABLE airplane_type
+(
+	id SMALLINT(5) AUTO_INCREMENT NOT NULL,
+	model_name CHAR(128) NOT NULL,
+	passenger_capacity SMALLINT(5) NOT NULL,
+	velocity SMALLINT(5) NOT NULL,
+	fuel_consumption DOUBLE(10,2) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+INSERT INTO airplane_type VALUES (1,'Boeing 700',149,900,4.084);
+INSERT INTO airplane_type VALUES (2,'Boeing 800',189,880,4.513);
+INSERT INTO airplane_type VALUES (3,'Airbus A380',853,900,20.38);
+
 INSERT INTO airport (name, city) VALUES ("Bromma","Stockholm"); 
 INSERT INTO airport (name, city) VALUES ("Arlanda","Stockholm");
 INSERT INTO airport (name, city) VALUES ("Landvetter","Göteborg");
