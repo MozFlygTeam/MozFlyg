@@ -48,10 +48,13 @@ import javax.swing.table.TableColumn;
 			flightModel = new DBModelFlight();
 			flightTable = new JTable(tableModelFlight);
 			
-			
+			//Ändrar CellEditorn för avgångsflygets kolumn till en dropdownbox
 			TableColumn departingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.DEPARTING_FROM_COLUMN);
 			departingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
 			
+			//Ändrar CellEditorn för ankomstflygets kolumn till en dropdownbox
+			TableColumn arrivingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.ARRIVING_TO_COLUMN);
+			arrivingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
 			
 			flightTable.getSelectionModel().addListSelectionListener(this);
 		
