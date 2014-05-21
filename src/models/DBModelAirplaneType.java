@@ -30,6 +30,68 @@ public class DBModelAirplaneType
 		this.fuelConsumption = fuelConsumption;
 	}
 	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public String getModelName() {
+		return modelName;
+	}
+
+
+
+	public int getPassengerCapacity() {
+		return passengerCapacity;
+	}
+
+
+
+	public int getVelocity() {
+		return velocity;
+	}
+
+
+
+	public double getFuelConsumption() {
+		return fuelConsumption;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+
+
+
+	public void setPassengerCapacity(int passengerCapacity) {
+		this.passengerCapacity = passengerCapacity;
+	}
+
+
+
+	public void setVelocity(int velocity) {
+		this.velocity = velocity;
+	}
+
+
+
+	public void setFuelConsumption(double fuelConsumption) {
+		this.fuelConsumption = fuelConsumption;
+	}
+
+
+
 	//Used by DB to recreate existing airplane types
 	public DBModelAirplaneType(int id, String modelName, int passengerCapacity, int velocity,
 			double fuelConsumption) {
