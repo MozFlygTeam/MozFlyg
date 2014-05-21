@@ -131,20 +131,6 @@ import javax.swing.table.TableColumn;
 				int i = flightTable.getSelectedRow();
 				tableModelFlight.removeFlight(i);
 				break;
-			case EDIT:
-				int j = flightTable.getSelectedRow();
-				DBModelFlight fl = tableModelFlight.getFlight(j);
-				WindowEditFlight edit = new WindowEditFlight(fl);
-				edit.setVisible(true);
-				
-				if(edit.getFlight() !=null){
-					DBModelFlight model = edit.getFlight();
-					model.update();
-					tableModelFlight.updateFlight(j,model);
-					
-				}
-				
-				break;
 			case SEARCH:
 				DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
 				DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
