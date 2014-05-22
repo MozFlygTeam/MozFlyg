@@ -59,11 +59,11 @@ import javax.swing.table.TableColumn;
 			flightTable = new JTable(tableModelFlight);
 			
 			
-			//Ändrar CellEditorn för avgångsflygets kolumn till en dropdownbox
+			//��ndrar CellEditorn f��r avg��ngsflygets kolumn till en dropdownbox
 			TableColumn departingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.DEPARTING_FROM_COLUMN);
 			departingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
 			
-			//Ändrar CellEditorn för ankomstflygets kolumn till en dropdownbox
+			//��ndrar CellEditorn f��r ankomstflygets kolumn till en dropdownbox
 			TableColumn arrivingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.ARRIVING_TO_COLUMN);
 			arrivingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
 			
@@ -97,7 +97,7 @@ import javax.swing.table.TableColumn;
 			
 			if(DBModelAccount.loggedInUser.isAdmin()){
 				
-			JButton addButton = new JButton("Lägg till");
+			JButton addButton = new JButton("L��gg till");
 			addButton.addActionListener(this);
 			addButton.setActionCommand(ADD);
 
@@ -206,8 +206,10 @@ import javax.swing.table.TableColumn;
 		
 		public void valueChanged(ListSelectionEvent event)
 		{
-			removeButton.setEnabled(flightTable.getSelectedRowCount() > 0);
-			editButton.setEnabled(flightTable.getSelectedRowCount() > 0);
+			if(DBModelAccount.loggedInUser.isAdmin()){
+				removeButton.setEnabled(flightTable.getSelectedRowCount() > 0);
+				editButton.setEnabled(flightTable.getSelectedRowCount() > 0);
+			}
 		}
 	}
 	
