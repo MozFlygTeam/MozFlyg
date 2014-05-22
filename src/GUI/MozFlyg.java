@@ -21,6 +21,7 @@ public class MozFlyg extends JFrame implements ActionListener {
 	private static final String EXIT = "exit";
 	private static final String LOGOUT = "logout";
 	private static final String AIRPORT = "airport";
+	private static final String AIRPLANE = "airplane";
 	private static final String ACCOUNT = "account";
 	private static final String FLIGHT = "flight";
 	private static final String BOOKING = "booking";
@@ -66,6 +67,12 @@ public class MozFlyg extends JFrame implements ActionListener {
 		itemAirport.addActionListener(this);
 		itemAirport.setActionCommand(AIRPORT);
 		admin.add(itemAirport);
+		
+		//Administrera flygplanstyper
+		JMenuItem itemAirplane = new JMenuItem("AirplaneTypes");
+		itemAirplane.addActionListener(this);
+		itemAirplane.setActionCommand(AIRPLANE);
+		admin.add(itemAirplane);
 		
 		//EDIT RUTTER
 		JMenuItem rutter = new JMenuItem("Edit rutter");
@@ -145,6 +152,10 @@ public class MozFlyg extends JFrame implements ActionListener {
 		case LOGOUT:
 			System.exit(0);
 			break;
+		case AIRPLANE:
+			WindowAirplaneType airplaneType = new WindowAirplaneType();
+			airplaneType.setVisible(true);
+			break;	
 		case AIRPORT:
 			WindowAirport airport = new WindowAirport();
 			airport.setVisible(true);
