@@ -1,10 +1,17 @@
 package models;
 
+import java.awt.Component;
 import java.util.Vector;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 
-public class TableModelAirport extends AbstractTableModel
+public class TableModelAirport extends AbstractTableModel implements TableCellRenderer
 {
   
 	private static final long serialVersionUID = 1L;
@@ -24,6 +31,25 @@ public class TableModelAirport extends AbstractTableModel
     	}
     }
     
+  
+    @Override 
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,int row,int column){
+		
+    	System.out.print("GET TABLE RENDERER");
+    	
+    	JComboBox<DBModelAirport> ap = new JComboBox<DBModelAirport>(DBModelAirport.getAll());
+    	
+    	 switch (column)
+         {
+ 	        case 2: TableColumn cm = table.getColumnModel().getColumn(column); 
+ 	        		cm.setCellEditor(new DefaultCellEditor(ap));
+ 	        case 3: TableColumn cmm = table.getColumnModel().getColumn(column); 
+     				cmm.setCellEditor(new DefaultCellEditor(ap));
+         }
+    	
+    	return table;
+    }
+    
     public void setAirports(Vector<DBModelAirport> airport)
     {
     	if(airport != null)
@@ -39,10 +65,13 @@ public class TableModelAirport extends AbstractTableModel
     }
     
     public TableModelAirport(){
-		setAirports(DBModelAirport.getAll());
+    
+    	setAirports(DBModelAirport.getAll());
 	}
     
-    public DBModelAirport getAirport(int row)
+    
+
+	public DBModelAirport getAirport(int row)
     {
     	return data.get(row);
     }
@@ -94,7 +123,9 @@ public class TableModelAirport extends AbstractTableModel
     }
     @Override
     public Class<?> getColumnClass(int col) {
-        switch (col)
+            	
+    	
+    	switch (col)
         {
 	        case 0: return Integer.class;
 	        case 1: return String.class;

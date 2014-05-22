@@ -84,11 +84,11 @@ public class DBModelBookedFlight{
 			String query = "DELETE FROM " + TABLE_NAME +
 						   " WHERE " + COLUMN_ACCOUNT_ID + "=? AND " +
 						   COLUMN_FLIGHT_ID + "=?";
-
+		
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setInt(1,accountId);
 			statement.setInt(2,flightId);
-
+				
 			System.out.println(statement.toString());
 			int result = statement.executeUpdate();
 

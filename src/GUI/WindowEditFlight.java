@@ -1,7 +1,9 @@
 package GUI;
 
 
+import models.DBModelAccount;
 import models.DBModelAirport;
+import models.DBModelBookedFlight;
 import models.DBModelFlight;
 import models.TableModelFlight;
 
@@ -29,6 +31,9 @@ import javax.swing.table.TableColumn;
 		public static TableModelFlight tableModelFlight;
 		private JButton removeButton;
 		private JButton editButton;
+		private JButton bookedFlightsBtn;
+		private JButton bookFlightBtn;
+		private JButton unbookFlightsBtn;
 		private JTable flightTable;
 		
 		JComboBox<DBModelAirport> droppDownFrom;
@@ -41,12 +46,18 @@ import javax.swing.table.TableColumn;
 		private static final String ADD = "add";
 		private static final String DELETE = "delete";
 		private static final String EDIT = "editera";
+		private static final String BOOKED = "booked";
+		private static final String BOOK = "book";
+		private static final String UNBOOK = "unbook";
+		
+		
 		
 		public WindowEditFlight() {
 
 			tableModelFlight = new TableModelFlight();
 			flightModel = new DBModelFlight();
 			flightTable = new JTable(tableModelFlight);
+			
 			
 			//Ändrar CellEditorn för avgångsflygets kolumn till en dropdownbox
 			TableColumn departingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.DEPARTING_FROM_COLUMN);
@@ -78,6 +89,14 @@ import javax.swing.table.TableColumn;
 			JScrollPane scrollPane = new JScrollPane(flightTable);
 			JPanel bottomPanel = new JPanel(new FlowLayout());
 
+			setContentPane(contentPane);
+			add(searchPane, BorderLayout.NORTH);
+			add(scrollPane, BorderLayout.CENTER);
+			add(bottomPanel, BorderLayout.PAGE_END);
+			
+			
+			if(DBModelAccount.loggedInUser.isAdmin()){
+				
 			JButton addButton = new JButton("Lägg till");
 			addButton.addActionListener(this);
 			addButton.setActionCommand(ADD);
@@ -93,14 +112,39 @@ import javax.swing.table.TableColumn;
 			editButton.setActionCommand(EDIT);
 			editButton.setEnabled(false);
 			
-	
-			setContentPane(contentPane);
-			add(searchPane, BorderLayout.NORTH);
-			add(scrollPane, BorderLayout.CENTER);
-			add(bottomPanel, BorderLayout.PAGE_END);
 			bottomPanel.add(addButton);
 			bottomPanel.add(removeButton);
 			bottomPanel.add(editButton);
+			
+			
+			}
+			else{
+				
+				bookedFlightsBtn = new JButton("Bokade resor");
+				bookedFlightsBtn.addActionListener(this);
+				bookedFlightsBtn.setActionCommand(BOOKED);
+				bookedFlightsBtn.setEnabled(true);
+				
+				
+				bookFlightBtn = new JButton("Booka flyg");
+				bookFlightBtn.addActionListener(this);
+				bookFlightBtn.setActionCommand(BOOK);
+				bookFlightBtn.setEnabled(true);
+				
+				unbookFlightsBtn = new JButton("Avboka flyg");
+				unbookFlightsBtn.addActionListener(this);
+				unbookFlightsBtn.setActionCommand(UNBOOK);
+				unbookFlightsBtn.setEnabled(true);
+				
+				
+				
+				bottomPanel.add(bookedFlightsBtn);
+				bottomPanel.add(bookFlightBtn);
+				bottomPanel.add(unbookFlightsBtn);
+				
+				
+			}
+	
 			
 			
 			pack();
@@ -144,7 +188,19 @@ import javax.swing.table.TableColumn;
 				tableModelFlight.setFlight(DBModelFlight.getFlights(arFr.getId(),arTo.getId(), sqlDate));
 				
 				break;
+			case BOOKED:
+				
+				
+				// tableModelFlight.setFlight(DBModelBookedFlight.getAllBookedFlights());
+				
+				break;
+			case BOOK:
+				break;
+			case UNBOOK:
+				break;
+			
 			}
+		
 			
 			}
 		
