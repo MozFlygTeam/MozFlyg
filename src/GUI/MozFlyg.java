@@ -153,8 +153,8 @@ public class MozFlyg extends JFrame implements ActionListener {
 			System.exit(0);
 			break;
 		case AIRPLANE:
-			//WindowAirplaneType airplaneType = new WindowAirplaneType();
-			//airplaneType.setVisible(true);
+			WindowAirplaneType airplaneType = new WindowAirplaneType();
+			airplaneType.setVisible(true);
 			break;	
 		case AIRPORT:
 			WindowAirport airport = new WindowAirport();

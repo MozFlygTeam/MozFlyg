@@ -13,6 +13,11 @@ public class TableModelAirplaneType extends AbstractTableModel
 	private static final int VELOCITY_COLUMN = 2;
 	private static final int FUEL_CONSUMPTION_COLUMN = 3;
 	
+	public TableModelAirplaneType()
+	{
+		setAirplaneTypes(DBModelAirplaneType.getAllAirplaneTypes());
+	}
+	
 	public void addAirplaneType(DBModelAirplaneType airplaneType)
 	{
 		airplaneTypeList.add(airplaneType);
@@ -30,7 +35,7 @@ public class TableModelAirplaneType extends AbstractTableModel
     	 }
     }
     
-    public void populateAirplaneTypes(Vector<DBModelAirplaneType> airplaneTypesDB)
+    public void setAirplaneTypes(Vector<DBModelAirplaneType> airplaneTypesDB)
     {
     	if(airplaneTypeList != null)
     	{
@@ -48,6 +53,19 @@ public class TableModelAirplaneType extends AbstractTableModel
 	{
 		return 4;
 	}
+	
+	@Override
+    public String getColumnName(int col)
+    {
+        switch (col)
+        {
+	        case MODEL_NAME_COLUMN: return "Model";
+	        case PASSENGER_CAPACITY_COLUMN: return "Max Passagerare";
+	        case VELOCITY_COLUMN: return "Hastighet";
+	        case FUEL_CONSUMPTION_COLUMN: return "Bränsleförbrukning";
+	        default: return null;
+        }
+    }
 
 	@Override
 	public int getRowCount()
