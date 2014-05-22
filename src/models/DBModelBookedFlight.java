@@ -40,28 +40,33 @@ public class DBModelBookedFlight{
 		this.setFlightId(flightId);
 	}
 
+	//TODO skicka in vilken ID:t på användare som är inloggad i get booked getAllFlights.
+	//Ifall värdet är -1 lista alla resor som är bokade.
 	public static Vector<DBModelBookedFlight> getAllBookedFlights() {
 		
 		Vector<DBModelBookedFlight> DBvector = new Vector<DBModelBookedFlight>();
-
+		
 			try (Connection conn = DBConnector.getConnection())
 			{
-				
-				String query = "SELECT " + COLUMN_ACCOUNT_ID + "," + COLUMN_FLIGHT_ID +" FROM " + TABLE_NAME;
-				
-				Statement statement = conn.createStatement();
-				ResultSet result = statement.executeQuery(query);
-				
-				while (result.next())
-				{
-				
-					int accountId = result.getInt(COLUMN_ACCOUNT_ID);
-					int flightId = result.getInt(COLUMN_FLIGHT_ID);
+				 
+					String query = "SELECT " + COLUMN_ACCOUNT_ID + ", " + COLUMN_FLIGHT_ID +
+								   " FROM " + TABLE_NAME + " WHERE " + COLUMN_ACCOUNT_ID + "=?";
 					
 					
-					DBvector.add(new DBModelBookedFlight(accountId, flightId));
-				}
-				
+					PreparedStatement statement = conn.prepareStatement(query);
+					statement.setInt(1, DBModelAccount.loggedInUser.getId());
+					
+					ResultSet result = statement.executeQuery();
+					
+					while (result.next())
+					{
+					
+						int accountId = result.getInt(COLUMN_ACCOUNT_ID);
+						int flightId = result.getInt(COLUMN_FLIGHT_ID);
+						
+						
+						DBvector.add(new DBModelBookedFlight(accountId, flightId));
+					}
 				 
 			} catch (SQLException exception) {
 				exception.printStackTrace();
