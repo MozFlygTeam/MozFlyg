@@ -8,33 +8,40 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableColumn;
 
 public class WindowAirport extends JFrame implements ActionListener, ListSelectionListener{
 
 	public DBModelAirport airportModel;
-	public static TableModelAirport table;
+	public static TableModelAirport tableModelAirport;
 	private JButton removeButton;
-	private JTable recordTable;
+	private JTable airportTable;
 	private static final String ADD = "add";
 	private static final String DELETE = "delete";
 	
 	public WindowAirport() {
-
-		table = new TableModelAirport();
+		
+		JComboBox<DBModelAirport> va = new JComboBox<DBModelAirport>(DBModelAirport.getAll());
+		
+		tableModelAirport = new TableModelAirport();
 		airportModel = new DBModelAirport();
-		recordTable = new JTable(table);
-		recordTable.getSelectionModel().addListSelectionListener(this);
+		airportTable = new JTable(tableModelAirport);
+		TableColumn tc = airportTable.getColumnModel().getColumn(2);
+		tc.setCellEditor(new DefaultCellEditor(va));
+		airportTable.getSelectionModel().addListSelectionListener(this);
 	
 
 		JPanel contentPane = new JPanel(new BorderLayout());
-		JScrollPane scrollPane = new JScrollPane(recordTable);
+		JScrollPane scrollPane = new JScrollPane(airportTable);
 		JPanel bottomPanel = new JPanel(new FlowLayout());
 
 		JButton addButton = new JButton("Lägg till");
@@ -66,7 +73,7 @@ public class WindowAirport extends JFrame implements ActionListener, ListSelecti
 		if(model != null){
 		
 			if (model.insert() == 1) {
-				table.addAirport(model);
+				tableModelAirport.addAirport(model);
 			}
 		}
 		
@@ -82,8 +89,8 @@ public class WindowAirport extends JFrame implements ActionListener, ListSelecti
 			addAirport();
 			break;
 		case DELETE:
-			int i = recordTable.getSelectedRow();
-			table.removeAirport(i);
+			int i = airportTable.getSelectedRow();
+			tableModelAirport.removeAirport(i);
 			break;
 
 		}
@@ -91,6 +98,6 @@ public class WindowAirport extends JFrame implements ActionListener, ListSelecti
 	
 	public void valueChanged(ListSelectionEvent event)
 	{
-		removeButton.setEnabled(recordTable.getSelectedRowCount() > 0);
+		removeButton.setEnabled(airportTable.getSelectedRowCount() > 0);
 	}
 }
