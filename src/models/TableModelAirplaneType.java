@@ -20,8 +20,11 @@ public class TableModelAirplaneType extends AbstractTableModel
 	
 	public void addAirplaneType(DBModelAirplaneType airplaneType)
 	{
-		airplaneTypeList.add(airplaneType);
-		fireTableDataChanged();    
+		if(airplaneType.insert() == 1)
+		{
+			airplaneTypeList.add(airplaneType);
+			fireTableDataChanged();
+		}
 	}
     
 	public void removeAirplaneType(int row)

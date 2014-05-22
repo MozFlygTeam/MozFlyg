@@ -22,15 +22,12 @@ public class DBModelAirplaneType
 	private static final String FUEL_CONSUMPTION_COLUMN = "fuel_consumption";
 	
 	//Use to create new airplane type
-	public DBModelAirplaneType(String modelName, int passengerCapacity, int velocity,
-			double fuelConsumption) {
+	public DBModelAirplaneType(String modelName, int passengerCapacity, int velocity, double fuelConsumption) {
 		this.modelName = modelName;
 		this.passengerCapacity = passengerCapacity;
 		this.velocity = velocity;
 		this.fuelConsumption = fuelConsumption;
 	}
-	
-	
 	
 	public int getId() {
 		return id;
@@ -102,7 +99,7 @@ public class DBModelAirplaneType
 		this.fuelConsumption = fuelConsumption;
 	}
 	
-public static Vector<DBModelAirplaneType> getAllAirplaneTypes() {
+	public static Vector<DBModelAirplaneType> getAllAirplaneTypes() {
 		
 		Vector<DBModelAirplaneType> airplaneTypeList = new Vector<DBModelAirplaneType>();
 

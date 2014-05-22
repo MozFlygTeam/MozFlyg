@@ -56,9 +56,7 @@ public class DBModelFlight
 				PreparedStatement statement = conn.prepareStatement(query);
 				statement.setInt(1, fromAirportId);
 				statement.setInt(2, toAirportId);
-				statement.setString(3, date.toString() );
-				
-				System.out.println(statement.toString());
+				statement.setString(3, date.toString());
 				
 				ResultSet result = statement.executeQuery();
 				

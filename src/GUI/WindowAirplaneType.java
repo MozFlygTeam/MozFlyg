@@ -11,11 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import models.DBModelAirplaneType;
 import models.TableModelAirplaneType;
 
 public class WindowAirplaneType extends JFrame implements ActionListener
 {
 	private static final String DELETE = "delete";
+	private static final String NEW = "new";
 	private JTable table;
 	private TableModelAirplaneType tableModel;
 	
@@ -31,9 +33,15 @@ public class WindowAirplaneType extends JFrame implements ActionListener
 		deleteButton.addActionListener(this);
 		deleteButton.setActionCommand(DELETE);
 		
+		JButton addButton = new JButton("Add");
+		addButton.addActionListener(this);
+		addButton.setActionCommand(NEW);
+		
+		buttonPanel.add(addButton);
 		buttonPanel.add(deleteButton);
 		add(scrollPane, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.PAGE_END);
+		
 		
 		pack();
 		setLocationRelativeTo(null);
@@ -44,12 +52,14 @@ public class WindowAirplaneType extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent event)
 	{
-		switch (event.getActionCommand()) {
+		switch (event.getActionCommand()) 
+		{
+	      case NEW:
+	    	  tableModel.addAirplaneType(new DBModelAirplaneType("AIRPLANE MODEL", 0, 0, 0));
+	    	  break;
 	      case DELETE:
-	        int i = table.getSelectedRow();
-	        tableModel.removeAirplaneType(i);
-	        break;
-
+	    	  tableModel.removeAirplaneType(table.getSelectedRow());
+	    	  break;
 	      }
 		
 	}
