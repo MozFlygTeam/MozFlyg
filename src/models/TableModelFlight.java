@@ -77,7 +77,7 @@ public class TableModelFlight extends AbstractTableModel
         case ID_COLUMN: return "id";
         case DEPARTING_FROM_COLUMN: return "Avreseort";
         case ARRIVING_TO_COLUMN: return "Destination";
-        case DEPARTING_TIME_COLUMN: return "Avgångstid";
+        case DEPARTING_TIME_COLUMN: return "Avg��ngstid";
         case PRICE_COLUMN: return "Pris";
         }
         return "";
@@ -127,8 +127,12 @@ public class TableModelFlight extends AbstractTableModel
     
     public boolean isCellEditable(int row, int col) {
     	 
+    	if(DBModelAccount.loggedInUser.isAdmin()){
 	       return true;
-	     
+    	}
+    	else{
+    		return false;
+    	}
     }
 
 }

@@ -93,13 +93,13 @@ public class MozFlyg extends JFrame implements ActionListener {
 		item3.setActionCommand(FLIGHT);
 		admin.add(item3);
 
-		//Knapp för att boka resor
+		//Knapp f��r att boka resor
 		JButton button1 = new JButton("Boka resa");
 		button1.addActionListener(this);
 		button1.setActionCommand(BOOKING);
 		panel.add(button1);
 		
-		//Knapp för bokade resor
+		//Knapp f��r bokade resor
 		JButton button2 = new JButton("Bokade resor");
 		button2.addActionListener(this);
 		button2.setActionCommand(BOOKED_FLIGHTS);
@@ -153,8 +153,8 @@ public class MozFlyg extends JFrame implements ActionListener {
 			System.exit(0);
 			break;
 		case AIRPLANE:
-			WindowAirplaneType airplaneType = new WindowAirplaneType();
-			airplaneType.setVisible(true);
+			//WindowAirplaneType airplaneType = new WindowAirplaneType();
+			//airplaneType.setVisible(true);
 			break;	
 		case AIRPORT:
 			WindowAirport airport = new WindowAirport();
