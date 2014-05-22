@@ -43,5 +43,52 @@ public class TableModelAirplaneType extends AbstractTableModel
 	        default: return "Unknown";
         }        
 	}
+	
+	/**
+	 * @param cellData
+	 * Redigerat cellinneh�ll tas emot som ett generellt objekt i parametern cellData ovan.
+	 * Vi m�ste tala om vad det �r f�r objekt vi f�tt, t.ex. en textstr�ng, innan det kan sparas i kontot 
+	 */
+	@Override
+    public void setValueAt(Object cellData, int row, int col)
+    {
+		DBModelAirplaneType editedAirplaneType = (DBModelAirplaneType) airplaneTypes.get(row);
+    	
+        switch (col)
+        {
+        case MODEL_NAME_COLUMN: 
+        	editedAirplaneType.setModelName((String) cellData);
+        	break;
+        case PASSENGER_CAPACITY_COLUMN: 
+        	editedAirplaneType.setPassengerCapacity((Integer) cellData);
+        	break;
+        case VELOCITY_COLUMN: 
+        	editedAirplaneType.setVelocity((Integer) cellData);
+        	break;
+        case FUEL_CONSUMPTION_COLUMN: 
+        	editedAirplaneType.setFuelConsumption((Double) cellData);
+        	break;
+        }
+        editedAirplaneType.update();
+    }
+	
+	@Override
+    public Class<?> getColumnClass(int col)
+    {
+        switch (col)
+        {
+	        case MODEL_NAME_COLUMN: return String.class;
+	        case PASSENGER_CAPACITY_COLUMN: return Integer.class;
+	        case VELOCITY_COLUMN: return Integer.class;
+	        case FUEL_CONSUMPTION_COLUMN: return Double.class;
+	        default: return Object.class;
+        }
+    }
+	
+	@Override
+	public boolean isCellEditable(int row, int col)
+	{
+		return true;
+	}
 
 }
