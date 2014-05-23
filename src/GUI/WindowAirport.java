@@ -35,6 +35,7 @@ public class WindowAirport extends JFrame implements ActionListener, ListSelecti
 		tableModelAirport = new TableModelAirport();
 		airportModel = new DBModelAirport();
 		airportTable = new JTable(tableModelAirport);
+		
 	
 
 		JPanel contentPane = new JPanel(new BorderLayout());
