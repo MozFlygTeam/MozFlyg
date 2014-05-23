@@ -52,6 +52,7 @@ public class WindowAccountEdit extends JFrame implements ActionListener, ListSel
     bottomPanel.add(addButton);
     bottomPanel.add(removeButton);
 
+    setTitle("Hantera Användare");
     pack();
     setLocationRelativeTo(null);
   }
