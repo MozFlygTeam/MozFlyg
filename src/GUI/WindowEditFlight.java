@@ -176,7 +176,7 @@ import javax.swing.table.TableColumn;
         break;
       case DELETE:
         int i = flightTable.getSelectedRow();
-        tableModelFlight.removeFlight(i);
+        tableModelFlight.deleteFlight(i);
         break;
       case SEARCH:
         DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();

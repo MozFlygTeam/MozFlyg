@@ -24,19 +24,18 @@ public class TableModelFlight extends AbstractTableModel
     }
     
 	
-	public void removeFlightBooking(int row){
-	/*	 
-		 DBModelFlight model = data.get(row); 
+	public void removeFlightBooking(int row)
+	{
+		 DBModelFlight flight = data.get(row); 
 		 
-    	 if(model.delete() == 1){
-    	 data.remove(row);
-    	 fireTableRowsDeleted(row, row);
-    	}
-		*/
+//    	 if(.delete() == 1){
+//    	 data.remove(row);
+//    	 fireTableRowsDeleted(row, row);
+//    	}
 	}
 	
 	
-    public void removeFlight(int row)
+    public void deleteFlight(int row)
     {	 
     	 DBModelFlight model = data.get(row);
     	 if(model.delete() == 1){
