@@ -195,7 +195,7 @@ import javax.swing.table.TableColumn;
       case BOOK:
     	/* DBModelFlight model = (DBModelFlight)flightTable.getSelectionModel();
     	 int flightId = model.getId();
-    	 
+    	  
     	 DBModelBookedFlight bookedModel = new DBModelBookedFlight(flightId, DBModelAccount.loggedInUser.getId());
     	 
     	 if(bookedModel.insert() != ){
