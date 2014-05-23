@@ -59,11 +59,11 @@ import javax.swing.table.TableColumn;
       flightTable = new JTable(tableModelFlight);
       
       
-      //��ndrar CellEditorn f��r avg��ngsflygets kolumn till en dropdownbox
+      //������ndrar CellEditorn f������r avg������ngsflygets kolumn till en dropdownbox
       TableColumn departingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.DEPARTING_FROM_COLUMN);
       departingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
       
-      //��ndrar CellEditorn f��r ankomstflygets kolumn till en dropdownbox
+      //������ndrar CellEditorn f������r ankomstflygets kolumn till en dropdownbox
       TableColumn arrivingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.ARRIVING_TO_COLUMN);
       arrivingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
       
@@ -97,7 +97,7 @@ import javax.swing.table.TableColumn;
       
       if(DBModelAccount.loggedInUser.isAdmin()){
         
-      JButton addButton = new JButton("L��gg till");
+      JButton addButton = new JButton("L������gg till");
       addButton.addActionListener(this);
       addButton.setActionCommand(ADD);
 
@@ -142,7 +142,7 @@ import javax.swing.table.TableColumn;
         bottomPanel.add(bookFlightBtn);
         bottomPanel.add(unbookFlightsBtn);
         
-        
+        setTitle("Boka En Resa Eller Avboka En Befintlig");
       }
   
       
