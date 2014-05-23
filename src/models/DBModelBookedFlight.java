@@ -76,7 +76,7 @@ public class DBModelBookedFlight{
 	}
 	
 	
-	public int delete()
+public int delete()
 	{
 		System.out.println("Delete called!");
 		try (Connection conn = DBConnector.getConnection())
@@ -101,5 +101,36 @@ public class DBModelBookedFlight{
 		}
 		return -1;
 	}
+
+public int insert() {
 	
+	try (Connection conn = DBConnector.getConnection())
+	{
+		String query = "INSERT INTO " + TABLE_NAME + 
+				"(" + COLUMN_ACCOUNT_ID + "," + COLUMN_FLIGHT_ID + ") " + 
+				"VALUES (?, ?, ?, ?)";
+
+		PreparedStatement statement = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+
+		statement.setInt(1, accountId);
+		statement.setInt(2, flightId);
+	
+		
+
+		int rowCount = statement.executeUpdate();
+
+			return rowCount;	 
+	} 
+	catch (SQLException exception) 
+	{
+		exception.printStackTrace();
+	}
+	return -1;
 }
+
+
+
+
+}
+
+

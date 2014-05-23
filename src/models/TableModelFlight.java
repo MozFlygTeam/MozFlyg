@@ -23,9 +23,21 @@ public class TableModelFlight extends AbstractTableModel
 			fireTableDataChanged();
     }
     
+	
+	public void removeFlightBooking(int row){
+	/*	 
+		 DBModelFlight model = data.get(row); 
+		 
+    	 if(model.delete() == 1){
+    	 data.remove(row);
+    	 fireTableRowsDeleted(row, row);
+    	}
+		*/
+	}
+	
+	
     public void removeFlight(int row)
-    {
-    	 
+    {	 
     	 DBModelFlight model = data.get(row);
     	 if(model.delete() == 1){
     	 data.remove(row);
