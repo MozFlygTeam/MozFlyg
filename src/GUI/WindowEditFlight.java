@@ -3,7 +3,6 @@ package GUI;
 
 import models.DBModelAccount;
 import models.DBModelAirport;
-import models.DBModelBookedFlight;
 import models.DBModelFlight;
 import models.TableModelFlight;
 
@@ -205,8 +204,7 @@ import javax.swing.table.TableColumn;
     	*/ 
         break;
       case UNBOOK:
-    	  
-    	  
+          tableModelFlight.removeFlightBooking(flightTable.getSelectedRow());
         break;
       
       }

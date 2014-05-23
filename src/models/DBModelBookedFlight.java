@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -75,6 +74,31 @@ public class DBModelBookedFlight{
 			 return DBvector;
 	}
 	
+	public static int deleteBooking(int accountId, int flightId)
+	{
+		System.out.println("DeleteBooking called!");
+		try (Connection conn = DBConnector.getConnection())
+		{
+			String query = "DELETE FROM " + TABLE_NAME +
+						   " WHERE " + COLUMN_ACCOUNT_ID + "=? AND " +
+						   COLUMN_FLIGHT_ID + "=?";
+		
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1,accountId);
+			statement.setInt(2,flightId);
+				
+			System.out.println(statement.toString());
+			int result = statement.executeUpdate();
+
+			return result;	 
+		} 
+		catch (SQLException exception) 
+		{
+			JOptionPane.showMessageDialog(null, exception.getSQLState() + " " + exception.getMessage(),"Databasfel",JOptionPane.ERROR_MESSAGE);
+			exception.printStackTrace();
+		}
+		return -1;
+	}
 	
 public int delete()
 	{

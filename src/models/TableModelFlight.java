@@ -18,7 +18,8 @@ public class TableModelFlight extends AbstractTableModel
 	public static final int PRICE_COLUMN = 4;
 
 	
-	public void addFlight(DBModelFlight flight) {
+	public void addFlight(DBModelFlight flight)
+	{
 			data.add(flight);
 			fireTableDataChanged();
     }
@@ -26,12 +27,13 @@ public class TableModelFlight extends AbstractTableModel
 	
 	public void removeFlightBooking(int row)
 	{
-		 DBModelFlight flight = data.get(row); 
+		 DBModelFlight flight = data.get(row);
 		 
-//    	 if(.delete() == 1){
-//    	 data.remove(row);
-//    	 fireTableRowsDeleted(row, row);
-//    	}
+		 if(DBModelBookedFlight.deleteBooking(DBModelAccount.loggedInUser.getId(), flight.getId()) == 1)
+		 {
+			 data.remove(row);
+			 fireTableRowsDeleted(row, row);
+		 }
 	}
 	
 	
