@@ -42,7 +42,7 @@ public class WindowAirplaneType extends JFrame implements ActionListener
 		add(scrollPane, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.PAGE_END);
 		
-		
+		setTitle("Hantera Flygplanstyper");
 		pack();
 		setLocationRelativeTo(null);
 		

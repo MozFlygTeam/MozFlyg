@@ -37,7 +37,7 @@ public class WindowRutter extends JFrame implements ActionListener, ListSelectio
 		JScrollPane scrollPane = new JScrollPane(recordTable);
 		JPanel bottomPanel = new JPanel(new FlowLayout());
 
-		JButton addButton = new JButton("Lägg till");
+		JButton addButton = new JButton("L��gg till");
 		addButton.addActionListener(this);
 		addButton.setActionCommand(ADD);
 
@@ -51,12 +51,13 @@ public class WindowRutter extends JFrame implements ActionListener, ListSelectio
 		add(bottomPanel, BorderLayout.PAGE_END);
 		bottomPanel.add(addButton);
 		bottomPanel.add(removeButton);
-
+		
+		setTitle("Hanter Rutter");
 		pack();
 		setLocationRelativeTo(null);
 	}
 
-	// funktionen f�r att l�gga till airport
+	// funktionen f���r att l���gga till airport
 	private void addRutt() {
 
 		WindowAddRutt add = new WindowAddRutt();

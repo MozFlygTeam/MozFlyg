@@ -43,13 +43,14 @@ public class WindowAddRutt extends JDialog implements ActionListener {
 		 cancelBtn.setActionCommand(CANCEL);
 		 panel.add(cancelBtn);
 		 
+		 setTitle("Lägg Till Rutt");
 		 setModal(true);
 		 add(panel);
 		 pack();
 	 }
 	 
 	
-	// H��mta alla rader fr��n db 
+	// H������mta alla rader fr������n db 
 	 
 	 public DBModelRutt getRutt(){
 		 return model;
