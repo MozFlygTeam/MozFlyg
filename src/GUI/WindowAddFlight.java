@@ -57,13 +57,14 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 		 cancelBtn.setActionCommand(CANCEL);
 		 panel.add(cancelBtn);
 		 
+		 setTitle("Lägg Till Resa");
 		 setModal(true);
 		 add(panel);
 		 pack();
 	 }
 	 
 	
-	// H������mta alla rader fr������n db 
+	// Hämta alla rader från db 
 	 
 	 public DBModelFlight getFlight(){
 		 return model;

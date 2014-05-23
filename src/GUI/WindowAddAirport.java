@@ -46,13 +46,14 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 		 cancelBtn.setActionCommand(CANCEL);
 		 panel.add(cancelBtn);
 		 
+		 setTitle("Lägg Till Flygplats");
 		 setModal(true);
 		 add(panel);
 		 pack();
 	 }
 	 
 	
-	// Hämta alla rader från db 
+	// H��mta alla rader fr��n db 
 	 public DBModelAirport getAirport(){ 
 		return model;
 	 }
@@ -68,7 +69,7 @@ public class WindowAddAirport extends JDialog implements ActionListener {
 				dispose();
 			break;
 		case ADD:
-			//Kollar så att användaren inte skickar in tomma strängar
+			//Kollar s�� att anv��ndaren inte skickar in tomma str��ngar
 			if(airport.getText().trim().length() <= 0 || 
 			   city.getText().trim().length() <= 0){
 				JOptionPane.showMessageDialog(null, "Alla fält måste vara ifyllda!");
