@@ -126,24 +126,22 @@ public int delete()
 		return -1;
 	}
 
-public int insert() {
+public static int addBooking(int accountId, int flightId) {
 	
 	try (Connection conn = DBConnector.getConnection())
 	{
 		String query = "INSERT INTO " + TABLE_NAME + 
 				"(" + COLUMN_ACCOUNT_ID + "," + COLUMN_FLIGHT_ID + ") " + 
-				"VALUES (?, ?, ?, ?)";
+				"VALUES (?, ?)";
 
 		PreparedStatement statement = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 
 		statement.setInt(1, accountId);
 		statement.setInt(2, flightId);
-	
-		
 
 		int rowCount = statement.executeUpdate();
-
-			return rowCount;	 
+		
+		return rowCount;	 
 	} 
 	catch (SQLException exception) 
 	{

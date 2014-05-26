@@ -103,7 +103,7 @@ import models.TableModelFlight;
       bookedFlightsBtn.setEnabled(true);
       
       
-      bookFlightBtn = new JButton("Booka flyg");
+      bookFlightBtn = new JButton("Boka flyg");
       bookFlightBtn.addActionListener(this);
       bookFlightBtn.setActionCommand(BOOK);
       bookFlightBtn.setEnabled(true);
@@ -127,7 +127,7 @@ import models.TableModelFlight;
       {
     	  bottomPanel.add(new JSeparator(SwingConstants.VERTICAL));
     	  
-	      JButton addButton = new JButton("L������gg till");
+	      JButton addButton = new JButton("Lägg till");
 	      addButton.addActionListener(this);
 	      addButton.setActionCommand(ADD);
 	
@@ -198,19 +198,11 @@ import models.TableModelFlight;
         
         break;
       case BOOK:
-    	/* DBModelFlight model = (DBModelFlight)flightTable.getSelectionModel();
-    	 int flightId = model.getId();
-    	  
-    	 DBModelBookedFlight bookedModel = new DBModelBookedFlight(flightId, DBModelAccount.loggedInUser.getId());
-    	 
-    	 if(bookedModel.insert() != ){
-    	 
-    	 }
-    	*/ 
-        break;
+    	  tableModelFlight.addFlightBooking(flightTable.getSelectedRow());
+    	  break;
       case UNBOOK:
           tableModelFlight.removeFlightBooking(flightTable.getSelectedRow());
-        break;
+          break;
       
       }
     
