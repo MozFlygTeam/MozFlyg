@@ -150,10 +150,6 @@ import models.TableModelFlight;
       {
     	  setTitle("Boka En Resa Eller Avboka En Befintlig");
       }
-        
-
-  
-      
       
       pack();
       setLocationRelativeTo(null);
