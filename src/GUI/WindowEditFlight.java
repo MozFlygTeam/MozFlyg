@@ -1,11 +1,6 @@
 package GUI;
 
 
-import models.DBModelAccount;
-import models.DBModelAirport;
-import models.DBModelFlight;
-import models.TableModelFlight;
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -17,12 +12,19 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumn;
+
+import models.DBModelAccount;
+import models.DBModelAirport;
+import models.DBModelFlight;
+import models.TableModelFlight;
 
   public class WindowEditFlight extends JFrame implements ActionListener, ListSelectionListener{
 
@@ -94,55 +96,62 @@ import javax.swing.table.TableColumn;
       add(bottomPanel, BorderLayout.PAGE_END);
       
       
-      if(DBModelAccount.loggedInUser.isAdmin()){
+      
+      bookedFlightsBtn = new JButton("Bokade resor");
+      bookedFlightsBtn.addActionListener(this);
+      bookedFlightsBtn.setActionCommand(BOOKED);
+      bookedFlightsBtn.setEnabled(true);
+      
+      
+      bookFlightBtn = new JButton("Booka flyg");
+      bookFlightBtn.addActionListener(this);
+      bookFlightBtn.setActionCommand(BOOK);
+      bookFlightBtn.setEnabled(true);
+      
+      unbookFlightsBtn = new JButton("Avboka flyg");
+      unbookFlightsBtn.addActionListener(this);
+      unbookFlightsBtn.setActionCommand(UNBOOK);
+      unbookFlightsBtn.setEnabled(true);
+      
+      
+      
+      bottomPanel.add(bookedFlightsBtn);
+      bottomPanel.add(bookFlightBtn);
+      bottomPanel.add(unbookFlightsBtn);
+      
+      
+      
+      
+      
+      if(DBModelAccount.loggedInUser.isAdmin())
+      {
+    	  bottomPanel.add(new JSeparator(SwingConstants.VERTICAL));
+    	  
+	      JButton addButton = new JButton("L������gg till");
+	      addButton.addActionListener(this);
+	      addButton.setActionCommand(ADD);
+	
+	      removeButton = new JButton("Ta Bort");
+	      removeButton.addActionListener(this);
+	      removeButton.setActionCommand(DELETE);
+	      removeButton.setEnabled(false);
+	      
+	      
+	      editButton = new JButton("Editera");
+	      editButton.addActionListener(this);
+	      editButton.setActionCommand(EDIT);
+	      editButton.setEnabled(false);
+	      
+	      bottomPanel.add(addButton);
+	      bottomPanel.add(removeButton);
+	      bottomPanel.add(editButton);
+      }
+      else
+      {
+    	  setTitle("Boka En Resa Eller Avboka En Befintlig");
+      }
         
-      JButton addButton = new JButton("L������gg till");
-      addButton.addActionListener(this);
-      addButton.setActionCommand(ADD);
 
-      removeButton = new JButton("Ta Bort");
-      removeButton.addActionListener(this);
-      removeButton.setActionCommand(DELETE);
-      removeButton.setEnabled(false);
-      
-      
-      editButton = new JButton("Editera");
-      editButton.addActionListener(this);
-      editButton.setActionCommand(EDIT);
-      editButton.setEnabled(false);
-      
-      bottomPanel.add(addButton);
-      bottomPanel.add(removeButton);
-      bottomPanel.add(editButton);
-      
-      
-      }
-      else{
-        
-        bookedFlightsBtn = new JButton("Bokade resor");
-        bookedFlightsBtn.addActionListener(this);
-        bookedFlightsBtn.setActionCommand(BOOKED);
-        bookedFlightsBtn.setEnabled(true);
-        
-        
-        bookFlightBtn = new JButton("Booka flyg");
-        bookFlightBtn.addActionListener(this);
-        bookFlightBtn.setActionCommand(BOOK);
-        bookFlightBtn.setEnabled(true);
-        
-        unbookFlightsBtn = new JButton("Avboka flyg");
-        unbookFlightsBtn.addActionListener(this);
-        unbookFlightsBtn.setActionCommand(UNBOOK);
-        unbookFlightsBtn.setEnabled(true);
-        
-        
-        
-        bottomPanel.add(bookedFlightsBtn);
-        bottomPanel.add(bookFlightBtn);
-        bottomPanel.add(unbookFlightsBtn);
-        
-        setTitle("Boka En Resa Eller Avboka En Befintlig");
-      }
   
       
       
