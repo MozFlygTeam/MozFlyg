@@ -15,7 +15,8 @@ public class TableModelFlight extends AbstractTableModel
 	public static final int DEPARTING_FROM_COLUMN = 1;
 	public static final int ARRIVING_TO_COLUMN = 2;
 	public static final int DEPARTING_TIME_COLUMN = 3;
-	public static final int PRICE_COLUMN = 4;
+	public static final int AIRPLANE_TYPE_COLUMN = 4;
+	public static final int PRICE_COLUMN = 5;
 
 	
 	public void addFlight(DBModelFlight flight)
@@ -84,7 +85,7 @@ public class TableModelFlight extends AbstractTableModel
     
     @Override
     public int getColumnCount() {
-        return 5;
+        return 6;
     }
     
     
@@ -101,6 +102,7 @@ public class TableModelFlight extends AbstractTableModel
         case DEPARTING_FROM_COLUMN: return "Avreseort";
         case ARRIVING_TO_COLUMN: return "Destination";
         case DEPARTING_TIME_COLUMN: return "Avg��ngstid";
+        case AIRPLANE_TYPE_COLUMN: return "Flygplanstyp";
         case PRICE_COLUMN: return "Pris";
         }
         return "";
@@ -111,12 +113,13 @@ public class TableModelFlight extends AbstractTableModel
     {
     	DBModelFlight selectedFlight = (DBModelFlight) data.get(row);
     	
-    	
         switch (col)
         {
 	        case DEPARTING_FROM_COLUMN: selectedFlight.setDepartingFrom((DBModelAirport) cellData);
 	        break;
 	        case ARRIVING_TO_COLUMN: selectedFlight.setArrivingTo((DBModelAirport) cellData);
+	        break;
+	        case AIRPLANE_TYPE_COLUMN: selectedFlight.setAirplaneType((DBModelAirplaneType) cellData);
 	        break;
         }
         selectedFlight.update();
@@ -125,14 +128,15 @@ public class TableModelFlight extends AbstractTableModel
     @Override
     public Object getValueAt(int row, int col)
     {
-    	DBModelFlight rowData = (DBModelFlight) data.get(row);
+    	DBModelFlight flight = (DBModelFlight) data.get(row);
         
         switch (col) {
-        case ID_COLUMN: return rowData.getId();
-        case DEPARTING_FROM_COLUMN: return rowData.getDepartingFrom();
-        case ARRIVING_TO_COLUMN: return rowData.getArrivingTo();
-        case DEPARTING_TIME_COLUMN: return rowData.getTimeDeparting();
-        case PRICE_COLUMN: return rowData.getPrice();
+        case ID_COLUMN: return flight.getId();
+        case DEPARTING_FROM_COLUMN: return flight.getDepartingFrom();
+        case ARRIVING_TO_COLUMN: return flight.getArrivingTo();
+        case DEPARTING_TIME_COLUMN: return flight.getTimeDeparting();
+        case AIRPLANE_TYPE_COLUMN: return flight.getAirplaneType();
+        case PRICE_COLUMN: return flight.getPrice();
         }        
         return "Unknown";
     }
@@ -144,6 +148,7 @@ public class TableModelFlight extends AbstractTableModel
 	        case ID_COLUMN: return Integer.class;
 	        case DEPARTING_FROM_COLUMN: return DBModelAirport.class;
 	        case ARRIVING_TO_COLUMN: return DBModelAirport.class;
+	        case AIRPLANE_TYPE_COLUMN: return DBModelAirplaneType.class;
         }
         return Object.class;
     }

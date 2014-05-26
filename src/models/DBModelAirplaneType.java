@@ -29,6 +29,11 @@ public class DBModelAirplaneType
 		this.fuelConsumption = fuelConsumption;
 	}
 	
+	@Override
+	public String toString(){
+		return this.getModelName();
+	} 
+	
 	public int getId() {
 		return id;
 	}
@@ -87,7 +92,7 @@ public class DBModelAirplaneType
 		this.fuelConsumption = fuelConsumption;
 	}
 
-
+	
 
 	//Used by DB to recreate existing airplane types
 	public DBModelAirplaneType(int id, String modelName, int passengerCapacity, int velocity,
@@ -98,6 +103,37 @@ public class DBModelAirplaneType
 		this.velocity = velocity;
 		this.fuelConsumption = fuelConsumption;
 	}
+	
+public static DBModelAirplaneType getAirplaneType(int airplaneTypeId) {
+		
+		DBModelAirplaneType airplaneTypeList = null;
+
+		try (Connection conn = DBConnector.getConnection())
+		{
+			String query = "SELECT id," + MODEL_NAME_COLUMN + "," + PASSENGER_CAPACITY_COLUMN + "," + VELOCITY_COLUMN + "," + FUEL_CONSUMPTION_COLUMN + " FROM " + TABLE_NAME;
+			
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery(query);
+			
+			while (result.next())
+			{
+				int id = result.getInt(1);
+				String model = result.getString(MODEL_NAME_COLUMN);
+				int passengers = result.getInt(PASSENGER_CAPACITY_COLUMN);
+				int speed = result.getInt(VELOCITY_COLUMN);
+				double fuel = result.getDouble(FUEL_CONSUMPTION_COLUMN);
+				
+				airplaneTypeList = new DBModelAirplaneType(id, model, passengers, speed, fuel);
+			}	 
+		}
+		catch (SQLException exception)
+		{
+			exception.printStackTrace();
+		}
+			
+		return airplaneTypeList;
+	}
+
 	
 	public static Vector<DBModelAirplaneType> getAllAirplaneTypes() {
 		

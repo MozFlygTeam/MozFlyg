@@ -13,6 +13,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
 
+import models.DBModelAirplaneType;
 import models.DBModelAirport; 
 import models.DBModelFlight;
 	
@@ -22,6 +23,7 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 	private static final String  CANCEL = "cancel";
 	JComboBox<DBModelAirport> droppDownFrom;
 	JComboBox<DBModelAirport> droppDownTo;
+	JComboBox<DBModelAirplaneType> droppDownAirplaneType;
 	DBModelFlight model;
 	JSpinner spinnerDepartingDate;
 	JSpinner spinnerPrice;
@@ -35,6 +37,9 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 		 
 		 droppDownTo = new JComboBox<DBModelAirport>(DBModelAirport.getAll()); 
 		 panel.add(droppDownTo);
+		 
+		 droppDownAirplaneType = new JComboBox<DBModelAirplaneType>(DBModelAirplaneType.getAllAirplaneTypes()); 
+		 panel.add(droppDownAirplaneType);
 		 
 		 spinnerDepartingDate = new JSpinner(new SpinnerDateModel());
 		 panel.add(spinnerDepartingDate);
@@ -84,6 +89,7 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 			
 			DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
 			DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
+			DBModelAirplaneType airplaneType = (DBModelAirplaneType) droppDownAirplaneType.getSelectedItem();
 			SpinnerDateModel spd = (SpinnerDateModel)spinnerDepartingDate.getModel();
 			SpinnerNumberModel sn = (SpinnerNumberModel) spinnerPrice.getModel();
 			java.util.Date now = new java.util.Date();
@@ -92,7 +98,7 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 			java.sql.Date sqlDateDepart = new java.sql.Date(now.getTime());
 			
 			
-			model = new DBModelFlight(arFr, arTo, sqlDateDepart, sn.getNumber().doubleValue());	
+			model = new DBModelFlight(arFr, arTo, sqlDateDepart, airplaneType, sn.getNumber().doubleValue());	
 	
 			dispose();
 			break;
