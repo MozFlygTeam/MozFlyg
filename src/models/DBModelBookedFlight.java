@@ -80,8 +80,7 @@ public class DBModelBookedFlight{
 		try (Connection conn = DBConnector.getConnection())
 		{
 			String query = "DELETE FROM " + TABLE_NAME +
-						   " WHERE " + COLUMN_ACCOUNT_ID + "=? AND " +
-						   COLUMN_FLIGHT_ID + "=?";
+						   " WHERE " + COLUMN_ACCOUNT_ID + "=? AND " + COLUMN_FLIGHT_ID + "=?";
 		
 			PreparedStatement statement = conn.prepareStatement(query);
 			statement.setInt(1,accountId);

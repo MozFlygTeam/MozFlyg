@@ -40,6 +40,8 @@ public class TableModelFlight extends AbstractTableModel
 	{
 		 DBModelFlight flight = data.get(row);
 		 
+		 System.out.println("Flight ID till deletebooking :" + flight.getId());
+		 
 		 if(DBModelBookedFlight.deleteBooking(DBModelAccount.loggedInUser.getId(), flight.getId()) == 1)
 		 {
 			 data.remove(row);

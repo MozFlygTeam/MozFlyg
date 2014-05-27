@@ -110,7 +110,7 @@ private double price;
     
       try (Connection conn = DBConnector.getConnection())
       {
-        String query = "SELECT " + COLUMN_DEPARTING_FROM + ", " + COLUMN_ARRIVING_TO + ", " + COLUMN_TIME_DEPARTING + ", " + COLUMN_AIRPLANE_TYPE_ID + " ," + COLUMN_PRICE + 
+        String query = "SELECT flight.id, " + COLUMN_DEPARTING_FROM + ", " + COLUMN_ARRIVING_TO + ", " + COLUMN_TIME_DEPARTING + ", " + COLUMN_AIRPLANE_TYPE_ID + " ," + COLUMN_PRICE + 
                  " FROM " + TABLE_ACCOUNT +
                  " INNER JOIN " + TABLE_BOOKED_FLIGHT + " ON " + COLUMN_ACCOUNT_ID + " = account.id " + 
                  " INNER JOIN " + TABLE_FLIGHT + " ON " + COLUMN_FLIGHT_ID + " = flight.id" + 
