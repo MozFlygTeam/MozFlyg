@@ -106,12 +106,12 @@ import models.TableModelFlight;
       bookFlightBtn = new JButton("Boka flyg");
       bookFlightBtn.addActionListener(this);
       bookFlightBtn.setActionCommand(BOOK);
-      bookFlightBtn.setEnabled(true);
+      bookFlightBtn.setEnabled(false);
       
       unbookFlightsBtn = new JButton("Avboka flyg");
       unbookFlightsBtn.addActionListener(this);
       unbookFlightsBtn.setActionCommand(UNBOOK);
-      unbookFlightsBtn.setEnabled(true);
+      unbookFlightsBtn.setEnabled(false);
       
       
       
@@ -212,11 +212,18 @@ import models.TableModelFlight;
     
     public void valueChanged(ListSelectionEvent event)
     {
-      if(DBModelAccount.loggedInUser.isAdmin()){
-        removeButton.setEnabled(flightTable.getSelectedRowCount() > 0);
-        editButton.setEnabled(flightTable.getSelectedRowCount() > 0);
+      if(DBModelAccount.loggedInUser.isAdmin())
+      {
+    	boolean selectionActive = flightTable.getSelectedRowCount() > 0;
+    	
+        removeButton.setEnabled(selectionActive);
+        editButton.setEnabled(selectionActive);
+        bookFlightBtn.setEnabled(selectionActive);
+        unbookFlightsBtn.setEnabled(selectionActive);
       }
     }
+    
+    
   }
   
   
