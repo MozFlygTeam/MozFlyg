@@ -13,7 +13,16 @@ public class DBModelFlight
   private DBModelAirport departingFrom;
   private DBModelAirport arrivingTo;
   private Date timeDeparting;
-  private double price;
+  private DBModelAirplaneType airplaneType;
+  public DBModelAirplaneType getAirplaneType() {
+	return airplaneType;
+}
+
+public void setAirplaneType(DBModelAirplaneType airplaneType) {
+	this.airplaneType = airplaneType;
+}
+
+private double price;
 
   
   private static final String TABLE_FLIGHT = "flight";
@@ -23,25 +32,28 @@ public class DBModelFlight
   private static final String COLUMN_PRICE = "price";
   private static final String COLUMN_ACCOUNT_ID = "account_id";
   private static final String COLUMN_FLIGHT_ID = "flight_id";
+  private static final String COLUMN_AIRPLANE_TYPE_ID = "airplane_type";
   private static final String TABLE_BOOKED_FLIGHT = "booked_flight";
   private static final String TABLE_ACCOUNT = "account";
   
   public DBModelFlight(int id, DBModelAirport departingFrom, DBModelAirport arrivingTo, 
-        Date timeDeparting,double price) 
+        Date timeDeparting, DBModelAirplaneType airplaneType, double price) 
   {
     this.id = id;
     this.departingFrom = departingFrom;
     this.arrivingTo = arrivingTo;
     this.timeDeparting = timeDeparting;
+    this.airplaneType = airplaneType;
     this.price = price;
   }
   
   public DBModelFlight(DBModelAirport departingFrom, DBModelAirport arrivingTo, 
-      Date timeDeparting,double price) 
+      Date timeDeparting, DBModelAirplaneType airplaneType, double price) 
     {
     this.departingFrom = departingFrom;
     this.arrivingTo = arrivingTo;
     this.timeDeparting = timeDeparting;
+    this.airplaneType = airplaneType;
     this.price = price;
     }
 
@@ -53,7 +65,7 @@ public class DBModelFlight
 
       try (Connection conn = DBConnector.getConnection())
       {
-        String query = "SELECT" + " id, " + COLUMN_DEPARTING_FROM + ", " + COLUMN_ARRIVING_TO + ", " + COLUMN_TIME_DEPARTING + ", " + COLUMN_PRICE + 
+        String query = "SELECT" + " id, " + COLUMN_DEPARTING_FROM + ", " + COLUMN_ARRIVING_TO + ", " + COLUMN_TIME_DEPARTING + ", "+ COLUMN_AIRPLANE_TYPE_ID + ", " + COLUMN_PRICE + 
             " FROM " + TABLE_FLIGHT +
             " WHERE " + COLUMN_DEPARTING_FROM + "=? AND " + COLUMN_ARRIVING_TO + "=? AND " + "DATE("+COLUMN_TIME_DEPARTING+")" + " =?";
         
@@ -72,12 +84,15 @@ public class DBModelFlight
           int departingId = result.getInt(COLUMN_DEPARTING_FROM);
           int arrivingId = result.getInt(COLUMN_ARRIVING_TO);
           Date departingTime = result.getDate(COLUMN_TIME_DEPARTING);
+          int airplaneTypeId = result.getInt(COLUMN_AIRPLANE_TYPE_ID);
           double price = result.getDouble(COLUMN_PRICE);
           
           DBModelAirport airportFrom = DBModelAirport.getAirport(departingId);
           DBModelAirport airportTo = DBModelAirport.getAirport(arrivingId);
           
-          flightList.add(new DBModelFlight(id, airportFrom, airportTo, departingTime, price));
+          DBModelAirplaneType airplaneType = DBModelAirplaneType.getAirplaneType(airplaneTypeId);
+          
+          flightList.add(new DBModelFlight(id, airportFrom, airportTo, departingTime, airplaneType, price));
         }
          
       } 
@@ -114,12 +129,15 @@ public class DBModelFlight
           int departingId = result.getInt(COLUMN_DEPARTING_FROM);
           int arrivingId = result.getInt(COLUMN_ARRIVING_TO);
           Date departingTime = result.getDate(COLUMN_TIME_DEPARTING);
+          int airplaneTypeId = result.getInt(COLUMN_AIRPLANE_TYPE_ID);
           double price = result.getDouble(COLUMN_PRICE);
           
           DBModelAirport airportFrom = DBModelAirport.getAirport(departingId);
           DBModelAirport airportTo = DBModelAirport.getAirport(arrivingId);
           
-          flightList.add(new DBModelFlight(id, airportFrom, airportTo, departingTime, price));
+          DBModelAirplaneType airplaneType = DBModelAirplaneType.getAirplaneType(airplaneTypeId);
+          
+          flightList.add(new DBModelFlight(id, airportFrom, airportTo, departingTime, airplaneType, price));
         }
          
       } 
@@ -136,14 +154,15 @@ public class DBModelFlight
     try (Connection conn = DBConnector.getConnection())
     {
       String query = "INSERT INTO " + TABLE_FLIGHT + 
-          "(" + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_PRICE + ") " + 
-          "VALUES (?, ?, ?, ?)";
+          "(" + COLUMN_DEPARTING_FROM + "," + COLUMN_ARRIVING_TO + "," + COLUMN_TIME_DEPARTING + "," + COLUMN_AIRPLANE_TYPE_ID + "," + COLUMN_PRICE + ") " + 
+          "VALUES (?, ?, ?, ?, ?)";
 
       PreparedStatement statement = conn.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 
       statement.setInt(1, departingFrom.getId());
       statement.setInt(2, arrivingTo.getId());
       statement.setDate(3, timeDeparting);
+      statement.setInt(4, airplaneType.getId());
       statement.setDouble(5, price);
 
       int rowCount = statement.executeUpdate();
