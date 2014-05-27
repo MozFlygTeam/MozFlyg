@@ -23,6 +23,8 @@ public class WindowAirplaneType extends JFrame implements ActionListener
 	
 	public WindowAirplaneType()
 	{
+		setTitle("Hantera Flygplanstyper");
+		
 		tableModel = new TableModelAirplaneType();
 		table = new JTable(tableModel);
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -42,7 +44,6 @@ public class WindowAirplaneType extends JFrame implements ActionListener
 		add(scrollPane, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.PAGE_END);
 		
-		setTitle("Hantera Flygplanstyper");
 		pack();
 		setLocationRelativeTo(null);
 		

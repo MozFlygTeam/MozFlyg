@@ -145,10 +145,12 @@ import models.TableModelFlight;
 	      bottomPanel.add(addButton);
 	      bottomPanel.add(removeButton);
 	      bottomPanel.add(editButton);
+	      
+	      setTitle("Sök och hantera resor");
       }
       else
       {
-    	  setTitle("Boka En Resa Eller Avboka En Befintlig");
+    	  setTitle("Sökning och bokning av resor");
       }
       
       pack();

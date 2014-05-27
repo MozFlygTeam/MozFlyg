@@ -8,7 +8,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -17,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableColumn;
 
 public class WindowAirport extends JFrame implements ActionListener, ListSelectionListener{
 
@@ -30,13 +28,13 @@ public class WindowAirport extends JFrame implements ActionListener, ListSelecti
 	
 	public WindowAirport() {
 		
+		setTitle("Hantera flygplatser");
+		
 		JComboBox<DBModelAirport> va = new JComboBox<DBModelAirport>(DBModelAirport.getAll());
 		
 		tableModelAirport = new TableModelAirport();
 		airportModel = new DBModelAirport();
 		airportTable = new JTable(tableModelAirport);
-		
-	
 
 		JPanel contentPane = new JPanel(new BorderLayout());
 		JScrollPane scrollPane = new JScrollPane(airportTable);
@@ -56,7 +54,7 @@ public class WindowAirport extends JFrame implements ActionListener, ListSelecti
 		add(bottomPanel, BorderLayout.PAGE_END);
 		bottomPanel.add(addButton);
 		bottomPanel.add(removeButton);
-
+		
 		pack();
 		setLocationRelativeTo(null);
 	}
