@@ -75,10 +75,12 @@ public class MozFlyg extends JFrame implements ActionListener {
 		admin.add(itemAirplane);
 		
 		//EDIT RUTTER
+		/*
 		JMenuItem rutter = new JMenuItem("Edit rutter");
 		rutter.addActionListener(this);
 		rutter.setActionCommand(RUTTER);
 		admin.add(rutter);
+		*/
 		
 		
 		
