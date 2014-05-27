@@ -30,8 +30,6 @@ public class WindowAirport extends JFrame implements ActionListener, ListSelecti
 		
 		setTitle("Hantera flygplatser");
 		
-		JComboBox<DBModelAirport> va = new JComboBox<DBModelAirport>(DBModelAirport.getAll());
-		
 		tableModelAirport = new TableModelAirport();
 		airportModel = new DBModelAirport();
 		airportTable = new JTable(tableModelAirport);
