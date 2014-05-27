@@ -22,6 +22,7 @@ CREATE TABLE flight(
 	departing_from SMALLINT(5) NOT NULL,
 	arriving_to SMALLINT(5) NOT NULL,
 	time_departing DATETIME NOT NULL,
+	airplane_type SMALLINT(5) NOT NULL,
 	price DOUBLE(10,2) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (departing_from) REFERENCES airport(id),
@@ -62,11 +63,11 @@ INSERT INTO account (username, password, isAdmin) VALUES ("Kim","123", "1");
 INSERT INTO account (username, password, isAdmin) VALUES ("Malin","123", "1");
 INSERT INTO account (username, password, isAdmin) VALUES ("Alexander","123", "1");
 
-INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("1","5", "2014-05-14 10:00:00", "3300");
-INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("2","3", "2014-05-14 12:30:00", "1053");
-INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("4","1", "2014-05-14 13:15:00", "5403");
-INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("1","4", "2014-06-14 09:45:00", "1870");
-INSERT INTO flight (departing_from, arriving_to, time_departing, price) VALUES ("4","2", "2014-06-14 15:30:00", "2040");
+INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (1, 5, "2014-05-14 10:00:00", 1, "3300");
+INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (2, 3, "2014-05-14 12:30:00", 2, "1053");
+INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (4, 1, "2014-05-14 13:15:00", 3, "5403");
+INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (1, 4, "2014-06-14 09:45:00", 1, "1870");
+INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (4, 2, "2014-06-14 15:30:00", 2, "2040");
 
 INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 1);
 INSERT INTO booked_flight (account_id, flight_id) VALUES (4, 2);
