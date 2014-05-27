@@ -37,12 +37,12 @@ public class WindowLogin extends JDialog implements ActionListener{
         add(dataPnl, BorderLayout.CENTER);
         
         //Create username field
-        dataPnl.add(new JLabel("Anv��ndarnamn"));
+        dataPnl.add(new JLabel("Användarnamn"));
         userFld = new JTextField(10);
         dataPnl.add(userFld);
         
         //Create password field
-        dataPnl.add(new JLabel("L��senord"));
+        dataPnl.add(new JLabel("Lösenord"));
         passFld = new JPasswordField(10);
         dataPnl.add(passFld);
         
@@ -90,7 +90,7 @@ public class WindowLogin extends JDialog implements ActionListener{
 			System.out.println("Input matched with database");
 			dispose();
 		}else{
-			JOptionPane.showMessageDialog(null, "Mannen, fel anv��ndarnamn eller l��senord.", 
+			JOptionPane.showMessageDialog(null, "Mannen, fel användarnamn eller lösenord.", 
 												"Failure", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -105,7 +105,7 @@ public class WindowLogin extends JDialog implements ActionListener{
 		else if(action.equals(LOGIN)){
 		
 			if(userFld.getText().length() <= 0 || passFld.getText().length() <= 0){
-				JOptionPane.showMessageDialog(null, "Fyll i b��da f��lten. Annars blire sp��.", 
+				JOptionPane.showMessageDialog(null, "Fyll i båda fälten. Annars blir'e spö.", 
 													"Failure", JOptionPane.ERROR_MESSAGE);
 			}
 			else{

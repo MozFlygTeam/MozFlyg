@@ -103,7 +103,7 @@ public class TableModelFlight extends AbstractTableModel
         case ID_COLUMN: return "id";
         case DEPARTING_FROM_COLUMN: return "Avreseort";
         case ARRIVING_TO_COLUMN: return "Destination";
-        case DEPARTING_TIME_COLUMN: return "Avg��ngstid";
+        case DEPARTING_TIME_COLUMN: return "Avgångstid";
         case AIRPLANE_TYPE_COLUMN: return "Flygplanstyp";
         case PRICE_COLUMN: return "Pris";
         }
