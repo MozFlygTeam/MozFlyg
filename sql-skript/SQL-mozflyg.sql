@@ -75,7 +75,7 @@ INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, 
 INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (5,2, '2014-01-01 01:01:00', 3, 2040);
 INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (1,4, '2014-07-01 01:30:00', 1, 2100);
 INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (3,2, '2014-05-12 03:50:00', 2, 3240);
-INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (5,2, '2014-11-13 014:35:00', 2, 3800);
+INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (5,2, '2014-11-13 14:35:00', 2, 3800);
 INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (1,2, '2014-05-04 08:10:00', 3, 3230);
 INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (4,3, '2014-10-03 11:20:00', 1, 2000);
 INSERT INTO flight (departing_from, arriving_to, time_departing, airplane_type, price) VALUES (5,1, '2014-07-14 15:40:00', 3, 1200);
@@ -94,5 +94,15 @@ INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 3);
 INSERT INTO booked_flight (account_id, flight_id) VALUES (5, 4);
 INSERT INTO booked_flight (account_id, flight_id) VALUES (1, 5);
 INSERT INTO booked_flight (account_id, flight_id) VALUES (3, 1);
+
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 2);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 4);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 5);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 6);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 7);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 8);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 9);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 10);
+INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 11);
 
 SELECT * FROM flight;
