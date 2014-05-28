@@ -35,6 +35,7 @@ import models.TableModelFlight;
     private JButton bookedFlightsBtn;
     private JButton bookFlightBtn;
     private JButton unbookFlightsBtn;
+    private JButton showAllFlightsBtn;
     private JTable flightTable;
     
     JComboBox<DBModelAirport> droppDownFrom;
@@ -42,7 +43,7 @@ import models.TableModelFlight;
     JSpinner spinnerDate;
     JButton searchButton;
     
-    
+    private static final String SHOWALL = "SHOWALL";
     private static final String SEARCH = "search";  
     private static final String ADD = "add";
     private static final String DELETE = "delete";
@@ -50,6 +51,7 @@ import models.TableModelFlight;
     private static final String BOOKED = "booked";
     private static final String BOOK = "book";
     private static final String UNBOOK = "unbook";
+   
     
     
     
@@ -60,11 +62,11 @@ import models.TableModelFlight;
       flightTable = new JTable(tableModelFlight);
       
       
-      //������ndrar CellEditorn f������r avg������ngsflygets kolumn till en dropdownbox
+      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ndrar CellEditorn fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½r avgï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ngsflygets kolumn till en dropdownbox
       TableColumn departingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.DEPARTING_FROM_COLUMN);
       departingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
       
-      //������ndrar CellEditorn f������r ankomstflygets kolumn till en dropdownbox
+      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ndrar CellEditorn fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½r ankomstflygets kolumn till en dropdownbox
       TableColumn arrivingColumn = flightTable.getColumnModel().getColumn(TableModelFlight.ARRIVING_TO_COLUMN);
       arrivingColumn.setCellEditor(new DefaultCellEditor(new JComboBox<DBModelAirport>(DBModelAirport.getAll())));
       
@@ -81,10 +83,11 @@ import models.TableModelFlight;
        spinnerDate = new JSpinner(new SpinnerDateModel());
        searchPane.add(spinnerDate);
        
-       searchButton = new JButton("Search");
+       searchButton = new JButton("Sök");
        searchButton.addActionListener(this);
        searchButton.setActionCommand(SEARCH);
        searchPane.add(searchButton);
+
 
       JPanel contentPane = new JPanel(new BorderLayout());
       JScrollPane scrollPane = new JScrollPane(flightTable);
@@ -95,13 +98,16 @@ import models.TableModelFlight;
       add(scrollPane, BorderLayout.CENTER);
       add(bottomPanel, BorderLayout.PAGE_END);
       
-      
+      showAllFlightsBtn = new JButton("Visa alla");
+      showAllFlightsBtn.addActionListener(this);
+      showAllFlightsBtn.setActionCommand(SHOWALL);
+      showAllFlightsBtn.setEnabled(true);
+      searchPane.add(showAllFlightsBtn);
       
       bookedFlightsBtn = new JButton("Bokade resor");
       bookedFlightsBtn.addActionListener(this);
       bookedFlightsBtn.setActionCommand(BOOKED);
       bookedFlightsBtn.setEnabled(true);
-      
       
       bookFlightBtn = new JButton("Boka flyg");
       bookFlightBtn.addActionListener(this);
@@ -113,11 +119,14 @@ import models.TableModelFlight;
       unbookFlightsBtn.setActionCommand(UNBOOK);
       unbookFlightsBtn.setEnabled(false);
       
+
+      
       
       
       bottomPanel.add(bookedFlightsBtn);
       bottomPanel.add(bookFlightBtn);
       bottomPanel.add(unbookFlightsBtn);
+     
       
       
       
@@ -127,7 +136,7 @@ import models.TableModelFlight;
       {
     	  bottomPanel.add(new JSeparator(SwingConstants.VERTICAL));
     	  
-	      JButton addButton = new JButton("Lägg till");
+	      JButton addButton = new JButton("LÃ¤gg till");
 	      addButton.addActionListener(this);
 	      addButton.setActionCommand(ADD);
 	
@@ -146,11 +155,11 @@ import models.TableModelFlight;
 	      bottomPanel.add(removeButton);
 	      bottomPanel.add(editButton);
 	      
-	      setTitle("Sök och hantera resor");
+	      setTitle("SÃ¶k och hantera resor");
       }
       else
       {
-    	  setTitle("Sökning och bokning av resor");
+    	  setTitle("SÃ¶kning och bokning av resor");
       }
       
       pack();
