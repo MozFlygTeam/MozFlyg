@@ -26,10 +26,10 @@ public class WindowLogin extends JDialog implements ActionListener{
 	JTextField userFld;
 	JTextField passFld;
 	
-	
 	public WindowLogin(){
     
 		setModal(true);
+		setTitle("Logga In");
 		
 		//Create field panel
         JPanel dataPnl = new JPanel(new GridLayout(3, 2, 5, 5));
@@ -65,8 +65,9 @@ public class WindowLogin extends JDialog implements ActionListener{
         
         getRootPane().setDefaultButton(submitBtn);
         
-        setTitle("Logga In");
+        
         pack();
+        setLocationRelativeTo(null);
 	}
 	
 	public void setLoginStatus(boolean status){

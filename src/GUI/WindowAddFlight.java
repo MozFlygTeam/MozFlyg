@@ -14,7 +14,7 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
 
 import models.DBModelAirplaneType;
-import models.DBModelAirport; 
+import models.DBModelAirport;
 import models.DBModelFlight;
 	
 public class WindowAddFlight extends JDialog implements ActionListener {
@@ -44,11 +44,9 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 		 spinnerDepartingDate = new JSpinner(new SpinnerDateModel());
 		 panel.add(spinnerDepartingDate);
 		 
-		 
 		 spinnerPrice = new JSpinner(new SpinnerNumberModel(1000, 1,99999, 10));
 		 panel.add(spinnerPrice);
 		 
-		
 		 JLabel price = new JLabel("Kr");
 		 panel.add(price);	
 		 
@@ -66,6 +64,7 @@ public class WindowAddFlight extends JDialog implements ActionListener {
 		 setModal(true);
 		 add(panel);
 		 pack();
+		 setLocationRelativeTo(null);
 	 }
 	 
 	
