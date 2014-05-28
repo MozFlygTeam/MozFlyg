@@ -215,7 +215,9 @@ import models.TableModelFlight;
           tableModelFlight.removeFlightBooking(flightTable.getSelectedRow());
           System.out.println("Vald flightrad:" + flightTable.getSelectedRow());
           break;
-      
+      case SHOWALL:
+          tableModelFlight.setFlight(DBModelFlight.getAllFlights());
+          break;
       }
     
       

@@ -110,10 +110,12 @@ public static DBModelAirplaneType getAirplaneType(int airplaneTypeId) {
 
 		try (Connection conn = DBConnector.getConnection())
 		{
-			String query = "SELECT id," + MODEL_NAME_COLUMN + "," + PASSENGER_CAPACITY_COLUMN + "," + VELOCITY_COLUMN + "," + FUEL_CONSUMPTION_COLUMN + " FROM " + TABLE_NAME;
+			String query = "SELECT id," + MODEL_NAME_COLUMN + "," + PASSENGER_CAPACITY_COLUMN + "," + VELOCITY_COLUMN + "," + FUEL_CONSUMPTION_COLUMN + " FROM " + TABLE_NAME
+					+ " WHERE id = ?";
 			
-			Statement statement = conn.createStatement();
-			ResultSet result = statement.executeQuery(query);
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1, airplaneTypeId);
+			ResultSet result = statement.executeQuery();
 			
 			while (result.next())
 			{

@@ -94,5 +94,3 @@ INSERT INTO booked_flight (account_id, flight_id) VALUES (2, 3);
 INSERT INTO booked_flight (account_id, flight_id) VALUES (5, 4);
 INSERT INTO booked_flight (account_id, flight_id) VALUES (1, 5);
 INSERT INTO booked_flight (account_id, flight_id) VALUES (3, 1);
-
-SELECT * FROM flight;
