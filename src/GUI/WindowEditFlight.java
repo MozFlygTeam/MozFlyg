@@ -31,7 +31,6 @@ import models.TableModelFlight;
     public DBModelFlight flightModel;
     public static TableModelFlight tableModelFlight;
     private JButton removeButton;
-    private JButton editButton;
     private JButton bookedFlightsBtn;
     private JButton bookFlightBtn;
     private JButton unbookFlightsBtn;
@@ -47,13 +46,9 @@ import models.TableModelFlight;
     private static final String SEARCH = "search";  
     private static final String ADD = "add";
     private static final String DELETE = "delete";
-    private static final String EDIT = "editera";
     private static final String BOOKED = "booked";
     private static final String BOOK = "book";
     private static final String UNBOOK = "unbook";
-   
-    
-    
     
     public WindowEditFlight() {
 
@@ -119,18 +114,9 @@ import models.TableModelFlight;
       unbookFlightsBtn.setActionCommand(UNBOOK);
       unbookFlightsBtn.setEnabled(false);
       
-
-      
-      
-      
       bottomPanel.add(bookedFlightsBtn);
       bottomPanel.add(bookFlightBtn);
       bottomPanel.add(unbookFlightsBtn);
-     
-      
-      
-      
-      
       
       if(DBModelAccount.loggedInUser.isAdmin())
       {
@@ -145,15 +131,8 @@ import models.TableModelFlight;
 	      removeButton.setActionCommand(DELETE);
 	      removeButton.setEnabled(false);
 	      
-	      
-	      editButton = new JButton("Editera");
-	      editButton.addActionListener(this);
-	      editButton.setActionCommand(EDIT);
-	      editButton.setEnabled(false);
-	      
 	      bottomPanel.add(addButton);
 	      bottomPanel.add(removeButton);
-	      bottomPanel.add(editButton);
 	      
 	      setTitle("SÃ¶k och hantera resor");
       }
@@ -183,45 +162,47 @@ import models.TableModelFlight;
     }
     
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void actionPerformed(ActionEvent event)
+    {
 
-      switch (event.getActionCommand()) {
-      case ADD:
-        addFlight();
-        break;
-      case DELETE:
-        int i = flightTable.getSelectedRow();
-        tableModelFlight.deleteFlight(i);
-        break;
-      case SEARCH:
-        DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
-        DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
-        SpinnerDateModel sp = (SpinnerDateModel)spinnerDate.getModel();
-        
-        java.sql.Date sqlDate = new java.sql.Date(sp.getDate().getTime());
-        System.out.print("SEARCH METODEN !!");
-        tableModelFlight.setFlight(DBModelFlight.getFlights(arFr.getId(),arTo.getId(), sqlDate));
-        
-        break;
-      case BOOKED:
-        
-        tableModelFlight.setFlight(DBModelFlight.getBookedFlights());
-        
-        break;
-      case BOOK:
-    	  tableModelFlight.addFlightBooking(flightTable.getSelectedRow());
-    	  break;
-      case UNBOOK:
-          tableModelFlight.removeFlightBooking(flightTable.getSelectedRow());
-          System.out.println("Vald flightrad:" + flightTable.getSelectedRow());
-          break;
-      case SHOWALL:
-          tableModelFlight.setFlight(DBModelFlight.getAllFlights());
-          break;
+      switch (event.getActionCommand())
+      {
+	      case ADD:
+	        addFlight();
+	        break;
+	      case DELETE:
+	        int i = flightTable.getSelectedRow();
+	        tableModelFlight.deleteFlight(i);
+	        break;
+	      case SEARCH:
+	        DBModelAirport arFr = (DBModelAirport) droppDownFrom.getSelectedItem();
+	        DBModelAirport arTo = (DBModelAirport) droppDownTo.getSelectedItem();
+	        SpinnerDateModel sp = (SpinnerDateModel)spinnerDate.getModel();
+	        
+	        java.sql.Date sqlDate = new java.sql.Date(sp.getDate().getTime());
+	        System.out.print("SEARCH METODEN !!");
+	        tableModelFlight.setFlight(DBModelFlight.getFlights(arFr.getId(),arTo.getId(), sqlDate));
+	        
+	        break;
+	      case BOOKED:
+	        
+	        tableModelFlight.setFlight(DBModelFlight.getBookedFlights());
+	        
+	        break;
+	      case BOOK:
+	    	  tableModelFlight.addFlightBooking(flightTable.getSelectedRow());
+	    	  break;
+	      case UNBOOK:
+	          tableModelFlight.removeFlightBooking(flightTable.getSelectedRow());
+	          System.out.println("Vald flightrad:" + flightTable.getSelectedRow());
+	          break;
+	      case SHOWALL:
+	          tableModelFlight.setFlight(DBModelFlight.getAllFlights());
+	          break;
       }
     
       
-      }
+    }
     
     public void valueChanged(ListSelectionEvent event)
     {
@@ -230,7 +211,6 @@ import models.TableModelFlight;
     	boolean selectionActive = flightTable.getSelectedRowCount() > 0;
     	
         removeButton.setEnabled(selectionActive);
-        editButton.setEnabled(selectionActive);
         bookFlightBtn.setEnabled(selectionActive);
         unbookFlightsBtn.setEnabled(selectionActive);
       }
@@ -238,6 +218,3 @@ import models.TableModelFlight;
     
     
   }
-  
-  
-

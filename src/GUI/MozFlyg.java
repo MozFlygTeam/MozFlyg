@@ -18,15 +18,11 @@ import models.DBModelAccount;
 public class MozFlyg extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-//	private static final String EXIT = "exit";
-//	private static final String LOGOUT = "logout";
 	private static final String AIRPORT = "airport";
 	private static final String AIRPLANE = "airplane";
 	private static final String ACCOUNT = "account";
 	private static final String FLIGHT = "flight";
 	private static final String BOOKING = "booking";
-//	private static final String BOOKED_FLIGHTS = "bookedFlights";
-//	private static final String RUTTER = "rutter";
 
 	public MozFlyg() {
 		WindowLogin login = new WindowLogin();
@@ -43,27 +39,12 @@ public class MozFlyg extends JFrame implements ActionListener {
 		add(panel);
 		JMenuBar menubar = new JMenuBar();
 		
-		// File menu
-//		JMenu file = new JMenu("File");
-//		menubar.add(file);
-//		JMenuItem logoutItem = new JMenuItem("Logout");
-//		logoutItem.addActionListener(this);
-//		logoutItem.setActionCommand(LOGOUT);
-//		file.add(logoutItem);
-//
-//		JMenuItem exitItem = new JMenuItem("Exit");
-//		exitItem.addActionListener(this);
-//		exitItem.setActionCommand(EXIT);
-//		file.add(exitItem);
-
 		// ADMIN MENYN
 		System.out.print(DBModelAccount.loggedInUser.isAdmin());
 		JMenu admin = new JMenu("Administrera");
 		admin.setEnabled(false);
 		menubar.add(admin);
-		
-		
-		
+
 		//Menyknapp till flygturer
 		JMenuItem item3 = new JMenuItem("Flygturer");
 		item3.addActionListener(this);
@@ -87,41 +68,12 @@ public class MozFlyg extends JFrame implements ActionListener {
 		item2.addActionListener(this);
 		item2.setActionCommand(ACCOUNT);
 		admin.add(item2);
-		
-		//EDIT RUTTER
-		/*
-		JMenuItem rutter = new JMenuItem("Edit rutter");
-		rutter.addActionListener(this);
-		rutter.setActionCommand(RUTTER);
-		admin.add(rutter);
-		*/
-		
-		
-		
-
-		
 
 		//Knapp f��r att boka resor
 		JButton button1 = new JButton("Boka resa");
 		button1.addActionListener(this);
 		button1.setActionCommand(BOOKING);
 		panel.add(button1);
-		
-		//Knapp f��r bokade resor
-//		JButton button2 = new JButton("Bokade resor");
-//		button2.addActionListener(this);
-//		button2.setActionCommand(BOOKED_FLIGHTS);
-//		panel.add(button2);
-//
-//		JButton button3 = new JButton("Button 3");
-//		button3.addActionListener(this);
-//		button3.setActionCommand(EXIT);
-//		panel.add(button3);
-//
-//		JButton button4 = new JButton("Button 4");
-//		button4.addActionListener(this);
-//		button4.setActionCommand(EXIT);
-//		panel.add(button4);
 			
 		if(DBModelAccount.loggedInUser.isAdmin()){	
 			admin.setEnabled(true);
@@ -153,42 +105,28 @@ public class MozFlyg extends JFrame implements ActionListener {
 		String cmd = e.getActionCommand();
 
 		switch (cmd) {
-//		case EXIT:
-//			System.exit(0);
-//			break;
-//		case LOGOUT:
-//			System.exit(0);
-//			break;
-		case AIRPLANE:
-			WindowAirplaneType airplaneType = new WindowAirplaneType();
-			airplaneType.setVisible(true);
-			break;	
-		case AIRPORT:
-			WindowAirport airport = new WindowAirport();
-			airport.setVisible(true);
+			case AIRPLANE:
+				WindowAirplaneType airplaneType = new WindowAirplaneType();
+				airplaneType.setVisible(true);
+				break;	
+			case AIRPORT:
+				WindowAirport airport = new WindowAirport();
+				airport.setVisible(true);
+				break;
+			case ACCOUNT:
+				WindowAccountEdit account = new WindowAccountEdit();
+				account.setVisible(true);
+				break;
+			case FLIGHT:
+				WindowEditFlight flight = new WindowEditFlight();
+				flight.setVisible(true);
 			break;
-		case ACCOUNT:
-			WindowAccountEdit account = new WindowAccountEdit();
-			account.setVisible(true);
-			break;
-		case FLIGHT:
-			WindowEditFlight flight = new WindowEditFlight();
-			flight.setVisible(true);
-		break;
-		case BOOKING:
-			WindowEditFlight bookingWindow = new WindowEditFlight();
-			bookingWindow.setVisible(true);
-			break;
-//		case BOOKED_FLIGHTS:
-//			WindowBookedFlights bookedFlights = new WindowBookedFlights();
-//			bookedFlights.setVisible(true);
-//			break;
-//		case RUTTER:
-//			WindowRutter windowRutter = new WindowRutter();
-//			windowRutter.setVisible(true);
-//			break;
-		default:
-			break;
+			case BOOKING:
+				WindowEditFlight bookingWindow = new WindowEditFlight();
+				bookingWindow.setVisible(true);
+				break;
+			default:
+				break;
 		}
 
 	}
